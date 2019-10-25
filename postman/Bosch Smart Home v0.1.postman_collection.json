@@ -1,0 +1,1244 @@
+{
+	"info": {
+		"_postman_id": "c009d329-d4e8-4681-8168-368ad1d55a41",
+		"name": "Bosch Smart Home v0.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LICENSE, TERMS AND CONDITIONS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "This documentation is subjected to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).\n\nBy using this documentation, the developer accepts and agrees to be bound by the Terms and Conditions defined at https://github.com/BoschSmartHome/bosch-shc-api-docs"
+			},
+			"response": []
+		},
+		{
+			"name": "New Client (read our Terms and Conditions, see description)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
+						"exec": [
+							"/** ",
+							" * Please make sure to comply with our Terms and Conditions (see https://github.com/BoschSmartHome/bosch-shc-api-docs)",
+							" * ",
+							" * URL of Smart Home Controller",
+							" * ",
+							" **/",
+							"postman.setEnvironmentVariable(\"host\", \"192.168.0.10\");",
+							"postman.setEnvironmentVariable(\"backend_secure\", \"https://{{host}}:8443/smarthome\");",
+							"",
+							"/** ",
+							" * Header",
+							" * ",
+							" * @param Systempassword - Your system password for your Smart Home Controller base64 encoded",
+							" **/",
+							"postman.setEnvironmentVariable(\"system_password_base64\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param id - Name of your open source project with prefix 'oss_'. Optional a unique id can be added as a suffix. E.g. oss_my-project_788c22fb-b090-4faf-8faf-15f67b9128c2 ",
+							" * @param name - Name of your open source project with prefix 'OSS'. E.g. OSS My Project",
+							" * @param certificate - 2048 bit self signed certificate (See example below)",
+							" **/",
+							"postman.setEnvironmentVariable(\"client_id\", \"oss_postman\");",
+							"postman.setEnvironmentVariable(\"client_name\", \"OSS Postman\");",
+							"",
+							"// 2048 bit self signed certificate",
+							"// e.g \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Systempassword",
+						"value": "{{system_password_base64}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"for example, see Tab -> Pre-request Script\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/clients",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"clients"
+					]
+				},
+				"description": "Please make sure to comply with our Terms and Conditions\n(see https://github.com/BoschSmartHome/bosch-shc-api-docs)"
+			},
+			"response": []
+		},
+		{
+			"name": "Long Polling Subscribe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88868708-448c-4508-99cf-1cd8ebb57100",
+						"exec": [
+							"var bodyJson = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"poll_id\", bodyJson[0].result);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2be92b3c-c071-478b-a684-5250d60b4619",
+						"exec": [
+							"/** ",
+							" * URL of Smart Home Controller Long Polling",
+							" * ",
+							" **/",
+							"postman.setEnvironmentVariable(\"backend_poll\", \"https://{{host}}:8443/remote/json-rpc\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param id - Generated unique id",
+							" * @result poll_id - Identifier to poll and to unsubscribe, see Tab -> Tests",
+							" **/",
+							"postman.setEnvironmentVariable(\"random_id\", \"9cb6b799-d936-4533-b197-6c2568ca723e\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/subscribe\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"com/bosch/sh/remote/*\", null]\n    }\n]"
+				},
+				"url": {
+					"raw": "{{backend_poll}}",
+					"host": [
+						"{{backend_poll}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Long Polling Poll",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/longPoll\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"{{poll_id}}\", 30]\n    }\n]"
+				},
+				"url": {
+					"raw": "{{backend_poll}}",
+					"host": [
+						"{{backend_poll}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Long Polling Unsubscribe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bbf082c3-08fd-478e-ba2e-31ae353ea980",
+						"exec": [
+							"var bodyJson = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"poll_id\", bodyJson[0].result);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/unsubscribe\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"{{poll_id}}\"]\n    }\n]"
+				},
+				"url": {
+					"raw": "{{backend_poll}}",
+					"host": [
+						"{{backend_poll}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rooms as array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{backend_secure}}/rooms",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices as array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{backend_secure}}/devices",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Device Services as array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{backend_secure}}/services",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenarios as array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{backend_secure}}/scenarios",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"scenarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario trigger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05d1e32a-3f3f-4200-b2e2-11c6cd9211a3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aaf436be-065f-4fde-a690-da187f5d6caf",
+						"exec": [
+							"/** ",
+							" * URL of Scenario",
+							" * ",
+							" * @param scenario_id - The id of the scenario",
+							" **/",
+							"postman.setEnvironmentVariable(\"scenario_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{backend_secure}}/scenarios/{{scenario_id}}/triggers",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"scenarios",
+						"{{scenario_id}}",
+						"triggers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alarm state (IntrusionDetectionSystem)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"intrusionDetectionSystem",
+						"services",
+						"IntrusionDetectionControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alarm SYSTEM_ARMED (IntrusionDetectionSystem)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_ARMED\"\r\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"intrusionDetectionSystem",
+						"services",
+						"IntrusionDetectionControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alarm SYSTEM_DISARMED (IntrusionDetectionSystem)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_DISARMED\"\r\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"intrusionDetectionSystem",
+						"services",
+						"IntrusionDetectionControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PresenceSimulation state",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"presenceSimulationService",
+						"services",
+						"PresenceSimulationConfiguration",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PresenceSimulation true",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": true\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"presenceSimulationService",
+						"services",
+						"PresenceSimulationConfiguration",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PresenceSimulation false",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": false\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"presenceSimulationService",
+						"services",
+						"PresenceSimulationConfiguration",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PowerMeter state (also for flush mounted light switch)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3ff2ba4c-7070-45d7-90b9-718c7f70c123",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param ps_device_id - The id of the smart plug or light switch",
+							" **/",
+							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerMeter/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{ps_device_id}}",
+						"services",
+						"PowerMeter",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PowerSwitch/LightSwitch state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "65a926fe-52a9-4c4d-ac6e-ead31456adc0",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param ps_device_id - The id of the smart plug or light switch",
+							" **/",
+							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{ps_device_id}}",
+						"services",
+						"PowerSwitch",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PowerSwitch/LightSwitch ON",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param ps_device_id - The id of the smart plug or light switch",
+							" **/",
+							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param switchState - Turn the power switch ON",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"ON\"\r\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{ps_device_id}}",
+						"services",
+						"PowerSwitch",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PowerSwitch/LightSwitch OFF",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "37748390-bb4b-4348-81b5-230226696737",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param ps_device_id - The id of the smart plug or light switch",
+							" **/",
+							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param switchState - Turn the power switch OFF",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"OFF\"\r\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{ps_device_id}}",
+						"services",
+						"PowerSwitch",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RoomClimateControl state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a5ce89f2-cc7e-432b-bb9e-c89a2511a389",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param rcc_id - The id of the room climate control",
+							" **/",
+							"postman.setEnvironmentVariable(\"rcc_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{rcc_id}}",
+						"services",
+						"RoomClimateControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RoomClimateControl temperature as float",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "40fd3978-9d91-440b-8d3c-233d0dfa436c",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param rcc_id - The id of the room climate control",
+							" **/",
+							"postman.setEnvironmentVariable(\"rcc_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param setpointTemperature - Set temperature to given value. Range is from 5.0 to 30.0 in 0.5 steps.",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"@type\": \"climateControlState\",\n    \"setpointTemperature\": \"5.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{rcc_id}}",
+						"services",
+						"RoomClimateControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shutter state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a685b043-8a76-411a-8dab-032c18b5cbe2",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param bbl_id - The id of the shutter",
+							" **/",
+							"postman.setEnvironmentVariable(\"bbl_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{bbl_id}}/services/ShutterControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{bbl_id}}",
+						"services",
+						"ShutterControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shutter level as float",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param bbl_id - The id of the shutter",
+							" **/",
+							"postman.setEnvironmentVariable(\"bbl_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param level - Set shutter level to given value. Range is from 0.0 to 1.0 in 0.1 steps.",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"@type\": \"shutterControlState\",\n    \"level\": \"1.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{bbl_id}}/services/ShutterControl/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{bbl_id}}",
+						"services",
+						"ShutterControl",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camera PrivacyMode state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a62a1f19-bb2a-481e-8791-8f9a46c4787e",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param camera_id - The id of the camera",
+							" **/",
+							"postman.setEnvironmentVariable(\"camera_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{camera_id}}",
+						"services",
+						"PrivacyMode",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camera PrivacyMode ENABLED",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bc5c64ba-4456-4780-ab34-ee751b1d1ac9",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param camera_id - The id of the camera",
+							" **/",
+							"postman.setEnvironmentVariable(\"camera_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param value - ENABLED, enables the privacy mode",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"ENABLED\"\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{camera_id}}",
+						"services",
+						"PrivacyMode",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camera PrivacyMode DISABLED",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "60743ce3-9661-4b3d-b767-396d4e2a54d9",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param camera_id - The id of the camera",
+							" **/",
+							"postman.setEnvironmentVariable(\"camera_id\", \"\");",
+							"",
+							"/** ",
+							" * Body",
+							" * ",
+							" * @param value - DISABLED, disables the privacy mode",
+							" **/",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"DISABLED\"\n}"
+				},
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{camera_id}}",
+						"services",
+						"PrivacyMode",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShutterContact state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "53136090-fd25-4c32-a369-a0cdd104e1f8",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param swd_id - The id of the shutter contact (door/window contact)",
+							" **/",
+							"postman.setEnvironmentVariable(\"swd_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{swd_id}}/services/ShutterContact/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{swd_id}}",
+						"services",
+						"ShutterContact",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Twinguard AirQualityLevel state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e24b6e32-04a6-4a4b-bba4-dda6ef68b910",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param twinguard_id - The id of the twinguard",
+							" **/",
+							"postman.setEnvironmentVariable(\"twinguard_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{twinguard_id}}/services/AirQualityLevel/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{twinguard_id}}",
+						"services",
+						"AirQualityLevel",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keypad state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2db03622-15df-4370-973e-f2e9864f5191",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param keypad_id - The id of the keypad (universal switch)",
+							" **/",
+							"postman.setEnvironmentVariable(\"keypad_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{keypad_id}}/services/Keypad/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{keypad_id}}",
+						"services",
+						"Keypad",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Motion Detector state",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "92ae505c-5dcd-4cc3-9a04-d93cf5d6df65",
+						"exec": [
+							"/** ",
+							" * URL of Service",
+							" * ",
+							" * @param md_id - The id of the motion sensor",
+							" **/",
+							"postman.setEnvironmentVariable(\"md_id\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backend_secure}}/devices/{{md_id}}/services/LatestMotion/state",
+					"host": [
+						"{{backend_secure}}"
+					],
+					"path": [
+						"devices",
+						"{{md_id}}",
+						"services",
+						"LatestMotion",
+						"state"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
