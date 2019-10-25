@@ -8,7 +8,7 @@
 		{
 			"name": "LICENSE, TERMS AND CONDITIONS",
 			"request": {
-				"method": "GET",
+				"method": "VIEW",
 				"header": [],
 				"url": {
 					"raw": ""
