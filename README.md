@@ -61,15 +61,15 @@ Developers shall not use the API for publication of explicit content or offensiv
 ### License
 By using this documentation, the developer accepts and agrees to be bound by these Terms and Conditions (defined above). 
 
-The documentation is subjected to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+The documentation is subject to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
 
 
 ### Warranty
-Developers shall inform Robert Bosch Smart Home GmbH about any defects found in the API without undue delay. 
+We ask all developers working with our documentation to inform Robert Bosch Smart Home GmbH about any defects found in the API as soon as possible to give us a chance to remedy it.
 
 
 ### Support 
-Developers shall use the GitHub Issue Tracker to discuss issues related to this documentation: No support through the Bosch Smart Home Team (neither hotline nor e-mails). 
+Unfortunately, we are unable to support developers using our documentation via the official hotline nor by e-mails. However, we will try our best to respond to issues raised in [our GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues). Please report any trouble you might have with our documentation exclusively there.
 
 
-*October 23rd, 2019*
+*October 26th, 2019*
