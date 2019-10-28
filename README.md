@@ -35,7 +35,7 @@ Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany (“
 
 The use of the API only applies to private, non-profit individuals. A commercial use in any way, either direct or indirect, is prohibited.
 
-Using the API requires identification against the local Smart Home Controller with an individual client id and client name that starts with "oss_" followed by the name of the oss project or the name of the developer.
+Using the API requires identification against the local Smart Home Controller with an individual client id and client name that starts with "oss_" followed by the name of the open source project or the name of the developer.
 
 The client must register with the primary role of "ROLE_RESTRICTED_CLIENT".
 
@@ -72,4 +72,4 @@ We ask all developers working with our documentation to inform Robert Bosch Smar
 Unfortunately, we are unable to support developers using our documentation via the official hotline nor by e-mails. However, we will try our best to respond to issues raised in [our GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues). Please report any trouble you might have with our documentation exclusively there.
 
 
-*October 26th, 2019*
+*October 28th, 2019*
