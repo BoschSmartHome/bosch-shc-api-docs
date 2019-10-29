@@ -14,15 +14,15 @@
 
 
 ## Terms and Conditions
-Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany (“HOME”) offers a description of a local Bosch Smart Home REST API, that allows **private, non-profit** developers to locally control their Bosch Smart Home Devices.
+Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany (“Bosch Smart Home”) provides a description of the local Bosch Smart Home Controller REST API, that allows **private, non-profit** developers to locally control their Bosch Smart Home Devices.
 
 
 ### Definitions
-"API" refers to the interface functionality offered by HOME allowing private, non-profit developers to access Bosch Smart Home Data. 
+"API" refers to the interface functionality provided by Bosch Smart Home allowing private, non-profit developers to access Bosch Smart Home Data. 
 
 "Client" refers to software created by developers using the API. Clients can be, for example (but are not limited to), mobile apps or web services.
 
-"Bosch Smart Home Data" refers to data made available by utilization the API of a specific, local and personally owned Smart Home Controller ("SHC").
+"Data" refers to data made available by accessing the API of a specific, local and personally owned Smart Home Controller ("SHC").
 
 "Documentation" refers to the provided API description and usage examples.
 
@@ -31,25 +31,25 @@ Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany (“
 
 ### Terms of Usage
 
-**By using the documentation to enable interoperability you agree to the following terms:**
+**By using the Documentation to enable interoperability you agree to the following terms:**
 
 The use of the API only applies to private, non-profit individuals. A commercial use in any way, either direct or indirect, is prohibited.
 
-Using the API requires identification against the local Smart Home Controller with an individual client id and client name that starts with "oss_" followed by the name of the open source project or the name of the developer.
+Using the API requires identification against the local Smart Home Controller with an individual Client ID and Client name that starts with "oss_" followed by the name of the open source project or the name of the developer.
 
-The client must register with the primary role of "ROLE_RESTRICTED_CLIENT".
+The Client must register with the primary role "ROLE_RESTRICTED_CLIENT".
 
 The use of claims (e.g. “works with Bosch”) or trademarks (e.g. Bosch logos of any kind) that indicates a direct or indirect involvement with Bosch is prohibited. 
 
-Bosch Smart Home may at its sole and exclusive discretion, change, alter, modify, add and remove features, content and other materials of the documentation and/or API at any time. Bosch Smart Home may suspend or discontinue any feature or functionality provided at any time without any prior notice, obligation or liability. The developer is aware that changes in the API might require changes in the client. The costs for such changes have to be borne by the developer.
+Bosch Smart Home may at its sole and exclusive discretion, change, alter, modify, add and remove features, content and other materials of the Documentation and/or API at any time. Bosch Smart Home may suspend or discontinue any feature or functionality provided at any time without any prior notice, obligation or liability. The developer is aware that changes in the API might require changes in the Client. The costs for such changes have to be borne by the developer.
 
-Any technical implementation and fulfillment of system requirements of the API is the sole responsibility of the developer. Developers are obliged to adhere to the requirements of the API, particularly regarding the correct technical integration and use of the API (see documentation). The user acknowledges that an incorrect technical integration or use may lead to defects in the functions of the API, or even the entire client, or the connected Bosch Smart Home Devices.
+Any technical implementation and fulfillment of system requirements of the API is the sole responsibility of the developer. Developers are obliged to adhere to the requirements of the API, particularly regarding the correct technical integration and use of the API (see documentation). The user acknowledges that an incorrect technical integration or use may lead to defects in the functions of the API, or even the entire Client, or the connected Bosch Smart Home Devices.
 
-Developers are obliged to comply with any and all of these guidelines, which are specified in this document. Developers shall, in particular, not bypass any authentication or encryption mechanisms, or misuse API interfaces for purposes other than those which are clearly intended by this documentation (e.g. reading data from the Bosch Smart Home System). 
+Developers are obliged to comply with any and all of these guidelines, which are specified in this document. Developers shall, in particular, not bypass any authentication or encryption mechanisms, or misuse API interfaces for purposes other than those which are clearly intended by this Documentation (e.g. reading Data from the Bosch Smart Home System). 
 
-Developers shall not use the API for any action that can cause damages due to the interaction of the API or the client with the home appliances (e.g. by bypassing security prompts on the home appliances, or by executing commands that can cause harm to life or limb, or to the home appliances, or to any other goods).
+Developers shall not use the API for any action that can cause damages due to the interaction of the API or the Client with the home appliances (e.g. by bypassing security prompts on the home appliances, or by executing commands that can cause harm to life or limb, or to the home appliances, or to any other goods).
 
-Developers may produce and reproduce this documentation for their own use, but may not share a modified or derived version of this documentation.
+Developers may produce and reproduce this Documentation for their own use, but may not share a modified or derived version of this Documentation.
 
 Developers shall fully comply with all applicable legal provisions when using the API, including but not limited to, copyright, trademark rights and data protection.
 
@@ -59,17 +59,17 @@ Developers shall not use the API for publication of explicit content or offensiv
 
 
 ### License
-By using this documentation, the developer accepts and agrees to be bound by these Terms and Conditions (defined above). 
+By using this Documentation, the developer accepts and agrees to be bound by these Terms and Conditions (defined above). 
 
-The documentation is subject to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+The Documentation is subject to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
 
 
 ### Warranty
-We ask all developers working with our documentation to inform Robert Bosch Smart Home GmbH about any defects found in the API as soon as possible to give us a chance to remedy it.
+We ask all developers working with our Documentation to inform Robert Bosch Smart Home GmbH about any defects found in the API as soon as possible to give us a chance to remedy it.
 
 
 ### Support 
-Unfortunately, we are unable to support developers using our documentation via the official hotline nor by e-mails. However, we will try our best to respond to issues raised in [our GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues). Please report any trouble you might have with our documentation exclusively there.
+Unfortunately, we are unable to support developers using the Documentation neither via the official hotline nor by e-mail. However, we will try our best to respond to issues raised in [our GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues). Please report any trouble you might have with the Documentation exclusively there.
 
 
-*October 28th, 2019*
+*October 29th, 2019*
