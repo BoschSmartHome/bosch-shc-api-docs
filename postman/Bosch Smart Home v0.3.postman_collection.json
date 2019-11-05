@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c009d329-d4e8-4681-8168-368ad1d55a41",
-		"name": "Bosch Smart Home v0.2",
+		"name": "Bosch Smart Home v0.3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -119,6 +119,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -142,6 +147,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -178,6 +188,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -223,6 +238,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -267,6 +287,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -311,6 +336,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -345,6 +375,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -390,7 +425,18 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -413,7 +459,18 @@
 			"name": "Alarm state (IntrusionDetectionSystem)",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
 					"host": [
@@ -438,6 +495,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -468,6 +530,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -498,6 +565,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -524,6 +596,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -554,6 +631,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -597,7 +679,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerMeter/state",
 					"host": [
@@ -635,7 +728,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
 					"host": [
@@ -684,6 +788,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -738,6 +847,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -781,7 +895,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
 					"host": [
@@ -832,6 +957,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -880,7 +1010,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{bbl_id}}/services/ShutterControl/state",
 					"host": [
@@ -931,6 +1072,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -979,7 +1125,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
 					"host": [
@@ -1028,6 +1185,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -1082,6 +1244,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -1125,7 +1292,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{swd_id}}/services/ShutterContact/state",
 					"host": [
@@ -1163,7 +1341,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{twinguard_id}}/services/AirQualityLevel/state",
 					"host": [
@@ -1201,7 +1390,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{keypad_id}}/services/Keypad/state",
 					"host": [
@@ -1239,7 +1439,18 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "api-version",
+						"value": "1.0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{shc_api}}/devices/{{md_id}}/services/LatestMotion/state",
 					"host": [
