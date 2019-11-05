@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c009d329-d4e8-4681-8168-368ad1d55a41",
-		"name": "Bosch Smart Home v0.1",
+		"name": "Bosch Smart Home v0.2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -28,11 +28,13 @@
 							"/** ",
 							" * Please make sure to comply with our Terms and Conditions (see https://github.com/BoschSmartHome/bosch-shc-api-docs)",
 							" * ",
-							" * URL of Smart Home Controller",
+							" * URLs of Smart Home Controller",
 							" * ",
 							" **/",
 							"postman.setEnvironmentVariable(\"host\", \"192.168.0.10\");",
-							"postman.setEnvironmentVariable(\"backend_secure\", \"https://{{host}}:8443/smarthome\");",
+							"postman.setEnvironmentVariable(\"shc_secure\", \"https://{{host}}:8443/smarthome/clients\");",
+							"postman.setEnvironmentVariable(\"shc_poll\", \"https://{{host}}:8444/remote/json-rpc\");",
+							"postman.setEnvironmentVariable(\"shc_api\", \"https://{{host}}:8444/smarthome\");",
 							"",
 							"/** ",
 							" * Header",
@@ -77,12 +79,9 @@
 					"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"for example, see Tab -> Pre-request Script\"\r\n}\r\n"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/clients",
+					"raw": "{{shc_secure}}",
 					"host": [
-						"{{backend_secure}}"
-					],
-					"path": [
-						"clients"
+						"{{shc_secure}}"
 					]
 				},
 				"description": "Please make sure to comply with our Terms and Conditions\n(see https://github.com/BoschSmartHome/bosch-shc-api-docs)"
@@ -98,7 +97,7 @@
 						"id": "88868708-448c-4508-99cf-1cd8ebb57100",
 						"exec": [
 							"var bodyJson = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"poll_id\", bodyJson[0].result);"
+							"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
 						],
 						"type": "text/javascript"
 					}
@@ -108,19 +107,7 @@
 					"script": {
 						"id": "2be92b3c-c071-478b-a684-5250d60b4619",
 						"exec": [
-							"/** ",
-							" * URL of Smart Home Controller Long Polling",
-							" * ",
-							" **/",
-							"postman.setEnvironmentVariable(\"backend_poll\", \"https://{{host}}:8443/remote/json-rpc\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param id - Generated unique id",
-							" * @result poll_id - Identifier to poll and to unsubscribe, see Tab -> Tests",
-							" **/",
-							"postman.setEnvironmentVariable(\"random_id\", \"9cb6b799-d936-4533-b197-6c2568ca723e\");"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -136,12 +123,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/subscribe\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"com/bosch/sh/remote/*\", null]\n    }\n]"
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/subscribe\",\n        \"params\": [\"com/bosch/sh/remote/*\", null]\n    }\n]"
 				},
 				"url": {
-					"raw": "{{backend_poll}}",
+					"raw": "{{shc_poll}}",
 					"host": [
-						"{{backend_poll}}"
+						"{{shc_poll}}"
 					]
 				}
 			},
@@ -159,12 +146,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/longPoll\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"{{poll_id}}\", 30]\n    }\n]"
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/longPoll\",\n        \"params\": [\"{{shc_poll_id}}\", 30]\n    }\n]"
 				},
 				"url": {
-					"raw": "{{backend_poll}}",
+					"raw": "{{shc_poll}}",
 					"host": [
-						"{{backend_poll}}"
+						"{{shc_poll}}"
 					]
 				}
 			},
@@ -179,7 +166,7 @@
 						"id": "bbf082c3-08fd-478e-ba2e-31ae353ea980",
 						"exec": [
 							"var bodyJson = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"poll_id\", bodyJson[0].result);"
+							"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
 						],
 						"type": "text/javascript"
 					}
@@ -195,12 +182,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/unsubscribe\",\n        \"id\":\"{{random_id}}\",\n        \"params\": [\"{{poll_id}}\"]\n    }\n]"
+					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/unsubscribe\",\n        \"params\": [\"{{shc_poll_id}}\"]\n    }\n]"
 				},
 				"url": {
-					"raw": "{{backend_poll}}",
+					"raw": "{{shc_poll}}",
 					"host": [
-						"{{backend_poll}}"
+						"{{shc_poll}}"
 					]
 				}
 			},
@@ -218,6 +205,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -229,9 +226,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{backend_secure}}/rooms",
+					"raw": "{{shc_api}}/rooms",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"rooms"
@@ -252,6 +249,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -263,9 +270,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{backend_secure}}/devices",
+					"raw": "{{shc_api}}/devices",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices"
@@ -286,6 +293,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dc782443-eed9-4d04-a38c-bfab4e6f93e2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -297,9 +314,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{backend_secure}}/services",
+					"raw": "{{shc_api}}/services",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"services"
@@ -331,9 +348,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{backend_secure}}/scenarios",
+					"raw": "{{shc_api}}/scenarios",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"scenarios"
@@ -379,9 +396,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{backend_secure}}/scenarios/{{scenario_id}}/triggers",
+					"raw": "{{shc_api}}/scenarios/{{scenario_id}}/triggers",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"scenarios",
@@ -398,9 +415,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -428,9 +445,9 @@
 					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_ARMED\"\r\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -458,9 +475,9 @@
 					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_DISARMED\"\r\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -484,9 +501,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -514,9 +531,9 @@
 					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": true\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -544,9 +561,9 @@
 					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": false\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -582,9 +599,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerMeter/state",
+					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerMeter/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -620,9 +637,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -674,9 +691,9 @@
 					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"ON\"\r\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -728,9 +745,9 @@
 					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"OFF\"\r\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
+					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -766,9 +783,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
+					"raw": "{{shc_api}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -827,9 +844,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
+					"raw": "{{shc_api}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -865,9 +882,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{bbl_id}}/services/ShutterControl/state",
+					"raw": "{{shc_api}}/devices/{{bbl_id}}/services/ShutterControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -926,9 +943,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{bbl_id}}/services/ShutterControl/state",
+					"raw": "{{shc_api}}/devices/{{bbl_id}}/services/ShutterControl/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -964,9 +981,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1018,9 +1035,9 @@
 					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"ENABLED\"\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1072,9 +1089,9 @@
 					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"DISABLED\"\n}"
 				},
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{camera_id}}/services/PrivacyMode/state",
+					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1110,9 +1127,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{swd_id}}/services/ShutterContact/state",
+					"raw": "{{shc_api}}/devices/{{swd_id}}/services/ShutterContact/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1148,9 +1165,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{twinguard_id}}/services/AirQualityLevel/state",
+					"raw": "{{shc_api}}/devices/{{twinguard_id}}/services/AirQualityLevel/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1186,9 +1203,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{keypad_id}}/services/Keypad/state",
+					"raw": "{{shc_api}}/devices/{{keypad_id}}/services/Keypad/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1224,9 +1241,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{backend_secure}}/devices/{{md_id}}/services/LatestMotion/state",
+					"raw": "{{shc_api}}/devices/{{md_id}}/services/LatestMotion/state",
 					"host": [
-						"{{backend_secure}}"
+						"{{shc_api}}"
 					],
 					"path": [
 						"devices",
@@ -1238,6 +1255,28 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a87d9f05-2459-4ea7-8f87-fa478bfc0ab8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9e6be774-c6ef-492e-88ce-f5a716865385",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}
