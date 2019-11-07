@@ -3,12 +3,14 @@
 To get started with the Postman Collection you need the following things:
 
 - Download the Postman Collection 
-- The IP of your Smart Home Controller (SHC) .
-- A 2048 bit self signed certificate.
-- The key to the certificate.
+- The IP address of your Smart Home Controller (SHC)
+- A 2048 bit self signed certificate
+- The key to the certificate
 
 ## Import certificate into Postman
-1.  Open the **Settings** of Postman:
+1. Start by importing the downloaded Postman Collection via the **Import** button. 
+
+2. In the next step you need to add a certificate and a key to Postman. Therefore, open the **Settings** of Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
@@ -16,18 +18,16 @@ To get started with the Postman Collection you need the following things:
 
 ![Postman Disable SSL Verification](images/postman_disable_ssl_verification.png "Postman Disable SSL Verification")
 
-3.  On tab **Certificates**, click on **Add Certificate**
+3.  On tab **Certificates**, click on **Add Certificate**:
 
 ![Postman Add Certificate](images/postman_add_certificate.png "Postman Add Certificate")
 
-4. For Host enter the IP or the name of the host and the port 8443 of the SHC.
+4. Enter the **IP address** of your SHC and the port **8443**. After that provide the requested files for the **certificate** and the **key**. If you use a **passphrase** you should enter this information too:
 
 ![Postman Add PEMs](images/postman_add_pems.png "Postman Add PEMs")
-
-5. For **CRT file** select the provided certificate file. For **KEY file** select the provided key file. For **Passphrase** enter the corresponding passphrase, if needed.
 	
 6. Click **Add** to add the certificate into your Postman-Settings.
 
-7. Do the same for port 8444
+7. Do the same for port 8444.
 
-Now you have all the prerequisites to communicate with the SHC. Start by adding a client.
+Now you have all the prerequisites to communicate with your SHC via Postman. Start by adding a client.
