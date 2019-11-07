@@ -1,28 +1,30 @@
 # How to use the Postman Collection
 
-To get started with the postman collection you need the following things:
+To get started with the Postman Collection you need the following things:
 
-- The Postman Collection 
+- Download the Postman Collection 
 - The IP of your Smart Home Controller (SHC) .
 - A 2048 bit self signed certificate.
 - The key to the certificate.
 
 ## Import certificate into Postman
-1.  Open the **Postman Settings:**
+1.  Open the **Settings** of Postman:
+
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
-2.  On tab **General**, disable **SSL certification verification**:
+2.  On tab **General**, disable **SSL certificate verification**:
+
 ![Postman Disable SSL Verification](images/postman_disable_ssl_verification.png "Postman Disable SSL Verification")
 
 3.  On tab **Certificates**, click on **Add Certificate**
+
 ![Postman Add Certificate](images/postman_add_certificate.png "Postman Add Certificate")
 
-4. For Host enter the IP or hostname and the port (8443) of the SHC.
+4. For Host enter the IP or the name of the host and the port 8443 of the SHC.
+
 ![Postman Add PEMs](images/postman_add_pems.png "Postman Add PEMs")
 
-5. For **CRT file** select the provided certificate file
-    For **KEY file** select the provided key  file
-    For **Passphrase** enter the corresponding passphrase, if needed.
+5. For **CRT file** select the provided certificate file. For **KEY file** select the provided key file. For **Passphrase** enter the corresponding passphrase, if needed.
 	
 6. Click **Add** to add the certificate into your Postman-Settings.
 
