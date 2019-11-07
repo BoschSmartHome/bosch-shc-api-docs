@@ -3,6 +3,7 @@
 #### Contents
 
 - [Overview](#overview)
+- [How to use the Postman Collection](postman/)
 - [Terms and Conditions](#terms-and-conditions)
 
 
