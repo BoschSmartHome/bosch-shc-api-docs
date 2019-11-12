@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
 - [How to use the Postman Collection](postman/)
+- [Local OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
 - [Terms and Conditions](#terms-and-conditions)
 
 
