@@ -50,7 +50,7 @@ Provide the information of the **Client ID** and **Client Name** in the **body**
 ### Customize the certificate
 To modify the certificate so that it fits into a JSON object, you have to manually remove all carriage returns, and additionally add `\r` before and after the certificate. Take the following example to illustrate this:
 
-`"-----BEGIN CERTIFICATE-----\r` followed by the **2048 bit self signed certificate** and must end with `\r-----END CERTIFICATE-----"`
+`"-----BEGIN CERTIFICATE-----\r` followed by the **2048 bit self signed certificate** and `\r-----END CERTIFICATE-----"`
 
 Provide the **2048 bit self signed certificate** in the **body** of the **New Client** call.
 
@@ -62,4 +62,4 @@ In order for the request to be accepted, you have to encode your Bosch Smart Hom
 
 Enter the information of the **base64 encoded password** in the **header** of the **New Client** call.
 
-If the password is wrong, the Bosch Smart Home Controller will respond with `401 Unauthorized`.
+If the password is wrong, the Bosch Smart Home Controller will respond with `401 unauthorized`.
