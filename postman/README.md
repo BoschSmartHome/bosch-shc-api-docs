@@ -43,7 +43,7 @@ To add a **New Client** to the Smart Home Controller you need the following:
 
 
 ### Naming convention for the Client ID and Client Name
-Using the API requires identification against the local Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer.
+Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer.
 
 Provide the information of the **Client ID** and **Client Name** in the **body** of the **New Client** call.
 
