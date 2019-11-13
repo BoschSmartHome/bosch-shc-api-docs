@@ -6,7 +6,7 @@
 - [How to use the Postman Collection](postman/)
   * [Import the collection and the certificate into Postman](postman#import-the-collection-and-the-certificate-into-postman)
   * [Register a New Client to the Bosch Smart Home Controller](postman#register-a-new-client-to-the-bosch-smart-home-controller)
-  * [Get events from the Bosch Smart Home Controller (Long Polling)](postman#)
+  * [Get events from the Bosch Smart Home Controller (Long Polling)](postman#get-events-from-the-bosch-smart-home-controller-long-polling)
 - [Local OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
 - [Terms and Conditions](#terms-and-conditions)
 
