@@ -35,11 +35,11 @@ Now, you have all the prerequisites to communicate with your SHC via Postman. St
 
 ## Register a New Client to the Bosch Smart Home Controller
 
-A client is a software that has the permission to communicate with the Bosch Smart Home Controller. For example, the Bosch Smart Home App is a client of the the Bosch Smart Home Controller as soon as it has successfully registered to it. All registered clients can be listed in the Bosch Smart Home App. Have a look in your App and go to `Management -> Mobile devices`. The communication between a client and the Bosch Smart Home Controller is always encrypted with TLSv1.2.
+A client is a piece of software that has the permission to communicate with the Bosch Smart Home Controller. For example, the Bosch Smart Home App becomes a client of the Bosch Smart Home Controller upon successfully registration. All registered clients can be listed in the Bosch Smart Home App. To locate this in your app, go to `Management -> Mobile devices`. The communication between a client and the Bosch Smart Home Controller is always encrypted with TLSv1.2.
 ![Schematic view](images/shc-client-schematic-view.png "Schematic view")
-**Hint:** In order to register a New Client, always **press the button of the Bosch Smart Home Controller until the LEDs are flashing** before calling the **New Client** function.
+**Hint:** Before submitting the **New Client** request, always **press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing**.
 
-To register a **New Client** to the Bosch Smart Home Controller you need the following:
+To register a **New Client** to the Bosch Smart Home Controller, you need the following:
 
 - A designated name of your open source software project
 - The 2048 bit self-signed certificate from the previous step
@@ -68,3 +68,23 @@ In order for the request to be accepted, you have to encode your Bosch Smart Hom
 Enter the information of the **base64 encoded password** in the **header** of the **New Client** call.
 
 If the password is wrong, the Bosch Smart Home Controller will respond with `401 unauthorized`.
+
+
+### Delete a client
+
+Please, start your Bosch Smart Home App.
+1. Navigate to `Management -> Mobile devices`
+1. Select the client you want to delete
+1. Delete the client with the button at the bottom of the page
+
+## Get events from the Bosch Smart Home Controller (Long Polling)
+
+After registering a client to the Bosch Smart Home Controller, the requests in the Postman Collection for Long Polling should work without explicitly configuring them.
+
+- Long Polling **Subscribe** returns a polling id. This id is needed to **Poll** and to **Unsubscribe**. In the **Test** tab, there is a function to store the polling id to the environment variable: `shc_poll_id`
+
+- Long Polling **Poll** opens a connection and waits for a period of time to receive status updates from edge devices. The connection will be closed if an edge device sends a status update, or if no status updates are received during a period of time. To keep polling, you need to reopen the connection with the same polling id (`shc_poll_id`) again. 
+
+- Long Polling **Unsubscribe** removes the subscription with `shc_poll_id`. 
+
+**Hint:** If you are using **Long Poll**, it is normal that Postman waits for a certain amount of time. The connection stays open either until the polling time has expired, or a device has updated its status.
