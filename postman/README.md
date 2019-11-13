@@ -33,14 +33,19 @@ To get started with the Postman Collection you need the following:
 Now, you have all the prerequisites to communicate with your SHC via Postman. Start by adding a new client.
 
 
-## Add a New Client to the Bosch Smart Home Controller
+## Register a New Client to the Bosch Smart Home Controller
 
-To add a **New Client** to the Smart Home Controller you need the following:
+A client is a software that has the permission to communicate with the Bosch Smart Home Controller. For example, the Bosch Smart Home app is a client of the the Bosch Smart Home Controller as soon as it has successfully registered to it. All clients can be listed in the Bosch Smart Home App. Have a look in your App and go to `Management -> Mobile devices`. The communication between a client and the Bosch Smart Home Controller is always encrypted with TLSv1.2.
+![Schematic view](images/shc-client-schematic-view.png "Schematic view")
+**Hint:** In order to register a New Client, always **press the button of the Bosch Smart Home Controller until the LEDs are flashing** before calling the **New Client** function.
 
-- The designated name of your open source software project
+To register a **New Client** to the Bosch Smart Home Controller you need the following:
+
+- A designated name of your open source software project
 - The 2048 bit self-signed certificate from the previous step
 - The master password of your Bosch Smart Home Controller, which you created upon initial setup
 
+**Hint:** Your Bosch Smart Home Controller, must already be initialized and paired with a Bosch Smart Home App!
 
 ### Naming convention for the Client ID and Client Name
 Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer.
