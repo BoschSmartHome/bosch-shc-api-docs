@@ -1,10 +1,1456 @@
 {
 	"info": {
-		"_postman_id": "c009d329-d4e8-4681-8168-368ad1d55a41",
+		"_postman_id": "df755be3-202f-420b-b26a-2e671b20b46e",
 		"name": "Bosch Smart Home v0.3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Main Resources",
+			"item": [
+				{
+					"name": "Devices as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Device by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1.0"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rooms as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/rooms",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Room by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/rooms",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scenarios as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/scenarios",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"scenarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scenario by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/scenarios/{{scenario_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"scenarios",
+								"{{scenario_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scenario trigger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05d1e32a-3f3f-4200-b2e2-11c6cd9211a3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aaf436be-065f-4fde-a690-da187f5d6caf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{shc_api}}/scenarios/{{scenario_id}}/triggers",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"scenarios",
+								"{{scenario_id}}",
+								"triggers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Services as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dc782443-eed9-4d04-a38c-bfab4e6f93e2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/services",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Services of a Device",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Service by Id of a Device",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/{{service_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"{{service_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "States",
+			"item": [
+				{
+					"name": "State of a Service",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1.0"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/{{service_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"{{service_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "State of a Service",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"operationState\",\r\n    \"paramName\": \"param\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/{{service_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"{{service_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Climate Control state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a5ce89f2-cc7e-432b-bb9e-c89a2511a389",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/RoomClimateControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"RoomClimateControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Climate Control state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "40fd3978-9d91-440b-8d3c-233d0dfa436c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@type\": \"climateControlState\",\n    \"setpointTemperature\": \"5.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/RoomClimateControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"RoomClimateControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Door/Window Contact state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "53136090-fd25-4c32-a369-a0cdd104e1f8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ShutterContact/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ShutterContact",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Intrusion Detection System state",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"intrusionDetectionSystem",
+								"services",
+								"IntrusionDetectionControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Intrusion Detection System SYSTEM_ARMED",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_ARMED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"intrusionDetectionSystem",
+								"services",
+								"IntrusionDetectionControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Intrusion Detection System SYSTEM_DISARMED",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_DISARMED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"intrusionDetectionSystem",
+								"services",
+								"IntrusionDetectionControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Motion Detector state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "92ae505c-5dcd-4cc3-9a04-d93cf5d6df65",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/LatestMotion/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"LatestMotion",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PowerMeter state (Smart Plug / Light Control)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3ff2ba4c-7070-45d7-90b9-718c7f70c123",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PowerMeter/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PowerMeter",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PowerSwitch state (Smart Plug / Light Control)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "65a926fe-52a9-4c4d-ac6e-ead31456adc0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PowerSwitch/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PowerSwitch",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PowerSwitch ON (Smart Plug / Light Control)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"ON\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PowerSwitch/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PowerSwitch",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PowerSwitch OFF (Smart Plug / Light Control)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "37748390-bb4b-4348-81b5-230226696737",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"OFF\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PowerSwitch/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PowerSwitch",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Presence Simulation state",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"presenceSimulationService",
+								"services",
+								"PresenceSimulationConfiguration",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Presence Simulation true",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": true\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"presenceSimulationService",
+								"services",
+								"PresenceSimulationConfiguration",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Presence Simulation false",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": false\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"presenceSimulationService",
+								"services",
+								"PresenceSimulationConfiguration",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security Camera state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a62a1f19-bb2a-481e-8791-8f9a46c4787e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PrivacyMode/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PrivacyMode",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security Camera Privacy ENABLED",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bc5c64ba-4456-4780-ab34-ee751b1d1ac9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"ENABLED\"\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PrivacyMode/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PrivacyMode",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security Camera Privacy DISABLED",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "60743ce3-9661-4b3d-b767-396d4e2a54d9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"DISABLED\"\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/PrivacyMode/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"PrivacyMode",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a685b043-8a76-411a-8dab-032c18b5cbe2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ShutterControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ShutterControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
+								"exec": [
+									"/** ",
+									" * URL of Service",
+									" * ",
+									" * @param bbl_id - The id of the shutter",
+									" **/",
+									"postman.setEnvironmentVariable(\"bbl_id\", \"\");",
+									"",
+									"/** ",
+									" * Body",
+									" * ",
+									" * @param level - Set shutter level to given value. Range is from 0.0 to 1.0 in 0.1 steps.",
+									" **/",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@type\": \"shutterControlState\",\n    \"level\": \"1.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ShutterControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ShutterControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Twinguard state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e24b6e32-04a6-4a4b-bba4-dda6ef68b910",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/AirQualityLevel/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"AirQualityLevel",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Universal Switch state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2db03622-15df-4370-973e-f2e9864f5191",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/Keypad/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"Keypad",
+								"state"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "LICENSE, TERMS AND CONDITIONS",
 			"request": {
@@ -18,20 +1464,36 @@
 			"response": []
 		},
 		{
-			"name": "New Client (read our Terms and Conditions, see description)",
+			"name": "Set Environment Variables",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
+						"id": "ee4b9fd6-04f5-452f-bea1-7ef4df2ec707",
 						"exec": [
 							"/** ",
 							" * Please make sure to comply with our Terms and Conditions (see https://github.com/BoschSmartHome/bosch-shc-api-docs)",
+							" * by using the Bosch Smart Home Controller API",
 							" * ",
-							" * URLs of Smart Home Controller",
+							" * ",
+							" * ",
+							" * Hit 'Send' to set the following environment variables. ",
 							" * ",
 							" **/",
+							" ",
+							" ",
+							" /**",
+							"  * ",
+							"  * Edit IP of your Smart Home Controller.",
+							"  * ",
+							"  **/",
 							"postman.setEnvironmentVariable(\"host\", \"192.168.0.10\");",
+							" ",
+							"/**",
+							" * ",
+							" * URLs of Smart Home Controller. Do not edit.",
+							" * ",
+							" **/",
 							"postman.setEnvironmentVariable(\"shc_secure\", \"https://{{host}}:8443/smarthome/clients\");",
 							"postman.setEnvironmentVariable(\"shc_poll\", \"https://{{host}}:8444/remote/json-rpc\");",
 							"postman.setEnvironmentVariable(\"shc_api\", \"https://{{host}}:8444/smarthome\");",
@@ -39,24 +1501,88 @@
 							"/** ",
 							" * Header",
 							" * ",
-							" * @param Systempassword - Your system password for your Smart Home Controller base64 encoded",
+							" * @param system_password_base64 - Set your master password of your Smart Home Controller base64 encoded here",
 							" **/",
 							"postman.setEnvironmentVariable(\"system_password_base64\", \"\");",
 							"",
 							"/** ",
 							" * Body",
 							" * ",
-							" * @param id - Name of your open source project with prefix 'oss_'. Optional a unique id can be added as a suffix. E.g. oss_my-project_788c22fb-b090-4faf-8faf-15f67b9128c2 ",
-							" * @param name - Name of your open source project with prefix 'OSS'. E.g. OSS My Project",
-							" * @param certificate - 2048 bit self signed certificate (See example below)",
+							" * @param client_id - Name of your open source project with prefix 'oss_'. Optional a unique id can be added as a suffix. E.g. oss_my-project_788c22fb-b090-4faf-8faf-15f67b9128c2 ",
+							" * @param client_name - Name of your open source project with prefix 'OSS'. E.g. OSS My Project",
 							" **/",
 							"postman.setEnvironmentVariable(\"client_id\", \"oss_postman\");",
 							"postman.setEnvironmentVariable(\"client_name\", \"OSS Postman\");",
 							"",
-							"// 2048 bit self signed certificate",
-							"// e.g \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\");",
+							"",
+							"/** ",
+							" * Scenario Id",
+							" * ",
+							" * @param scenario_id - The id of the scenario",
+							" **/",
+							"postman.setEnvironmentVariable(\"scenario_id\", \"\");",
+							"",
+							"/** ",
+							" * Room Id",
+							" * ",
+							" * @param room_id - The id of the room",
+							" **/",
+							"postman.setEnvironmentVariable(\"room_id\", \"\");",
+							"",
+							"/** ",
+							" * Device Id",
+							" * ",
+							" * @param device_id - The id of the device",
+							" **/",
+							"postman.setEnvironmentVariable(\"device_id\", \"\");",
+							"",
+							"/** ",
+							" * Service Id",
+							" * ",
+							" * @param service_id - The id of the service",
+							" **/",
+							"postman.setEnvironmentVariable(\"service_id\", \"\");",
+							"",
+							"",
 							"",
 							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://github.com/BoschSmartHome/bosch-shc-api-docs",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
+					],
+					"path": [
+						"BoschSmartHome",
+						"bosch-shc-api-docs"
+					]
+				},
+				"description": "Open Pre-request Script tab to edit and set environment variables"
+			},
+			"response": []
+		},
+		{
+			"name": "New Client (read our Terms and Conditions, see description)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
+						"exec": [
+							"// A 2048 bit self signed certificate ",
+							"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"\"",
+							"",
+							"// The following certificate will be accepted by the controller. You can use it only for testing the 'New Client' request. A key to the following certificate does not exist.  ",
+							"// \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\");"
 						],
 						"type": "text/javascript"
 					}
@@ -203,1265 +1729,6 @@
 					"raw": "{{shc_poll}}",
 					"host": [
 						"{{shc_poll}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Rooms as array",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/rooms",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"rooms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Devices as array",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Device Services as array",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "dc782443-eed9-4d04-a38c-bfab4e6f93e2",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/services",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"services"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Scenarios as array",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/scenarios",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"scenarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Scenario trigger",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "05d1e32a-3f3f-4200-b2e2-11c6cd9211a3",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "aaf436be-065f-4fde-a690-da187f5d6caf",
-						"exec": [
-							"/** ",
-							" * URL of Scenario",
-							" * ",
-							" * @param scenario_id - The id of the scenario",
-							" **/",
-							"postman.setEnvironmentVariable(\"scenario_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{shc_api}}/scenarios/{{scenario_id}}/triggers",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"scenarios",
-						"{{scenario_id}}",
-						"triggers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Alarm state (IntrusionDetectionSystem)",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"intrusionDetectionSystem",
-						"services",
-						"IntrusionDetectionControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Alarm SYSTEM_ARMED (IntrusionDetectionSystem)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_ARMED\"\r\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"intrusionDetectionSystem",
-						"services",
-						"IntrusionDetectionControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Alarm SYSTEM_DISARMED (IntrusionDetectionSystem)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_DISARMED\"\r\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"intrusionDetectionSystem",
-						"services",
-						"IntrusionDetectionControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PresenceSimulation state",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"presenceSimulationService",
-						"services",
-						"PresenceSimulationConfiguration",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PresenceSimulation true",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": true\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"presenceSimulationService",
-						"services",
-						"PresenceSimulationConfiguration",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PresenceSimulation false",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"@type\": \"presenceSimulationConfigurationState\",\n  \"enabled\": false\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/presenceSimulationService/services/PresenceSimulationConfiguration/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"presenceSimulationService",
-						"services",
-						"PresenceSimulationConfiguration",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PowerMeter state (also for flush mounted light switch)",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "3ff2ba4c-7070-45d7-90b9-718c7f70c123",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param ps_device_id - The id of the smart plug or light switch",
-							" **/",
-							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerMeter/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{ps_device_id}}",
-						"services",
-						"PowerMeter",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PowerSwitch/LightSwitch state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "65a926fe-52a9-4c4d-ac6e-ead31456adc0",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param ps_device_id - The id of the smart plug or light switch",
-							" **/",
-							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{ps_device_id}}",
-						"services",
-						"PowerSwitch",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PowerSwitch/LightSwitch ON",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param ps_device_id - The id of the smart plug or light switch",
-							" **/",
-							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param switchState - Turn the power switch ON",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"ON\"\r\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{ps_device_id}}",
-						"services",
-						"PowerSwitch",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PowerSwitch/LightSwitch OFF",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "37748390-bb4b-4348-81b5-230226696737",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param ps_device_id - The id of the smart plug or light switch",
-							" **/",
-							"postman.setEnvironmentVariable(\"ps_device_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param switchState - Turn the power switch OFF",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"@type\": \"powerSwitchState\",\r\n    \"switchState\": \"OFF\"\r\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{ps_device_id}}/services/PowerSwitch/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{ps_device_id}}",
-						"services",
-						"PowerSwitch",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "RoomClimateControl state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "a5ce89f2-cc7e-432b-bb9e-c89a2511a389",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param rcc_id - The id of the room climate control",
-							" **/",
-							"postman.setEnvironmentVariable(\"rcc_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{rcc_id}}",
-						"services",
-						"RoomClimateControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "RoomClimateControl temperature as float",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "40fd3978-9d91-440b-8d3c-233d0dfa436c",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param rcc_id - The id of the room climate control",
-							" **/",
-							"postman.setEnvironmentVariable(\"rcc_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param setpointTemperature - Set temperature to given value. Range is from 5.0 to 30.0 in 0.5 steps.",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"@type\": \"climateControlState\",\n    \"setpointTemperature\": \"5.0\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{rcc_id}}/services/RoomClimateControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{rcc_id}}",
-						"services",
-						"RoomClimateControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Shutter state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "a685b043-8a76-411a-8dab-032c18b5cbe2",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param bbl_id - The id of the shutter",
-							" **/",
-							"postman.setEnvironmentVariable(\"bbl_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{bbl_id}}/services/ShutterControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{bbl_id}}",
-						"services",
-						"ShutterControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Shutter level as float",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param bbl_id - The id of the shutter",
-							" **/",
-							"postman.setEnvironmentVariable(\"bbl_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param level - Set shutter level to given value. Range is from 0.0 to 1.0 in 0.1 steps.",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"@type\": \"shutterControlState\",\n    \"level\": \"1.0\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{bbl_id}}/services/ShutterControl/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{bbl_id}}",
-						"services",
-						"ShutterControl",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Camera PrivacyMode state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "a62a1f19-bb2a-481e-8791-8f9a46c4787e",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param camera_id - The id of the camera",
-							" **/",
-							"postman.setEnvironmentVariable(\"camera_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{camera_id}}",
-						"services",
-						"PrivacyMode",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Camera PrivacyMode ENABLED",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "bc5c64ba-4456-4780-ab34-ee751b1d1ac9",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param camera_id - The id of the camera",
-							" **/",
-							"postman.setEnvironmentVariable(\"camera_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param value - ENABLED, enables the privacy mode",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"ENABLED\"\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{camera_id}}",
-						"services",
-						"PrivacyMode",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Camera PrivacyMode DISABLED",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "60743ce3-9661-4b3d-b767-396d4e2a54d9",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param camera_id - The id of the camera",
-							" **/",
-							"postman.setEnvironmentVariable(\"camera_id\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param value - DISABLED, disables the privacy mode",
-							" **/",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"@type\": \"privacyModeState\",\n    \"value\": \"DISABLED\"\n}"
-				},
-				"url": {
-					"raw": "{{shc_api}}/devices/{{camera_id}}/services/PrivacyMode/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{camera_id}}",
-						"services",
-						"PrivacyMode",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ShutterContact state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "53136090-fd25-4c32-a369-a0cdd104e1f8",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param swd_id - The id of the shutter contact (door/window contact)",
-							" **/",
-							"postman.setEnvironmentVariable(\"swd_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{swd_id}}/services/ShutterContact/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{swd_id}}",
-						"services",
-						"ShutterContact",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Twinguard AirQualityLevel state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "e24b6e32-04a6-4a4b-bba4-dda6ef68b910",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param twinguard_id - The id of the twinguard",
-							" **/",
-							"postman.setEnvironmentVariable(\"twinguard_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{twinguard_id}}/services/AirQualityLevel/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{twinguard_id}}",
-						"services",
-						"AirQualityLevel",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Keypad state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "2db03622-15df-4370-973e-f2e9864f5191",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param keypad_id - The id of the keypad (universal switch)",
-							" **/",
-							"postman.setEnvironmentVariable(\"keypad_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{keypad_id}}/services/Keypad/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{keypad_id}}",
-						"services",
-						"Keypad",
-						"state"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Motion Detector state",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "92ae505c-5dcd-4cc3-9a04-d93cf5d6df65",
-						"exec": [
-							"/** ",
-							" * URL of Service",
-							" * ",
-							" * @param md_id - The id of the motion sensor",
-							" **/",
-							"postman.setEnvironmentVariable(\"md_id\", \"\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{shc_api}}/devices/{{md_id}}/services/LatestMotion/state",
-					"host": [
-						"{{shc_api}}"
-					],
-					"path": [
-						"devices",
-						"{{md_id}}",
-						"services",
-						"LatestMotion",
-						"state"
 					]
 				}
 			},
