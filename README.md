@@ -21,12 +21,12 @@
 ## Terms and Conditions
 Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany ("Bosch Smart Home") provides a description of the local Bosch Smart Home Controller REST API, that allows **private, non-profit** Developers ("Developer") to locally control their Bosch Smart Home Devices.
 
-By accepting this Terms and Conditions, by either accessing or using the API, Developer agrees to be bound by these Terms and Conditions.
+By accepting these Terms and Conditions, through either accessing or using the API, the Developer agrees to be bound by these Terms and Conditions.
 
 ### Definitions
-"API" refers to the interface functionality provided by Bosch Smart Home allowing private, non-profit developers to access Bosch Smart Home Data.
+"API" refers to the interface functionality provided by Bosch Smart Home allowing private, non-profit Developers to access Bosch Smart Home Data.
 
-"Application" refers to web or other software services or applications developed by Developer that utilize or interact with the API and are authorized to be published.
+"Application" refers to web or other software services or applications created by Developer that utilize or interact with the API and are authorized to be published.
 
 "Client" refers to software created by developers using the API. Clients can be, for example (but are not limited to), mobile apps or web services.
 
@@ -36,11 +36,9 @@ By accepting this Terms and Conditions, by either accessing or using the API, De
 
 "Commercial" means intended for or directed towards commercial advantage or monetary compensation. 
 
-Privacy Policy refers to the Privacy Policy found [here](https://www.bosch-smarthome.com/uk/en/privacy-statement).
+tbd: Privacy Policy refers to the Privacy Policy found [here](https://www.bosch-smarthome.com/uk/en/privacy-statement).
 
 ### Purpose and License
-**By using the Documentation to enable interoperability Developer agrees to the following terms:**
-
 These Terms and Conditions and any and all restrictions and policies implemented by Bosch Smart Home from time to time with respect to the API as set forth in the Documentation govern Developers rights to use and access the API for the purpose of developing, implementing and publishing Applications.
 
 Subject to these Terms and Conditions, including the restrictions set forth, Bosch Smart Home grants to Developer a non-exclusive, non-transferable, non-sublicensable, worldwide, revocable right and license during the Term to privately use and make calls to the API to develop, implement and distribute Applications solely for non profit usage.
@@ -48,9 +46,9 @@ Subject to these Terms and Conditions, including the restrictions set forth, Bos
 Developer grants to Bosch Smart Home a non-exclusive, worldwide, royalty-free license to market, sell and distribute such Applications; and to permit others to access, install, purchase and (in the case of downloadable software applications) download such Applications.
 
 ### Restrictions
-The use of the API only applies to private, non-profit individuals. A commercial use in any way, either direct or indirect, is prohibited.
+The licenses of these Terms and Conditions are explicitly conditioned on Developers adherence to the following restrictions and compliance with its responsibilities as set forth herein.
 
-The licenses of these Terms and Conditions are explicitly conditioned on Developers adherence to the following restrictions and compliance with its responsibilities as set forth herein. 
+The use of the API only applies to private, non-profit individuals. A commercial use in any way, either direct or indirect, is prohibited.
 
 Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with "oss_" followed by the name of the open source project, or the name of the developer.
 
@@ -74,7 +72,7 @@ Bosch Smart Home may at its sole and exclusive discretion, change, alter, modify
 
 Any technical implementation and fulfillment of system requirements of the API is the sole responsibility of the Developer. Developers are obliged to adhere to the requirements of the API, particularly regarding the correct technical integration and use of the API (see documentation). The user acknowledges that an incorrect technical integration or use may lead to defects in the functions of the API, or even the entire Client, or the connected Bosch Smart Home Devices.
 
-Application shall not, and shall not attempt to connect with any Bosch backend system, which explicitly is not part of the allowed local API use, including systems provided by Amazon and Google.
+Application shall not, and shall not attempt to connect with any Bosch backend system, which explicitly is not part of the allowed local API use, including systems provided by third parties.
 
 Developers shall not use the API for any action that can cause damages due to the interaction of the API or the Client with the home appliances (e.g. by bypassing security prompts on the home appliances, or by executing commands that can cause harm to life or limb, or to the home appliances, or to any other goods).
 
@@ -90,7 +88,11 @@ Developer must comply with all restrictions and guidelines set forth in this Agr
 To the extent Developers Applications transmit Data outside a Service, Developer represents and warrants that he has notified all users of such Applications that their Data will be transmitted outside the Service and that Bosch Smart Home is not responsible for the privacy, security or integrity of such Data.
 
 ### Modifications
-Developer acknowledges and agrees that Bosch Smart Home may modify this Agreement, the Services, the API, the General API Policies, and the Privacy Policy, from time to time (a "Modification"). Developer further acknowledges and agrees that such Modifications may be implemented at any time and without any notice. Developer shall, within thirty (30) days from the date of first notice of any Modification(s) (or such shorter period of time specified in the notice of the Modification(s)) (the "Conformance Period") comply with such Modification(s) by implementing and using the most current version of the API and making any changes to Applications that may be required as a result of such Modification(s). Developer acknowledges that a Modification may have an adverse effect on Applications, including but not limited to changing the manner in which Applications communicate with the API and display or transmit Data. Bosch Smart Home shall have no liability of any kind to Developer or any user of Developer's Applications with respect to such Modifications or any adverse effects resulting from such Modifications. Developer's continued access to or use of the Services or API following the Conformance Period shall constitute binding acceptance of the Modification(s) at issue.
+Developer acknowledges and agrees that Bosch Smart Home may modify this Agreement, the Services, the API, the General API Policies, and the Privacy Policy, from time to time (a "Modification"). Developer further acknowledges and agrees that such Modifications may be implemented at any time and without any notice. 
+
+Developer acknowledges that a Modification may have an adverse effect on Applications, including but not limited to changing the manner in which Applications communicate with the API and display or transmit Data. 
+
+Bosch Smart Home shall have no liability of any kind to Developer or any user of Developer's Applications with respect to such Modifications or any adverse effects resulting from such Modifications. 
 
 ### Warranty
 Bosch Smart Home asks all Developers working with their Documentation to inform Bosch Smart Home about any defects found in the API as soon as possible to give Bosch Smart Home a chance to remedy it.
@@ -128,4 +130,4 @@ These Terms and Conditions as well as all agreements between Bosch Smart Home an
 
 Should a provision be or become invalid, this shall not affect the validity or effectiveness of the other provisions. In such a case, the invalid provision should be replaced by a valid agreement that is as similar as possible to the commercial intention of the original, invalid provision.
 
-*November 18th, 2019*
+*November 21th, 2019*
