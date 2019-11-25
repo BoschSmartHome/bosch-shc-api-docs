@@ -36,7 +36,7 @@ By accepting these Terms and Conditions, through either accessing or using the A
 
 "Commercial" means intended for or directed towards commercial advantage or monetary compensation. 
 
-tbd: Privacy Policy refers to the Privacy Policy found [here](https://www.bosch-smarthome.com/uk/en/privacy-statement).
+Privacy Policy refers to the Privacy Policy found [here](https://www.bosch-smarthome.com/uk/en/privacy-statement).
 
 ### Purpose and License
 These Terms and Conditions and any and all restrictions and policies implemented by Bosch Smart Home from time to time with respect to the API as set forth in the Documentation govern Developers rights to use and access the API for the purpose of developing, implementing and publishing Applications.
