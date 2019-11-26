@@ -3,6 +3,10 @@
 #### Contents
 
 - [Overview](#overview)
+- [Best Practice](#best-practice)
+  * [Watch this repository](#watch-this-repository)
+  * [Use Long Polling instead of Short Polling](#use-long-polling-instead-of-short-polling)
+  * [Limit the number of requests in a given time period](#limit-the-number-of-requests-in-a-given-time-period)
 - [How to use the Postman Collection](postman/)
   * [Import the collection and the certificate into Postman](postman#import-the-collection-and-the-certificate-into-postman)
   * [Register a New Client to the Bosch Smart Home Controller](postman#register-a-new-client-to-the-bosch-smart-home-controller)
@@ -24,11 +28,11 @@ In order to experience the best user experience when using the local interface o
 
 ### Watch this repository
 
-First of all, watch this repository to get notified if we change or update our Terms and Conditions, we recommend that you watch this repository. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
+First of all, watch this repository to get notified if we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
 
 ### Use Long Polling instead of Short Polling
 
-In order to minimize the load on the Bosch Smart Home Controller (SHC), it is recommended to use the Long Polling mechanism to receive events. Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the SHC keeps all information for the client until the client starts another Long Polling request.
+In order to minimize the load on the Bosch Smart Home Controller, it is recommended to use the Long Polling mechanism to receive events. Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the Bosch Smart Home Controller keeps all information for the client until the client starts another Long Polling request.
 
 ### Limit the number of requests in a given time period
 
