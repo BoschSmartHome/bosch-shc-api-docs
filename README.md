@@ -130,4 +130,4 @@ These Terms and Conditions as well as all agreements between Bosch Smart Home an
 
 Should a provision be or become invalid, this shall not affect the validity or effectiveness of the other provisions. In such a case, the invalid provision should be replaced by a valid agreement that is as similar as possible to the commercial intention of the original, invalid provision.
 
-*November 21th, 2019*
+*November 26th, 2019*
