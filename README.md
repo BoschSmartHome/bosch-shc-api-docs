@@ -18,6 +18,29 @@
 [Bosch Smart Home](https://www.bosch-smarthome.com/) products allow you to automatically and remotely control the processes in your home. Each device has a unique purpose in your Smart Home and provides ease and convenience to your changing daily routines. Why do I need this? Because it means you can have more time to enjoy what matters to you. Whether you want to network your heating system or secure the safety of your home, the Bosch Smart Home System offers you complete and personalised solutions to you and your home's needs. This is all controlled by one handy app, so you can control your home, wherever you are. 
 
 
+## Best Practice
+
+In order to experience the best user experience when using the local interface of your Bosch Smart Home Controller, we have a few best practice tips for you.
+
+### Watch this repository
+
+First of all, watch this repository to get notified if we change or update our Terms and Conditions, we recommend that you watch this repository. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
+
+### Use Long Polling instead of Short Polling
+
+In order to minimize the load on the Bosch Smart Home Controller (SHC), it is recommended to use the Long Polling mechanism to receive events. Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the SHC keeps all information for the client until the client starts another Long Polling request.
+
+### Limit the number of requests in a given time period
+
+In addition to the use of the Long Polling mechanism, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following restrictions should be observed:
+
+- Retrieving json arrays should not happen more than once per minute. For instance, requesting the main resources `/devices` and `/services`.
+
+- Retrieving json objects should not happen more often than every 10 seconds. For instance, requesting a single service or state of a device.
+
+Hence, if you want to request a main resource, e.g. `/devices` and the battery level of six devices, the main resource and every device should only be requested once per minute. The total number of requests (maximum six per minute for individual resources and maximum once per minute for arrays) will not be exceeded.
+
+
 ## Terms and Conditions
 Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany ("Bosch Smart Home") provides a description of the local Bosch Smart Home Controller REST API, that allows **private, non-profit** Developers ("Developer") to locally control their Bosch Smart Home Devices.
 
