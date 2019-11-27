@@ -36,7 +36,7 @@ In order to get notified as soon as a value changes, it is recommended to use th
 
 ### Limit the number of requests in a given time period
 
-In order to minimize the load on the Bosch Smart Home Controller, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following restrictions should be observed:
+In addition to the use of the Long Polling mechanism, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following should be observed:
 
 - Retrieving json arrays should not happen more than once per minute. For instance, requesting the main resources `/devices` and `/services`.
 
