@@ -24,25 +24,25 @@
 
 ## Best Practice
 
-In order to experience the best user experience when using the local interface of your Bosch Smart Home Controller, we have a few best practice tips for you.
+In order to get the best user experience when using the local interface of your Bosch Smart Home Controller, we have a few best practice tips for you.
 
 ### Watch this repository
 
-First of all, watch this repository to get notified if we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
+First of all, watch this repository to get notified when we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
 
 ### Use Long Polling instead of Short Polling
 
-In order to minimize the load on the Bosch Smart Home Controller, it is recommended to use the Long Polling mechanism to receive events. Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the Bosch Smart Home Controller keeps all information for the client until the client starts another Long Polling request.
+In order to get notified as soon as a value changes, it is recommended to use the [Long Polling mechanism to receive events](postman#get-events-from-the-bosch-smart-home-controller-long-polling) (see Postman collection 'Long Polling Subscribe'). Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the Bosch Smart Home Controller keeps all information for the client until the client starts another Long Polling request.
 
 ### Limit the number of requests in a given time period
 
-In addition to the use of the Long Polling mechanism, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following restrictions should be observed:
+In order to minimize the load on the Bosch Smart Home Controller, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following restrictions should be observed:
 
 - Retrieving json arrays should not happen more than once per minute. For instance, requesting the main resources `/devices` and `/services`.
 
 - Retrieving json objects should not happen more often than every 10 seconds. For instance, requesting a single service or state of a device.
 
-Hence, if you want to request a main resource, e.g. `/devices` and the battery level of six devices, the main resource and every device should only be requested once per minute. The total number of requests (maximum six per minute for individual resources and maximum once per minute for arrays) will not be exceeded.
+Hence, if you want to request a main resource, e.g. `/devices` and the battery level of five devices, the main resource and every device should only be requested once per minute. This way the total number of requests (maximum six per minute for individual resources and maximum once per minute for arrays) will not be exceeded.
 
 
 ## Terms and Conditions
