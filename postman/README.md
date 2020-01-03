@@ -30,6 +30,12 @@ To get started with the Postman Collection you need the following:
 
 7. Do the same for port **8444**.
 
+8. Create a new Environment in Postman by clicking new -> Environment
+
+9. Set in the "Set Environment" Script the host (IP of SHC), system_password_base64 to your SHC password base 64 encoded, client_id and client name.
+
+10. Run Set Environment Script and validate that values are correctly set in Environment (Eye Button in top right)
+
 Now, you have all the prerequisites to communicate with your SHC via Postman. Start by adding a new client.
 
 
