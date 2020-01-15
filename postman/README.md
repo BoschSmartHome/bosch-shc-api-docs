@@ -9,7 +9,7 @@ To get started with the Postman Collection you need the following:
 ## Import the collection, the environment, the certificate and the key into Postman
 1. Start by importing the downloaded Postman Collection and Environment via the **Import** button of Postman. 
 
-2. In the next step, you need to import the generated certificate and the key to Postman. Therefore, open the **Settings** in Postman:
+2. In the next step, you need to import the generated certificate and the key into Postman. Therefore, open the **Settings** in Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
@@ -33,14 +33,23 @@ Now, you have all the prerequisites to communicate with your SHC via Postman. St
 
 ## Check the connection with the Bosch Smart Home Controller in your local network
 1. On the left pane, select "Collections"
+
 2. Double-click "Public Information"
+
 ![Postman Collections](images/postman_collections.png "Postman Collections")
+
 3. In the upper right area, select the "Bosch Smart Home" environment
+
 4. Click the icon with the eye
+
 5. Edit the "Current Value" for "host", enter the IP of your Bosch Smart Home Controller and close the environment window
+
 ![Postman Environment Host](images/postman_environment_host.png "Postman Environment Host")
+
 6. Click the "Send" button
+
 7. Your setup is correct when you receive a "200 OK" and some information about your Bosch Smart Home Controller
+
 ![Postman Check SHC Connection](images/postman_check_shc_connection.png "Postman Check SHC Connection")
 
 ## Register a New Client to the Bosch Smart Home Controller
@@ -84,7 +93,7 @@ If the password is wrong, the Bosch Smart Home Controller will respond with `401
 1. Press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing
 2. Click the "Send" button
 
-After a couple of seconds the LEDs should stop flashing. 
+After a couple of seconds the LEDs should stop flashing. Your client is now added.
 
 ### Delete a client
 
