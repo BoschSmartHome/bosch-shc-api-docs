@@ -79,15 +79,17 @@ Provide the **2048 bit self signed certificate** in the **body** of the **New Cl
 
 If the certificate, or one of the defined query parameters was invalid, the Bosch Smart Home Controller will respond with `400 bad request`.
 
+![Postman New Client](images/postman_new_client.png "Postman New Client")
+
 ### Encode your password to base64
 
 In order for the request to be accepted, you have to encode your Bosch Smart Home Controller password into base64. If you need a hint how to do this, there are many base64 encoders online. Just pick one and encode your password there. For instance, the base64 encoded password for `my_passw0rd` is `bXlfcGFzc3cwcmQ=`.
 
 Enter the information of the **base64 encoded password** in the **Bosch Smart Home** environment.
 
-![Postman Environment Pass](images/postman_environment_pass.png "Postman Environment Pass")
-
 If the password is wrong, the Bosch Smart Home Controller will respond with `401 unauthorized`.
+
+![Postman Environment Pass](images/postman_environment_pass.png "Postman Environment Pass")
 
 ### Add the client
 1. Press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing
