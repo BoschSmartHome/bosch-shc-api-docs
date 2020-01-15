@@ -29,7 +29,7 @@ In order to get the best user experience when using the local interface of your 
 
 ### Watch this repository
 
-First of all, watch this repository to get notified when we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`.
+First of all, watch this repository to get notified when we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`. In case the API is changed or updated, the commit message will always contain the keyword `API`.
 
 ### Use Long Polling instead of Short Polling
 
