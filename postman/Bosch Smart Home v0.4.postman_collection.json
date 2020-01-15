@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "df755be3-202f-420b-b26a-2e671b20b46e",
-		"name": "Bosch Smart Home v0.3",
+		"_postman_id": "cafbee8f-bfc6-4b92-aa00-e0bebba356fb",
+		"name": "Bosch Smart Home v0.4",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1464,109 +1464,16 @@
 			"response": []
 		},
 		{
-			"name": "Set Environment Variables",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "ee4b9fd6-04f5-452f-bea1-7ef4df2ec707",
-						"exec": [
-							"/** ",
-							" * Please make sure to comply with our Terms and Conditions (see https://github.com/BoschSmartHome/bosch-shc-api-docs)",
-							" * by using the Bosch Smart Home Controller API",
-							" * ",
-							" * ",
-							" * ",
-							" * Hit 'Send' to set the following environment variables. ",
-							" * ",
-							" **/",
-							" ",
-							" ",
-							" /**",
-							"  * ",
-							"  * Edit IP of your Smart Home Controller.",
-							"  * ",
-							"  **/",
-							"postman.setEnvironmentVariable(\"host\", \"192.168.0.10\");",
-							" ",
-							"/**",
-							" * ",
-							" * URLs of Smart Home Controller. Do not edit.",
-							" * ",
-							" **/",
-							"postman.setEnvironmentVariable(\"shc_secure\", \"https://{{host}}:8443/smarthome/clients\");",
-							"postman.setEnvironmentVariable(\"shc_poll\", \"https://{{host}}:8444/remote/json-rpc\");",
-							"postman.setEnvironmentVariable(\"shc_api\", \"https://{{host}}:8444/smarthome\");",
-							"",
-							"/** ",
-							" * Header",
-							" * ",
-							" * @param system_password_base64 - Set your master password of your Smart Home Controller base64 encoded here",
-							" **/",
-							"postman.setEnvironmentVariable(\"system_password_base64\", \"\");",
-							"",
-							"/** ",
-							" * Body",
-							" * ",
-							" * @param client_id - Name of your open source project with prefix 'oss_'. Optional a unique id can be added as a suffix. E.g. oss_my-project_788c22fb-b090-4faf-8faf-15f67b9128c2 ",
-							" * @param client_name - Name of your open source project with prefix 'OSS'. E.g. OSS My Project",
-							" **/",
-							"postman.setEnvironmentVariable(\"client_id\", \"oss_postman\");",
-							"postman.setEnvironmentVariable(\"client_name\", \"OSS Postman\");",
-							"",
-							"",
-							"/** ",
-							" * Scenario Id",
-							" * ",
-							" * @param scenario_id - The id of the scenario",
-							" **/",
-							"postman.setEnvironmentVariable(\"scenario_id\", \"\");",
-							"",
-							"/** ",
-							" * Room Id",
-							" * ",
-							" * @param room_id - The id of the room",
-							" **/",
-							"postman.setEnvironmentVariable(\"room_id\", \"\");",
-							"",
-							"/** ",
-							" * Device Id",
-							" * ",
-							" * @param device_id - The id of the device",
-							" **/",
-							"postman.setEnvironmentVariable(\"device_id\", \"\");",
-							"",
-							"/** ",
-							" * Service Id",
-							" * ",
-							" * @param service_id - The id of the service",
-							" **/",
-							"postman.setEnvironmentVariable(\"service_id\", \"\");",
-							"",
-							"",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "Public Information",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://github.com/BoschSmartHome/bosch-shc-api-docs",
-					"protocol": "https",
+					"raw": "{{shc_public}}",
 					"host": [
-						"github",
-						"com"
-					],
-					"path": [
-						"BoschSmartHome",
-						"bosch-shc-api-docs"
+						"{{shc_public}}"
 					]
-				},
-				"description": "Open Pre-request Script tab to edit and set environment variables"
+				}
 			},
 			"response": []
 		},
@@ -1578,11 +1485,13 @@
 					"script": {
 						"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
 						"exec": [
-							"// A 2048 bit self signed certificate ",
-							"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"\"",
+							"// Create a 2048 bit self signed certificate and format it as followed:",
+							"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"",
 							"",
-							"// The following certificate will be accepted by the controller. You can use it only for testing the 'New Client' request. A key to the following certificate does not exist.  ",
-							"// \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\");"
+							"// The following certificate will be accepted by the controller. You can use it only for testing the 'New Client' request. A key to the following certificate does not exist. Just copy the following string without '//' and replace it with the string in the Body (Tab -> Body) of this API request:",
+							"",
+							"// \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1602,7 +1511,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"for example, see Tab -> Pre-request Script\"\r\n}\r\n"
+					"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"Replace this string with a 2048 bit self signed certificate! See Tab -> Pre-request Script for an example certificate.\"\r\n}\r\n"
 				},
 				"url": {
 					"raw": "{{shc_secure}}",
