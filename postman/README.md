@@ -2,27 +2,26 @@
 
 To get started with the Postman Collection you need the following:
 
-- Postman Collection downloaded to your local environment
 - The IP address of your Smart Home Controller (SHC)
-- A generated 2048 bit self signed certificate
-- The key to that certificate
+- Postman Collection and Environment downloaded to a local directory
+- A generated 2048 bit self signed certificate and the key to that certificate
 
-## Import the collection and the certificate into Postman
-1. Start by importing the downloaded Postman Collection via the **Import** button of Postman. 
+## Import the collection, the environment, the certificate and the key into Postman
+1. Start by importing the downloaded Postman Collection and Environment via the **Import** button of Postman. 
 
-2. In the next step, you need to add the generated certificate and key to Postman. Therefore, open the **Settings** in Postman:
+2. In the next step, you need to import the generated certificate and the key into Postman. Therefore, open the **Settings** in Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
-2.  On the **General** tab, disable **SSL certificate verification**:
+3.  On the **General** tab, disable **SSL certificate verification**:
 
 ![Postman Disable SSL Verification](images/postman_disable_ssl_verification.png "Postman Disable SSL Verification")
 
-3.  On the **Certificates** tab, click on **Add Certificate**:
+4.  On the **Certificates** tab, click on **Add Certificate**:
 
 ![Postman Add Certificate](images/postman_add_certificate.png "Postman Add Certificate")
 
-4. Enter the **IP address** of your SHC and the port **8443**. After that, provide the requested files for the **certificate** and the **key**. If you use a **passphrase**, you should provide this information as well:
+5. Enter the **IP address** of your SHC and the port **8443**. After that, provide the requested files for the **certificate** and the **key**. If you use a **passphrase**, you should provide this information as well:
 
 ![Postman Add PEMs](images/postman_add_pems.png "Postman Add PEMs")
 	
@@ -30,11 +29,30 @@ To get started with the Postman Collection you need the following:
 
 7. Do the same for port **8444**.
 
-Now, you have all the prerequisites to communicate with your SHC via Postman. Start by adding a new client.
+Now, you have all the prerequisites to communicate with your SHC via Postman. Start by checking the connection.
 
+## Check the connection with the Bosch Smart Home Controller in your local network
+1. On the left pane of Postman, select **Collections**
+
+2. Double-click **Public Information**
+
+![Postman Collections](images/postman_collections.png "Postman Collections")
+
+3. In the upper right area of Postman, select the **Bosch Smart Home** environment
+
+4. Click the icon with the eye
+
+5. Edit the **Current Value** for **host**, enter the IP of your Bosch Smart Home Controller and close the environment window
+
+![Postman Environment Host](images/postman_environment_host.png "Postman Environment Host")
+
+6. Click the **Send** button
+
+7. Your setup is correct when you receive a **200 OK** and some information about your Bosch Smart Home Controller
+
+![Postman Check SHC Connection](images/postman_check_shc_connection.png "Postman Check SHC Connection")
 
 ## Register a New Client to the Bosch Smart Home Controller
-
 A client is a piece of software that has the permission to communicate with the Bosch Smart Home Controller. For example, the Bosch Smart Home App becomes a client of the Bosch Smart Home Controller upon successfully registration. All registered clients can be listed in the Bosch Smart Home App. To locate this in your app, go to `Management -> Mobile devices`. The communication between a client and the Bosch Smart Home Controller is always encrypted with TLSv1.2.
 ![Schematic view](images/shc-client-schematic-view.png "Schematic view")
 **Hint:** Before submitting the **New Client** request, always **press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing**.
@@ -48,9 +66,11 @@ To register a **New Client** to the Bosch Smart Home Controller, you need the fo
 **Hint:** Your Bosch Smart Home Controller must already be initialized and paired with a Bosch Smart Home App!
 
 ### Naming convention for the Client ID and Client Name
-Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer.
+Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer. 
 
-Provide the information of the **Client ID** and **Client Name** in the **body** of the **New Client** call.
+**Hint:** Please note that this naming convention is part of our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+
+The **Client ID** and **Client Name** is already set in the Postman Environment. 
 
 ### Customize the certificate
 To modify the certificate so that it fits into a JSON object, you have to manually remove all carriage returns, and additionally add `\r` before and after the certificate. Take the following example to illustrate this:
@@ -61,14 +81,23 @@ Provide the **2048 bit self signed certificate** in the **body** of the **New Cl
 
 If the certificate, or one of the defined query parameters was invalid, the Bosch Smart Home Controller will respond with `400 bad request`.
 
+![Postman New Client](images/postman_new_client.png "Postman New Client")
+
 ### Encode your password to base64
 
 In order for the request to be accepted, you have to encode your Bosch Smart Home Controller password into base64. If you need a hint how to do this, there are many base64 encoders online. Just pick one and encode your password there. For instance, the base64 encoded password for `my_passw0rd` is `bXlfcGFzc3cwcmQ=`.
 
-Enter the information of the **base64 encoded password** in the **header** of the **New Client** call.
+Enter the information of the **base64 encoded password** in the **Bosch Smart Home** environment.
 
 If the password is wrong, the Bosch Smart Home Controller will respond with `401 unauthorized`.
 
+![Postman Environment Pass](images/postman_environment_pass.png "Postman Environment Pass")
+
+### Add the client
+1. Press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing
+2. Click the "Send" button
+
+After a couple of seconds the LEDs should stop flashing. Your client is now added.
 
 ### Delete a client
 
