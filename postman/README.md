@@ -32,23 +32,23 @@ To get started with the Postman Collection you need the following:
 Now, you have all the prerequisites to communicate with your SHC via Postman. Start by checking the connection.
 
 ## Check the connection with the Bosch Smart Home Controller in your local network
-1. On the left pane, select "Collections"
+1. On the left pane, select **Collections**
 
-2. Double-click "Public Information"
+2. Double-click **Public Information**
 
 ![Postman Collections](images/postman_collections.png "Postman Collections")
 
-3. In the upper right area, select the "Bosch Smart Home" environment
+3. In the upper right area, select the **Bosch Smart Home** environment
 
 4. Click the icon with the eye
 
-5. Edit the "Current Value" for "host", enter the IP of your Bosch Smart Home Controller and close the environment window
+5. Edit the **Current Value** for **host**, enter the IP of your Bosch Smart Home Controller and close the environment window
 
 ![Postman Environment Host](images/postman_environment_host.png "Postman Environment Host")
 
-6. Click the "Send" button
+6. Click the **Send** button
 
-7. Your setup is correct when you receive a "200 OK" and some information about your Bosch Smart Home Controller
+7. Your setup is correct when you receive a **200 OK** and some information about your Bosch Smart Home Controller
 
 ![Postman Check SHC Connection](images/postman_check_shc_connection.png "Postman Check SHC Connection")
 
@@ -66,9 +66,11 @@ To register a **New Client** to the Bosch Smart Home Controller, you need the fo
 **Hint:** Your Bosch Smart Home Controller must already be initialized and paired with a Bosch Smart Home App!
 
 ### Naming convention for the Client ID and Client Name
-Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer.
+Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer. 
 
-Provide the information of the **Client ID** and **Client Name** in the **body** of the **New Client** call.
+**Hint:** Please note that this naming convention is part of our terms and conditions.
+
+The **Client ID** and **Client Name** is already set in the Postman Environment. 
 
 ### Customize the certificate
 To modify the certificate so that it fits into a JSON object, you have to manually remove all carriage returns, and additionally add `\r` before and after the certificate. Take the following example to illustrate this:
