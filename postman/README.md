@@ -32,13 +32,13 @@ To get started with the Postman Collection you need the following:
 Now, you have all the prerequisites to communicate with your SHC via Postman. Start by checking the connection.
 
 ## Check the connection with the Bosch Smart Home Controller in your local network
-1. On the left pane, select **Collections**
+1. On the left pane of Postman, select **Collections**
 
 2. Double-click **Public Information**
 
 ![Postman Collections](images/postman_collections.png "Postman Collections")
 
-3. In the upper right area, select the **Bosch Smart Home** environment
+3. In the upper right area of Postman, select the **Bosch Smart Home** environment
 
 4. Click the icon with the eye
 
