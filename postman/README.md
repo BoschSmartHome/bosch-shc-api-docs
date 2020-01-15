@@ -68,7 +68,7 @@ To register a **New Client** to the Bosch Smart Home Controller, you need the fo
 ### Naming convention for the Client ID and Client Name
 Using the API requires identification against the Bosch Smart Home Controller with an individual Client ID and Client Name that starts with `oss_` followed by the name of the open source project, or the name of the developer. 
 
-**Hint:** Please note that this naming convention is part of our [Terms and Conditions](bosch-shc-api-docs#terms-and-conditions).
+**Hint:** Please note that this naming convention is part of our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
 
 The **Client ID** and **Client Name** is already set in the Postman Environment. 
 
