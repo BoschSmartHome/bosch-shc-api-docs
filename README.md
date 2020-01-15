@@ -8,7 +8,7 @@
   * [Use Long Polling instead of Short Polling](#use-long-polling-instead-of-short-polling)
   * [Limit the number of requests in a given time period](#limit-the-number-of-requests-in-a-given-time-period)
 - [How to use the Postman Collection](postman/)
-  * [Import the collection and the certificate into Postman](postman#import-the-collection-the-environment-the-certificate-and-the-key-into-postman)
+  * [Import the collection, the environment, the certificate and the key into Postman](postman#import-the-collection-the-environment-the-certificate-and-the-key-into-postman)
   * [Check the connection with the Bosch Smart Home Controller in your local network](postman#check-the-connection-with-the-bosch-smart-home-controller-in-your-local-network)
   * [Register a New Client to the Bosch Smart Home Controller](postman#register-a-new-client-to-the-bosch-smart-home-controller)
   * [Get events from the Bosch Smart Home Controller (Long Polling)](postman#get-events-from-the-bosch-smart-home-controller-long-polling)
