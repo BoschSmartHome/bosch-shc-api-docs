@@ -24,7 +24,7 @@ With this documentation you can make your Bosch Smart Home System interoperable.
 
 Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/) to understand how the devices, rooms, messages, services and states are structured.
 
-Finally, you should take a look at the [Best Practice](#best-practice) section in order to establish an optimal communication with the Bosch Smart Home Controller..
+Finally, you should take a look at the [Best Practice](#best-practice) section in order to establish an optimal communication with the Bosch Smart Home Controller.
 
 ## Best Practice
 
