@@ -1,27 +1,30 @@
-# Bosch Smart Home Controller Local REST API
+# Bosch Smart Home Controller Local API
+<img src="images/bosch_smart_home.jpg"/>
 
 #### Contents
 
 - [Overview](#overview)
-- [Best Practice](#best-practice)
-  * [Watch this repository](#watch-this-repository)
-  * [Use Long Polling instead of Short Polling](#use-long-polling-instead-of-short-polling)
-  * [Limit the number of requests in a given time period](#limit-the-number-of-requests-in-a-given-time-period)
-- [How to use the Postman Collection](postman/)
+- [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
+- [Postman Collection](postman/)
   * [Import the collection, the environment, the certificate and the key into Postman](postman#import-the-collection-the-environment-the-certificate-and-the-key-into-postman)
   * [Check the connection with the Bosch Smart Home Controller in your local network](postman#check-the-connection-with-the-bosch-smart-home-controller-in-your-local-network)
   * [Register a New Client to the Bosch Smart Home Controller](postman#register-a-new-client-to-the-bosch-smart-home-controller)
   * [Get events from the Bosch Smart Home Controller (Long Polling)](postman#get-events-from-the-bosch-smart-home-controller-long-polling)
-- [Local OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
+- [Best Practice](#best-practice)
+  * [Watch this repository](#watch-this-repository)
+  * [Use Long Polling instead of Short Polling](#use-long-polling-instead-of-short-polling)
+  * [Limit the number of requests in a given time period](#limit-the-number-of-requests-in-a-given-time-period)
 - [Terms and Conditions](#terms-and-conditions)
-
 
 ## Overview
 
-<img src="images/bosch_smart_home.jpg"/>
+[Bosch Smart Home](https://www.bosch-smarthome.com/) products allow you to automatically and remotely control the processes in your home. Each device has a unique purpose in your Smart Home and provides ease and convenience to your changing daily routines. Whether you want to network your heating system or secure the safety of your home, the Bosch Smart Home System offers you complete and personalised solutions to you and your home's needs. 
 
-[Bosch Smart Home](https://www.bosch-smarthome.com/) products allow you to automatically and remotely control the processes in your home. Each device has a unique purpose in your Smart Home and provides ease and convenience to your changing daily routines. Why do I need this? Because it means you can have more time to enjoy what matters to you. Whether you want to network your heating system or secure the safety of your home, the Bosch Smart Home System offers you complete and personalised solutions to you and your home's needs. This is all controlled by one handy app, so you can control your home, wherever you are. 
+With this documentation you can make your Bosch Smart Home System interoperable. If you are new to this topic, start to play with the [Postman Collection](postman/) to understand how the connection is established and how to get and set states. Postman is a collaboration platform for API development and has the advantage that it can generate code in many languages.
 
+Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/) to understand how the devices, rooms, messages, services and states are structured.
+
+Finally, you should take a look at the [Best Practice](#best-practice) section in order to establish an optimal communication with the Bosch Smart Home Controller.
 
 ## Best Practice
 
