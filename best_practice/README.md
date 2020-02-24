@@ -21,7 +21,7 @@ With the Bosch Smart Home System your Smart Home is secure (see [AV-Test](https:
         rejectUnauthorized: false
     }
 ```
-Instead verify the host IP and CA:
+Instead verify the IP and the CA:
 ```javascript
     const requestOptionsWithHostVerification = {
         key: fs.readFileSync(tls_key),
@@ -36,3 +36,4 @@ Instead verify the host IP and CA:
         }
     }
 ```
+The public certificates to identify the CA are attached to this repository.
