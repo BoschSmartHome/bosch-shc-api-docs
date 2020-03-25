@@ -1,10 +1,136 @@
 {
 	"info": {
-		"_postman_id": "cafbee8f-bfc6-4b92-aa00-e0bebba356fb",
-		"name": "Bosch Smart Home v0.4",
+		"_postman_id": "9b248bc3-c5b9-41e5-b21c-82f225bb9c3c",
+		"name": "Bosch Smart Home v0.5",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Long Polling",
+			"item": [
+				{
+					"name": "Long Polling Subscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88868708-448c-4508-99cf-1cd8ebb57100",
+								"exec": [
+									"var bodyJson = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2be92b3c-c071-478b-a684-5250d60b4619",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/subscribe\",\n        \"params\": [\"com/bosch/sh/remote/*\", null]\n    }\n]"
+						},
+						"url": {
+							"raw": "{{shc_poll}}",
+							"host": [
+								"{{shc_poll}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Long Polling Poll",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/longPoll\",\n        \"params\": [\"{{shc_poll_id}}\", 30]\n    }\n]"
+						},
+						"url": {
+							"raw": "{{shc_poll}}",
+							"host": [
+								"{{shc_poll}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Long Polling Unsubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bbf082c3-08fd-478e-ba2e-31ae353ea980",
+								"exec": [
+									"var bodyJson = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/unsubscribe\",\n        \"params\": [\"{{shc_poll_id}}\"]\n    }\n]"
+						},
+						"url": {
+							"raw": "{{shc_poll}}",
+							"host": [
+								"{{shc_poll}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "Main Resources",
 			"item": [
@@ -194,12 +320,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{shc_api}}/rooms",
+							"raw": "{{shc_api}}/rooms/{{room_id}}",
 							"host": [
 								"{{shc_api}}"
 							],
 							"path": [
-								"rooms"
+								"rooms",
+								"{{room_id}}"
 							]
 						}
 					},
@@ -335,6 +462,105 @@
 								"scenarios",
 								"{{scenario_id}}",
 								"triggers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Messages as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/messages",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open doors/windows",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1.0"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/doors-windows/openwindows",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"doors-windows",
+								"openwindows"
 							]
 						}
 					},
@@ -1302,18 +1528,6 @@
 							"script": {
 								"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
 								"exec": [
-									"/** ",
-									" * URL of Service",
-									" * ",
-									" * @param bbl_id - The id of the shutter",
-									" **/",
-									"postman.setEnvironmentVariable(\"bbl_id\", \"\");",
-									"",
-									"/** ",
-									" * Body",
-									" * ",
-									" * @param level - Set shutter level to given value. Range is from 0.0 to 1.0 in 0.1 steps.",
-									" **/",
 									""
 								],
 								"type": "text/javascript"
@@ -1338,6 +1552,60 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"@type\": \"shutterControlState\",\n    \"level\": \"1.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ShutterControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ShutterControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control STOPPED",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@type\": \"shutterControlState\",\n    \"operationState\": \"STOPPED\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1520,126 +1788,6 @@
 					]
 				},
 				"description": "Please make sure to comply with our Terms and Conditions\n(see https://github.com/BoschSmartHome/bosch-shc-api-docs)"
-			},
-			"response": []
-		},
-		{
-			"name": "Long Polling Subscribe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "88868708-448c-4508-99cf-1cd8ebb57100",
-						"exec": [
-							"var bodyJson = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "2be92b3c-c071-478b-a684-5250d60b4619",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/subscribe\",\n        \"params\": [\"com/bosch/sh/remote/*\", null]\n    }\n]"
-				},
-				"url": {
-					"raw": "{{shc_poll}}",
-					"host": [
-						"{{shc_poll}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Long Polling Poll",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/longPoll\",\n        \"params\": [\"{{shc_poll_id}}\", 30]\n    }\n]"
-				},
-				"url": {
-					"raw": "{{shc_poll}}",
-					"host": [
-						"{{shc_poll}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Long Polling Unsubscribe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "bbf082c3-08fd-478e-ba2e-31ae353ea980",
-						"exec": [
-							"var bodyJson = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "api-version",
-						"value": "1.0",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n        \"jsonrpc\":\"2.0\",\n        \"method\":\"RE/unsubscribe\",\n        \"params\": [\"{{shc_poll_id}}\"]\n    }\n]"
-				},
-				"url": {
-					"raw": "{{shc_poll}}",
-					"host": [
-						"{{shc_poll}}"
-					]
-				}
 			},
 			"response": []
 		}
