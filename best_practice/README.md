@@ -13,20 +13,20 @@ In addition to the use of the Long Polling mechanism, it is also advisable to ke
 You should also consider that a large number of requests flood the log file. In the event of a support request, the error may no longer be found in the log file, making an error analysis difficult.
 
 ## Host Verification
-With the Bosch Smart Home System your Smart Home is secure (see [AV-Test](https://www.iot-tests.org/2017/08/bosch-smart-and-secure-starter-kit/)). The communication with the Bosch Smart Home Controller is TLS1.2 encrypted. However, in a worst case scenario it is possible to perform a Man-in-the-Midlle attack, if your OSS software does not verifies the Bosch Smart Home Controller IP and certificate authority (CA). You should avoid such implementation as the following (example given in Node.js):
+The communication with the Bosch Smart Home Controller is cryptographically protected via TLS. However, it is best practice if your OSS implementation verifies the Bosch Smart Home Controller IP and the certificate authority (CA). You should avoid such implementation as the following (example given in Node.js):
 ```javascript
     const requestOptionsWithoutHostVerification = {
-        key: fs.readFileSync(tls_key),
-        cert: fs.readFileSync(tls_cert),
-        rejectUnauthorized: false
+        key: fs.readFileSync('shc-key.pem'),
+        cert: fs.readFileSync('shc-cert.pem'),
+        rejectUnauthorized: false // No host verification at all
     }
 ```
 Instead verify the IP and the CA:
 ```javascript
     const requestOptionsWithHostVerification = {
-        key: fs.readFileSync(tls_key),
-        cert: fs.readFileSync(tls_cert),
-        ca: fs.readFileSync(tls_ca_chain),
+        key: fs.readFileSync('shc-key.pem'),
+        cert: fs.readFileSync('shc-cert.pem'),
+        ca: fs.readFileSync(tls_ca_chain), // Concatenate the Smart Home Controller Productive Root CA with the Smart Home Controller Issuing CA into one file
         checkServerIdentity: function(host) {
             if (host === shcIp) {
                 return undefined;
