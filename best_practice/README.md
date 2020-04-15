@@ -13,7 +13,7 @@ In addition to the use of the Long Polling mechanism, it is also advisable to ke
 You should also consider that a large number of requests flood the log file. In the event of a support request, the error may no longer be found in the log file, making an error analysis difficult.
 
 ## Host Verification
-The communication with the Bosch Smart Home Controller is cryptographically protected via TLS. However, it is best practice if your OSS implementation verifies the Bosch Smart Home Controller IP and the certificate authority (CA). You should avoid such implementation as the following (example given in Node.js):
+The communication with the Bosch Smart Home Controller is cryptographically protected via TLS. However, it is recommended that your OSS implementation verifies the Bosch Smart Home Controller IP and the certificate authority (CA). You should avoid such implementation as the following (example given in Node.js):
 ```javascript
     const requestOptionsWithoutHostVerification = {
         key: fs.readFileSync('shc-key.pem'),
@@ -36,4 +36,4 @@ Instead verify the IP and the CA:
         }
     }
 ```
-The public certificates to identify the CA are attached to this repository.
+The Smart Home Controller Productive Root CA and the Smart Home Controller Issuing CA are attached to this repository.
