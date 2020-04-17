@@ -6,14 +6,14 @@ To get started with the Postman Collection you need the following:
 - The IP address of your Smart Home Controller (SHC)
 - A generated 2048 bit self signed certificate and the key to that certificate. 
 
-**Hint:** Using OpenSSL a key pair can be generated with: `openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout shc-key.pem -out shc-cert.pem`
+**Hint:** Using OpenSSL a key pair can be generated with: `openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout client-key.pem -out client-cert.pem`
 
-For security reasons you should consider to encrypt the key with: `openssl rsa -aes256 -in shc-key.pem -out shc-encrypted-key.pem`
+For security reasons you should consider to encrypt the key with: `openssl rsa -aes256 -in client-key.pem -out client-encrypted-key.pem`
 
 ## Import the collection, the environment, the certificate and the key into Postman
 1. Start by importing the downloaded Postman Collection and Environment via the **Import** button of Postman. 
 
-2. In the next step, you need to import the generated certificate (e.g. `shc-cert.pem`) and the key (e.g. `shc-key.pem`) into Postman. Therefore, open the **Settings** in Postman:
+2. In the next step, you need to import the generated certificate (e.g. `client-cert.pem`) and the key (e.g. `client-key.pem`) into Postman. Therefore, open the **Settings** in Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
