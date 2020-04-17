@@ -16,16 +16,16 @@ You should also consider that a large number of requests flood the log file. In 
 The communication with the Bosch Smart Home Controller is cryptographically protected via TLS. However, it is recommended that your OSS implementation verifies the Bosch Smart Home Controller IP and the certificate authority (CA). You should avoid such implementation as the following (example given in Node.js):
 ```javascript
     const requestOptionsWithoutHostVerification = {
-        key: fs.readFileSync('shc-key.pem'),
-        cert: fs.readFileSync('shc-cert.pem'),
+        key: fs.readFileSync('client-key.pem'),
+        cert: fs.readFileSync('client-cert.pem'),
         rejectUnauthorized: false // No host verification at all
     }
 ```
 Instead verify the IP and the CA:
 ```javascript
     const requestOptionsWithHostVerification = {
-        key: fs.readFileSync('shc-key.pem'),
-        cert: fs.readFileSync('shc-cert.pem'),
+        key: fs.readFileSync('client-key.pem'),
+        cert: fs.readFileSync('client-cert.pem'),
         ca: fs.readFileSync(tls_ca_chain), // Concatenate the Smart Home Controller Productive Root CA with the Smart Home Controller Issuing CA into one file
         checkServerIdentity: function(host) {
             if (host === shcIp) {
