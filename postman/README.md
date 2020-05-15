@@ -13,7 +13,7 @@ For security reasons you should consider to encrypt the key with: `openssl rsa -
 ## Import the collection, the environment, the certificate and the key into Postman
 1. Start by importing the downloaded Postman Collection and Environment via the **Import** button of Postman. 
 
-2. In the next step, you need to import the generated certificate (e.g. `client-cert.pem`) and the key (e.g. `client-key.pem`) into Postman. Therefore, open the **Settings** in Postman:
+2. In the next step, you need to import the generated certificate (e.g. `client-cert.pem`) and the key (e.g. `client-key.pem` or `client-encrypted-key.pem`) into Postman. Therefore, open the **Settings** in Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
