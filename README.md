@@ -1,7 +1,7 @@
 # Bosch Smart Home Controller Local API
 <img src="images/bosch_smart_home.jpg"/>
 
-#### Contents
+## Contents
 
 - [Overview](#overview)
 - [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
@@ -10,10 +10,11 @@
   * [Check the connection with the Bosch Smart Home Controller in your local network](postman#check-the-connection-with-the-bosch-smart-home-controller-in-your-local-network)
   * [Register a New Client to the Bosch Smart Home Controller](postman#register-a-new-client-to-the-bosch-smart-home-controller)
   * [Get events from the Bosch Smart Home Controller (Long Polling)](postman#get-events-from-the-bosch-smart-home-controller-long-polling)
-- [Best Practice](#best-practice)
-  * [Watch this repository](#watch-this-repository)
-  * [Use Long Polling instead of Short Polling](#use-long-polling-instead-of-short-polling)
-  * [Limit the number of requests in a given time period](#limit-the-number-of-requests-in-a-given-time-period)
+- [Best Practice](best_practice/)
+  * [Watch this repository](best_practice#watch-this-repository)
+  * [Use Long Polling instead of Short Polling](best_practice#use-long-polling-instead-of-short-polling)
+  * [Limit the number of requests in a given time period](best_practice#limit-the-number-of-requests-in-a-given-time-period)
+  * [Host Verification](best_practice#host-verification)
 - [Terms and Conditions](#terms-and-conditions)
 
 ## Overview
@@ -22,32 +23,9 @@
 
 With this documentation you can make your Bosch Smart Home System interoperable. If you are new to this topic, start to play with the [Postman Collection](postman/) to understand how the connection is established and how to get and set states. Postman is a collaboration platform for API development and has the advantage that it can generate code in many languages.
 
-Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/) to understand how the devices, rooms, messages, services and states are structured.
+Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/) to understand how all the devices, rooms, messages, services and states are getting requested. You will also find the structure and content of all JSON responses, errors and HTTP status codes there. 
 
-Finally, you should take a look at the [Best Practice](#best-practice) section in order to establish an optimal communication with the Bosch Smart Home Controller.
-
-## Best Practice
-
-In order to get the best user experience when using the local interface of your Bosch Smart Home Controller, we have a few best practice tips for you.
-
-### Watch this repository
-
-First of all, watch this repository to get notified when we change or update our Terms and Conditions. In case the terms and conditions are changed, the commit message will always contain the keyword `T&C`. In case the API is changed or updated, the commit message will always contain the keyword `API`.
-
-### Use Long Polling instead of Short Polling
-
-In order to get notified as soon as a value changes, it is recommended to use the [Long Polling mechanism to receive events](postman#get-events-from-the-bosch-smart-home-controller-long-polling) (see Postman collection 'Long Polling Subscribe'). Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the Bosch Smart Home Controller keeps all information for the client until the client starts another Long Polling request.
-
-### Limit the number of requests in a given time period
-
-In addition to the use of the Long Polling mechanism, it is also advisable to keep the number of requests in a given time period low. For this purpose, the following should be observed:
-
-- Retrieving json arrays should not happen more than once per minute. For instance, requesting the main resources `/devices` and `/services`.
-
-- Retrieving json objects should not happen more often than every 10 seconds. For instance, requesting a single service or state of a device.
-
-Hence, if you want to request a main resource, e.g. `/devices` and the battery level of five devices, the main resource and every device should only be requested once per minute. This way the total number of requests (maximum six per minute for individual resources and maximum once per minute for arrays) will not be exceeded.
-
+Finally, you should take a look at the [Best Practice](best-practice/) section in order to establish an optimal communication with the Bosch Smart Home Controller.
 
 ## Terms and Conditions
 Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany ("Bosch Smart Home") provides a description of the local Bosch Smart Home Controller REST API, that allows **private, non-profit** Developers ("Developer") to locally control their Bosch Smart Home Devices.
