@@ -4,12 +4,16 @@ To get started with the Postman Collection you need the following:
 
 - Postman Collection and Environment downloaded to a local directory
 - The IP address of your Smart Home Controller (SHC)
-- A generated 2048 bit self signed certificate and the key to that certificate. Using OpenSSL a key pair can be generated with: `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout shc-key.pem -out shc-cert.pem`
+- A generated 2048 bit self signed certificate and the key to that certificate. 
+
+**Hint:** Using OpenSSL a key pair can be generated with: `openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout client-key.pem -out client-cert.pem`
+
+For security reasons you should consider to encrypt the key with: `openssl rsa -aes256 -in client-key.pem -out client-encrypted-key.pem`
 
 ## Import the collection, the environment, the certificate and the key into Postman
 1. Start by importing the downloaded Postman Collection and Environment via the **Import** button of Postman. 
 
-2. In the next step, you need to import the generated certificate and the key into Postman. Therefore, open the **Settings** in Postman:
+2. In the next step, you need to import the generated certificate (e.g. `client-cert.pem`) and the key (e.g. `client-key.pem` or `client-encrypted-key.pem`) into Postman. Therefore, open the **Settings** in Postman:
 
 ![Postman Settings](images/postman_settings.png "Postman Settings")
 
@@ -61,7 +65,7 @@ To register a **New Client** to the Bosch Smart Home Controller, you need the fo
 
 - A designated name of your open source software project
 - The 2048 bit self-signed certificate from the previous step
-- The master password of your Bosch Smart Home Controller, which you created upon initial setup
+- The system password of your Bosch Smart Home Controller, which you created upon initial setup
 
 **Hint:** Your Bosch Smart Home Controller must already be initialized and paired with a Bosch Smart Home App!
 
