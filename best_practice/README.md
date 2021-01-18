@@ -6,6 +6,8 @@ First of all, watch this repository to get notified when we change or update our
 
 ## Use Long Polling instead of Short Polling
 In order to get notified as soon as a value changes, it is recommended to use the [Long Polling mechanism to receive events](https://github.com/BoschSmartHome/bosch-shc-api-docs/tree/master/postman#get-events-from-the-bosch-smart-home-controller-long-polling) (see Postman collection 'Long Polling Subscribe'). Long Polling is a mechanism in which the client makes a request, and the server keeps the connection open until there is new information available. Once available, the server responds by sending the new information to the client and closes the connection afterwards. As soon as the client receives the new information, it immediately sends another request and the process is repeated. This mechanism also ensures that you do not miss any events, because the Bosch Smart Home Controller keeps all information for the client until the client starts another Long Polling request.
+Please be aware that every subscription has a maximum age of 24 hours and an inactivity timeout of 5 minutes, i.e. a new subscription has to be requested if a subscription ID is either used for 24 hours or no long-poll request was sent for 5 minutes. A long-poll request will fail after the corresponding subscription ID has expired. Re-subscribing and then using the new subscription ID solves this.
+
 
 ### Limit the number of requests in a given time period
 In addition to the use of the Long Polling mechanism, it is also advisable to keep the number of requests in a given time period low. The number of requests the Bosch Smart Home Controller can process depends heavily on how many edge devices and clients are paired with it. 
