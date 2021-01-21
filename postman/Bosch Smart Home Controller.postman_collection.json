@@ -44,7 +44,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -72,7 +72,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -113,7 +113,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -169,7 +169,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -219,7 +219,7 @@
 							{
 								"key": "api-version",
 								"type": "text",
-								"value": "1.0"
+								"value": "{{api_version}}"
 							}
 						],
 						"url": {
@@ -268,7 +268,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -317,7 +317,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -357,7 +357,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -396,7 +396,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -447,7 +447,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -502,7 +502,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -552,7 +552,7 @@
 							{
 								"key": "api-version",
 								"type": "text",
-								"value": "1.0"
+								"value": "{{api_version}}"
 							}
 						],
 						"url": {
@@ -607,7 +607,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -635,7 +635,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -665,7 +665,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -703,7 +703,7 @@
 							{
 								"key": "api-version",
 								"type": "text",
-								"value": "1.0"
+								"value": "{{api_version}}"
 							}
 						],
 						"url": {
@@ -746,7 +746,7 @@
 							{
 								"key": "api-version",
 								"type": "text",
-								"value": "1.0"
+								"value": "{{api_version}}"
 							}
 						],
 						"body": {
@@ -793,7 +793,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -838,7 +838,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -891,7 +891,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -923,7 +923,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -954,7 +954,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -989,7 +989,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1037,7 +1037,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1081,7 +1081,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1125,7 +1125,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1168,7 +1168,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1215,7 +1215,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1250,7 +1250,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1281,7 +1281,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1316,7 +1316,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1364,7 +1364,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1407,7 +1407,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1454,7 +1454,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1502,7 +1502,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1547,7 +1547,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1602,7 +1602,7 @@
 							{
 								"key": "api-version",
 								"type": "text",
-								"value": "1.0"
+								"value": "{{api_version}}"
 							}
 						],
 						"body": {
@@ -1654,7 +1654,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
@@ -1698,7 +1698,7 @@
 							},
 							{
 								"key": "api-version",
-								"value": "1.0",
+								"value": "{{api_version}}",
 								"type": "text"
 							}
 						],
