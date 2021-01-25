@@ -1730,6 +1730,238 @@
 			]
 		},
 		{
+			"name": "Domains",
+			"item": [
+				{
+					"name": "Intrusion Detection",
+					"item": [
+						{
+							"name": "Arm with current profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"arm"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Arm with profile \"Full Protection\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"@type\": \"armRequest\",\n\t\"profileId\": \"0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"arm"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Arm with profile \"Partial Protection\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"@type\": \"armRequest\",\n\t\"profileId\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"arm"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Arm with profile \"Individual\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"@type\": \"armRequest\",\n\t\"profileId\": \"2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"arm"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disarm",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/disarm?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"disarm"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mute",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"url": {
+									"raw": "{{shc_api}}/intrusion/actions/mute?api-version={{api_version}}",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"actions",
+										"mute"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "{{api_version}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Public Information",
 			"request": {
 				"method": "GET",
