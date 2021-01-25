@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "9b248bc3-c5b9-41e5-b21c-82f225bb9c3c",
 		"name": "Bosch Smart Home Controller",
-		"description": "This API enables you to get the state of and control your Bosch Smart Home System. Configuration is not supported.",
+		"description": "This API enables you to locally access the state of and control your Bosch Smart Home system. Configuring the system is not supported.",
 		"version": "2.1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
