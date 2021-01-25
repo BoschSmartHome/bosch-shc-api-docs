@@ -16,7 +16,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
 								"exec": [
 									"// Create a 2048 bit self signed certificate and format it as followed:",
 									"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"",
@@ -67,7 +66,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "88868708-448c-4508-99cf-1cd8ebb57100",
 								"exec": [
 									"var bodyJson = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
@@ -78,7 +76,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2be92b3c-c071-478b-a684-5250d60b4619",
 								"exec": [
 									""
 								],
@@ -146,7 +143,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bbf082c3-08fd-478e-ba2e-31ae353ea980",
 								"exec": [
 									"var bodyJson = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"shc_poll_id\", bodyJson[0].result);"
@@ -181,8 +177,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Main Resources",
@@ -193,7 +188,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -203,7 +197,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
 								"exec": [
 									""
 								],
@@ -242,7 +235,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -252,7 +244,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
 								"exec": [
 									""
 								],
@@ -292,7 +283,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -302,7 +292,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
 								"exec": [
 									""
 								],
@@ -341,7 +330,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -351,7 +339,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d0e7f8c7-1828-4432-86a8-5e09b45b2d8c",
 								"exec": [
 									""
 								],
@@ -391,7 +378,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -430,7 +416,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -470,7 +455,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "05d1e32a-3f3f-4200-b2e2-11c6cd9211a3",
 								"exec": [
 									""
 								],
@@ -480,7 +464,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "aaf436be-065f-4fde-a690-da187f5d6caf",
 								"exec": [
 									""
 								],
@@ -526,7 +509,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -536,7 +518,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
 								"exec": [
 									""
 								],
@@ -575,7 +556,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -585,7 +565,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ffb55d55-ef80-44a0-a78b-342c35ca24be",
 								"exec": [
 									""
 								],
@@ -619,8 +598,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Services",
@@ -631,7 +609,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1326a6d-8484-437d-a2f9-5c783451baa1",
 								"exec": [
 									""
 								],
@@ -641,7 +618,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "dc782443-eed9-4d04-a38c-bfab4e6f93e2",
 								"exec": [
 									""
 								],
@@ -735,8 +711,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "States",
@@ -779,7 +754,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
 								"exec": [
 									""
 								],
@@ -826,7 +800,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a5ce89f2-cc7e-432b-bb9e-c89a2511a389",
 								"exec": [
 									""
 								],
@@ -870,7 +843,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "40fd3978-9d91-440b-8d3c-233d0dfa436c",
 								"exec": [
 									""
 								],
@@ -924,7 +896,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "53136090-fd25-4c32-a369-a0cdd104e1f8",
 								"exec": [
 									""
 								],
@@ -1070,7 +1041,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "92ae505c-5dcd-4cc3-9a04-d93cf5d6df65",
 								"exec": [
 									""
 								],
@@ -1114,7 +1084,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3ff2ba4c-7070-45d7-90b9-718c7f70c123",
 								"exec": [
 									""
 								],
@@ -1158,7 +1127,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "65a926fe-52a9-4c4d-ac6e-ead31456adc0",
 								"exec": [
 									""
 								],
@@ -1202,7 +1170,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0ac1771e-3eac-45bd-ae50-4ead7368f967",
 								"exec": [
 									""
 								],
@@ -1249,7 +1216,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "37748390-bb4b-4348-81b5-230226696737",
 								"exec": [
 									""
 								],
@@ -1397,7 +1363,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a62a1f19-bb2a-481e-8791-8f9a46c4787e",
 								"exec": [
 									""
 								],
@@ -1441,7 +1406,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bc5c64ba-4456-4780-ab34-ee751b1d1ac9",
 								"exec": [
 									""
 								],
@@ -1488,7 +1452,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "60743ce3-9661-4b3d-b767-396d4e2a54d9",
 								"exec": [
 									""
 								],
@@ -1535,7 +1498,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a685b043-8a76-411a-8dab-032c18b5cbe2",
 								"exec": [
 									""
 								],
@@ -1579,7 +1541,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
 								"exec": [
 									""
 								],
@@ -1633,7 +1594,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0efaab7a-9f69-4324-8f7e-4f8a7c9b3d53",
 								"exec": [
 									""
 								],
@@ -1687,7 +1647,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e24b6e32-04a6-4a4b-bba4-dda6ef68b910",
 								"exec": [
 									""
 								],
@@ -1731,7 +1690,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2db03622-15df-4370-973e-f2e9864f5191",
 								"exec": [
 									""
 								],
@@ -1769,8 +1727,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Public Information",
@@ -1803,7 +1760,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a87d9f05-2459-4ea7-8f87-fa478bfc0ab8",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1813,13 +1769,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "9e6be774-c6ef-492e-88ce-f5a716865385",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
