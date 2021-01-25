@@ -8,6 +8,57 @@
 	},
 	"item": [
 		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "New Client (read our Terms and Conditions, see description)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
+								"exec": [
+									"// Create a 2048 bit self signed certificate and format it as followed:",
+									"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"",
+									"",
+									"// The following certificate will be accepted by the controller. You can use it only for testing the 'New Client' request. A key to the following certificate does not exist. Just copy the following string without '//' and replace it with the string in the Body (Tab -> Body) of this API request:",
+									"",
+									"// \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Systempassword",
+								"value": "{{system_password_base64}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"Replace this string with a 2048 bit self signed certificate! See Tab -> Pre-request Script for an example certificate.\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{shc_secure}}",
+							"host": [
+								"{{shc_secure}}"
+							]
+						},
+						"description": "Please make sure to comply with our Terms and Conditions\n(see https://github.com/BoschSmartHome/bosch-shc-api-docs)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Long Polling",
 			"item": [
 				{
@@ -1722,18 +1773,6 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "LICENSE, TERMS AND CONDITIONS",
-			"request": {
-				"method": "VIEW",
-				"header": [],
-				"url": {
-					"raw": ""
-				},
-				"description": "This documentation is subjected to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).\n\nBy using this documentation, the developer accepts and agrees to be bound by the Terms and Conditions defined at https://github.com/BoschSmartHome/bosch-shc-api-docs"
-			},
-			"response": []
-		},
-		{
 			"name": "Public Information",
 			"request": {
 				"method": "GET",
@@ -1748,48 +1787,14 @@
 			"response": []
 		},
 		{
-			"name": "New Client (read our Terms and Conditions, see description)",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "58eb8595-7c5c-4426-9a63-e447c3849351",
-						"exec": [
-							"// Create a 2048 bit self signed certificate and format it as followed:",
-							"// \"-----BEGIN CERTIFICATE-----\\r followed by the 2048 bit self signed certificate and \\r-----END CERTIFICATE-----\"",
-							"",
-							"// The following certificate will be accepted by the controller. You can use it only for testing the 'New Client' request. A key to the following certificate does not exist. Just copy the following string without '//' and replace it with the string in the Body (Tab -> Body) of this API request:",
-							"",
-							"// \"-----BEGIN CERTIFICATE-----\\rMIIDmjCCAoKgAwIBAgIJEAfxvdIg0taSMA0GCSqGSIb3DQEBBQUAMGkxFDASBgNVBAMTC2V4YW1wbGUub3JnMQswCQYDVQQGEwJVUzERMA8GA1UECBMIVmlyZ2luaWExEzARBgNVBAcTCkJsYWNrc2J1cmcxDTALBgNVBAoTBFRlc3QxDTALBgNVBAsTBFRlc3QwHhcNMTkxMDIzMDk0MTEyWhcNMjAxMDIyMDk0MTEyWjBpMRQwEgYDVQQDEwtleGFtcGxlLm9yZzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFZpcmdpbmlhMRMwEQYDVQQHEwpCbGFja3NidXJnMQ0wCwYDVQQKEwRUZXN0MQ0wCwYDVQQLEwRUZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlmGRMKQVKD5HP/vyWYB5QNhFLBzcSX5tkDNJeG8nLYuOW0IgES6RX28HkItf4EB4g6THYMCRMrwL6yLsFdUz60c31oN3nGX3z+1xKzChtGIi0p/ZjU5FB2/RHMPnGYinVXwc2ouheWGcBQNIdNGH0uxpo7rZrzDrFNf5PRodngFiYfNVY2W38/joZb9x1bnn45cxtWg739iGngqo0pJhCQSqvhOT9RncomyI3LqPl6GNPQLLSQ8OQV4+NmYqNjICYZOndt+LwhtnIsOm8AeVtMbDgQRJyy+vn0FqTAjAHXMQVHzrfBAGCu2xnYeM8dyVU5KK4oJnbuex/lXiVJdLAwIDAQABo0UwQzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAmBgNVHREEHzAdhhtodHRwOi8vZXhhbXBsZS5vcmcvd2ViaWQjbWUwDQYJKoZIhvcNAQEFBQADggEBAJFvM/wH0hVvecS2fcY2TG3i2LhDcuFcbEhSlBaT5xSmfyNt95oAn/yzScf6LJdCJOW1VeLFkkXlIbu0eg81JsI6ZNJFjZ6asB3Hl3VMEsF9OotrXNw9nYJwcX+9/1G6y6RwqnW3mVEuRh6avwVqUOYms70IpGqUcQG6Jk2Hfujvxa/GsegZz8xjROEH2siVI89M+KTFlYZrPeUxxoxfnkjgV6d7u4OykCwLM82xWAD7P3/Wo6eIkzUMIFsX1kmI2EW01Wm3/6N7cQMSmfllGdbQy8/1SbIs/XZ2ET/PgwB6oLTM1RwMlSCbKsbAZT63lRto7ySmvq4Y13I9oMnRZQU=\\r-----END CERTIFICATE-----\"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "LICENSE, TERMS AND CONDITIONS",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Systempassword",
-						"value": "{{system_password_base64}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"@type\": \"client\",\r\n  \"id\": \"oss_{{client_id}}\",\r\n  \"name\": \"OSS {{client_name}}\",\r\n  \"primaryRole\": \"ROLE_RESTRICTED_CLIENT\",\r\n  \"certificate\": \"Replace this string with a 2048 bit self signed certificate! See Tab -> Pre-request Script for an example certificate.\"\r\n}\r\n"
-				},
+				"method": "VIEW",
+				"header": [],
 				"url": {
-					"raw": "{{shc_secure}}",
-					"host": [
-						"{{shc_secure}}"
-					]
+					"raw": ""
 				},
-				"description": "Please make sure to comply with our Terms and Conditions\n(see https://github.com/BoschSmartHome/bosch-shc-api-docs)"
+				"description": "This documentation is subjected to the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Public License (https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).\n\nBy using this documentation, the developer accepts and agrees to be bound by the Terms and Conditions defined at https://github.com/BoschSmartHome/bosch-shc-api-docs"
 			},
 			"response": []
 		}
