@@ -1782,7 +1782,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/arm",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1790,12 +1790,6 @@
 										"intrusion",
 										"actions",
 										"arm"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
@@ -1822,7 +1816,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/arm",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1830,12 +1824,6 @@
 										"intrusion",
 										"actions",
 										"arm"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
@@ -1862,7 +1850,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/arm",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1870,12 +1858,6 @@
 										"intrusion",
 										"actions",
 										"arm"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
@@ -1902,7 +1884,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/arm?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/arm",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1910,12 +1892,6 @@
 										"intrusion",
 										"actions",
 										"arm"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
@@ -1933,7 +1909,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/disarm?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/disarm",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1941,12 +1917,6 @@
 										"intrusion",
 										"actions",
 										"disarm"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
@@ -1964,7 +1934,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{shc_api}}/intrusion/actions/mute?api-version={{api_version}}",
+									"raw": "{{shc_api}}/intrusion/actions/mute",
 									"host": [
 										"{{shc_api}}"
 									],
@@ -1972,12 +1942,6 @@
 										"intrusion",
 										"actions",
 										"mute"
-									],
-									"query": [
-										{
-											"key": "api-version",
-											"value": "{{api_version}}"
-										}
 									]
 								}
 							},
