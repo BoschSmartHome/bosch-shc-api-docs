@@ -934,7 +934,7 @@
 					"response": []
 				},
 				{
-					"name": "Intrusion Detection System state",
+					"name": "DEPRECATED: Intrusion Detection System state",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -961,12 +961,13 @@
 								"IntrusionDetectionControl",
 								"state"
 							]
-						}
+						},
+						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/System state' request instead."
 					},
 					"response": []
 				},
 				{
-					"name": "Intrusion Detection System SYSTEM_ARMED",
+					"name": "DEPRECATED: Intrusion Detection System SYSTEM_ARMED",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -996,12 +997,13 @@
 								"IntrusionDetectionControl",
 								"state"
 							]
-						}
+						},
+						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/Arm with ...' requests instead."
 					},
 					"response": []
 				},
 				{
-					"name": "Intrusion Detection System SYSTEM_DISARMED",
+					"name": "DEPRECATED: Intrusion Detection System SYSTEM_DISARMED",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1031,7 +1033,8 @@
 								"IntrusionDetectionControl",
 								"state"
 							]
-						}
+						},
+						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/Disarm' request instead."
 					},
 					"response": []
 				},
