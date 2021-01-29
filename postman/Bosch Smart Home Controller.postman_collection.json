@@ -1736,6 +1736,32 @@
 					"name": "Intrusion Detection",
 					"item": [
 						{
+							"name": "System state",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "{{api_version}}"
+									}
+								],
+								"url": {
+									"raw": "{{shc_api}}/intrusion/states/system",
+									"host": [
+										"{{shc_api}}"
+									],
+									"path": [
+										"intrusion",
+										"states",
+										"system"
+									]
+								},
+								"description": "Retrieve info about arming state, alarm state, active profile, security gaps"
+							},
+							"response": []
+						},
+						{
 							"name": "Arm with current profile",
 							"request": {
 								"method": "POST",
