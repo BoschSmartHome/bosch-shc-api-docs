@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0] - 2022-12-09
+### Changed
+- Updated HTTP request header to use "api-version : 3.2" instead of "api-version : 2.1"
+- Synced Postman collection version with API version 3.2
+- Updated Postman environment variables
+- Removed deprecated requests for Intrusion Detection from Postman collection
+- New: Door/Window Contact II Bypass and Vibration states
+- New: Motion Detector Illuminance state (in Lux)
+- New: SmartLock DoorSensor and Lock states
+- New: Shutter Control II BlindsControl state for controlling the angle of blinds
+- New: Shutter Control II BlindsSceneControl state for controlling the angle and level of blinds at the same time
+- Hint: Light / Shutter Control II works with child devices using "#" in the device IDs; make sure to escape "#" in URLs with "%23"
+- Hint: Light Control II can control two lamps (two child devices); PowerSwitch state must be PUT/GET on child devices
+- Hint: PowerMeter state also works with Light / Shutter Control II now
+
 ## [2.1.0] - 2021-01-22
 ### Changed
 - Updated HTTP request header to use "api-version : 2.1" instead of "api-version : 1.0"

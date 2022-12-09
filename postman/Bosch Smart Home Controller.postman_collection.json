@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "9b248bc3-c5b9-41e5-b21c-82f225bb9c3c",
+		"_postman_id": "e9ef2cd5-d80f-45f5-a2bd-47cb327fff19",
 		"name": "Bosch Smart Home Controller",
 		"description": "This API enables you to locally access the state of and control your Bosch Smart Home system. Configuring the system is not supported.",
-		"version": "2.1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -934,7 +933,18 @@
 					"response": []
 				},
 				{
-					"name": "DEPRECATED: Intrusion Detection System state",
+					"name": "Door/Window Contact II Bypass state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -950,30 +960,41 @@
 							}
 						],
 						"url": {
-							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/Bypass/state",
 							"host": [
 								"{{shc_api}}"
 							],
 							"path": [
 								"devices",
-								"intrusionDetectionSystem",
+								"{{device_id}}",
 								"services",
-								"IntrusionDetectionControl",
+								"Bypass",
 								"state"
 							]
-						},
-						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/System state' request instead."
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "DEPRECATED: Intrusion Detection System SYSTEM_ARMED",
+					"name": "Door/Window Contact II Plus Vibration state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "PUT",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"type": "text"
 							},
 							{
 								"key": "api-version",
@@ -981,60 +1002,19 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_ARMED\"\r\n}"
-						},
 						"url": {
-							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/VibrationSensor/state",
 							"host": [
 								"{{shc_api}}"
 							],
 							"path": [
 								"devices",
-								"intrusionDetectionSystem",
+								"{{device_id}}",
 								"services",
-								"IntrusionDetectionControl",
+								"VibrationSensor",
 								"state"
 							]
-						},
-						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/Arm with ...' requests instead."
-					},
-					"response": []
-				},
-				{
-					"name": "DEPRECATED: Intrusion Detection System SYSTEM_DISARMED",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "api-version",
-								"value": "{{api_version}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"@type\": \"intrusionDetectionControlState\",\r\n    \"value\": \"SYSTEM_DISARMED\"\r\n}"
-						},
-						"url": {
-							"raw": "{{shc_api}}/devices/intrusionDetectionSystem/services/IntrusionDetectionControl/state",
-							"host": [
-								"{{shc_api}}"
-							],
-							"path": [
-								"devices",
-								"intrusionDetectionSystem",
-								"services",
-								"IntrusionDetectionControl",
-								"state"
-							]
-						},
-						"description": "This will be removed in the future. Use 'Domains/Intrusion Detection/Disarm' request instead."
+						}
 					},
 					"response": []
 				},
@@ -1082,7 +1062,50 @@
 					"response": []
 				},
 				{
-					"name": "PowerMeter state (Smart Plug / Light Control)",
+					"name": "Motion Detector Illuminance state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/MultiLevelSensor/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"MultiLevelSensor",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PowerMeter state (Smart Plug / Light Control / Shutter Control II)",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1638,6 +1661,323 @@
 								"{{device_id}}",
 								"services",
 								"ShutterControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control II BlindsControl state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/BlindsControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"BlindsControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control II BlindsControl state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"blindsControlState\",\r\n    \"targetAngle\": 1.0\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/BlindsControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"BlindsControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Control II BlindsSceneControl state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"blindsSceneControlState\",\r\n    \"level\": 1.0,\r\n    \"angle\": 1.0\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/BlindsSceneControl/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"BlindsSceneControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SmartLock DoorSensor state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/DoorSensor/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"DoorSensor",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SmartLock Lock state",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/LockActuator/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"LockActuator",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SmartLock Lock LOCKED",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"doorLockState\",\r\n    \"lockState\": \"LOCKED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/LockActuator/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"LockActuator",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SmartLock Lock UNLOCKED",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"doorLockState\",\r\n    \"lockState\": \"UNLOCKED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/LockActuator/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"LockActuator",
 								"state"
 							]
 						}
