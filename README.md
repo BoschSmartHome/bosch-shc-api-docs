@@ -4,7 +4,7 @@
 ## Contents
 
 - [Overview](#overview)
-- [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/)
+- [OpenAPI Documentation](https://local.apidocs.bosch-smarthome.com/)
 - [Postman Collection](postman/)
   * [Import the collection, the environment, the certificate and the key into Postman](postman#import-the-collection-the-environment-the-certificate-and-the-key-into-postman)
   * [Check the connection with the Bosch Smart Home Controller in your local network](postman#check-the-connection-with-the-bosch-smart-home-controller-in-your-local-network)
@@ -23,7 +23,7 @@
 
 With this documentation you can make your Bosch Smart Home System interoperable. If you are new to this topic, start to play with the [Postman Collection](postman/) to understand how the connection is established and how to get and set states. Postman is a collaboration platform for API development and has the advantage that it can generate code in many languages.
 
-Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://apidocs.bosch-smarthome.com/local/) to understand how all the devices, rooms, messages, services and states are getting requested. You will also find the structure and content of all JSON responses, errors and HTTP status codes there. 
+Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://local.apidocs.bosch-smarthome.com/) to understand how all the devices, rooms, messages, services and states are getting requested. You will also find the structure and content of all JSON responses, errors and HTTP status codes there. 
 
 Finally, you should take a look at the [Best Practice](best-practice/) section in order to establish an optimal communication with the Bosch Smart Home Controller.
 

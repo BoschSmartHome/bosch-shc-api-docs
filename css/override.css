@@ -1,0 +1,203 @@
+@charset "UTF-8";
+/* Variable definitions */
+:root {
+   --blue-dark: #005691;
+   --post: #78BE20;
+   --put: #fcaf17;
+   --delete: #E20015;
+   --get: #008ECF;
+   --btn-outline:#777777;
+
+   --post-background:   rgba(120, 190, 32, 0.1);
+   --put-background:    rgba(252, 175, 23, 0.1);
+   --delete-background: rgba(226, 0, 21, 0.1);
+   --get-background:    rgba(0, 142, 207, 0.1);
+}
+
+body.apidocs {
+   background-color: white;
+   background-image: url(./images/bosch_supergraphic_top.jpg);
+   background-position: center top;
+   background-repeat: no-repeat;
+   background-size: 100% 17px;
+   color: #2e3032;
+   margin-top: 17px;
+   margin-left: 48px;
+   margin-right: 48px;
+   padding-top: 20px;
+}
+
+a:link, a:hover, a:visited, a:active {
+   color: var(--blue-dark) !important;
+   text-decoration: none !important;
+}
+
+/* Topbar */
+.swagger-ui .topbar {
+   background-color: white;
+}
+.swagger-ui .topbar * {
+   color: black;
+}
+
+.swagger-ui .topbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.swagger-ui .info {
+    margin: 10px 0;
+}
+
+/* Spec selection / Download URL border*/
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+   border: 2px solid var(--btn-outline);
+}
+/* Swagger UI button */
+.swagger-ui .btn {
+   border-radius: 0;
+   box-shadow: none;
+   border: 1px solid var(--btn-outline);
+}
+.swagger-ui .btn.authorize {
+   color: #3b4151;
+   border-radius: 0;
+   box-shadow: none;
+   border: 1px solid var(--btn-outline);
+}
+.swagger-ui .btn.authorize svg {
+   fill: #3b4151;
+}
+.swagger-ui select {
+   border-radius: 0;
+}
+
+/* Models */
+.swagger-ui section.models {
+   border-radius: 0;
+}
+
+/* Execute button */
+.swagger-ui .btn.execute {
+   width: auto;
+   background-color: #005691;
+   border-bottom: 2px solid #008ECF;
+}
+@-webkit-keyframes pulse {
+   0% {
+      color: #fff;
+      background: #005691;
+      box-shadow: 0 0 0 0 rgba(73, 144, 226, .8)
+   }
+   70% {
+      box-shadow: 0 0 0 5px rgba(73, 144, 226, 0)
+   }
+   to {
+      color: #fff;
+      background: #005691;
+      box-shadow: 0 0 0 0 rgba(73, 144, 226, 0)
+   }
+}
+
+/* Operation block*/
+.swagger-ui .opblock {
+   border-radius: 0;
+   box-shadow: none;
+}
+
+.swagger-ui .opblock.opblock-post {
+   background: var(--post-background);
+   border-color: var(--post);
+}
+
+.swagger-ui .opblock.opblock-put {
+   background: var(--put-background);
+   border-color: var(--put);
+}
+
+.swagger-ui .opblock.opblock-delete {
+   background: var(--delete-background);
+   border-color: var(--delete);
+}
+
+.swagger-ui .opblock.opblock-get {
+   background: var(--get-background);
+   border-color: var(--get);
+}
+
+/* HTTP Operation badge colors */
+.swagger-ui .opblock .opblock-summary-method {
+   border-radius: 0;
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background: var(--post);
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+   background: var(--put);
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+   background: var(--delete);
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+   background: var(--get);
+}
+
+.swagger-ui .opblock.opblock-post .tab-header .tab-item.active h4 span::after {
+   background: var(--post);
+}
+
+.swagger-ui .opblock.opblock-put .tab-header .tab-item.active h4 span::after {
+   background: var(--put);
+}
+
+.swagger-ui .opblock.opblock-delete .tab-header .tab-item.active h4 span::after {
+   background: var(--delete);
+}
+
+.swagger-ui .opblock.opblock-get .tab-header .tab-item.active h4 span::after {
+   background: var(--get);
+}
+
+/* blocks around Operations */
+.swagger-ui .opblock,
+.swagger-ui .opblock .opblock-summary-method,
+/* Buttons */
+.swagger-ui select,
+.swagger-ui section.models,
+.swagger-ui .btn.authorize,
+.swagger-ui .btn,
+/* black markdown description boxes */
+.swagger-ui .response-col_description__inner div.markdown,
+.swagger-ui .response-col_description__inner div.renderedMarkdown,
+/* input fields */
+.swagger-ui input[type="email"],
+.swagger-ui input[type="file"],
+.swagger-ui input[type="password"],
+.swagger-ui input[type="search"],
+.swagger-ui input[type="text"],
+.swagger-ui textarea,
+/* Models */
+.swagger-ui .model-box,
+/* modaler "Authorize" dialog */
+.swagger-ui .dialog-ux .modal-ux,
+/* Body Paramter */
+.swagger-ui .opblock-body pre {
+    border-radius: 0;
+}
+
+/* Custom Tag Description */
+span.custom-tag-description {
+   margin-top: 17px;
+   margin-bottom: 17px;
+}
+
+footer {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

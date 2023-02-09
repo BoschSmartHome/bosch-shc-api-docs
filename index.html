@@ -1,0 +1,145 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Bosch Smart Home Local API</title>
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4/swagger-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="css/override.css">
+        <link rel="stylesheet" type="text/css" href="css/swagger-custom.css">
+        <link rel="icon" type="image/png" href="images/bosch_icon.png" sizes="32x32"/>
+        <link rel="icon" type="image/png" href="images/bosch_icon.png" sizes="16x16"/>
+        <style>
+            html {
+              box-sizing: border-box;
+              overflow: -moz-scrollbars-vertical;
+              overflow-y: scroll;
+            }
+
+            *,
+            *:before,
+            *:after {
+              box-sizing: inherit;
+            }
+
+            body {
+              margin: 0;
+              background: #fafafa;
+            }
+        </style>
+    </head>
+
+    <body class="apidocs" onload="chooseApi()">
+        <div class="swagger-ui">
+            <section data-reactroot="" class="swagger-ui swagger-container">
+                <div class="topbar">
+                    <div class="wrapper">
+                        <div class="topbar-wrapper">
+                            <div class="topbar-logo-wrapper">
+                                <div class="topbar-logo">
+                                    <a href="https://www.bosch-smarthome.com/" target="_blank">
+                                        <img src="images/bosch_smart_home_logo.png">
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="navbar-brand" href="index.html">
+                                        OpenAPI Documentation
+                                    </a>
+                                </div>
+                            </div>
+
+                            <form class="download-url-wrapper">
+                                <label class="select-label" for="select"><span>Select a definition</span>
+                                    <select id="select" onchange="chooseApi()">
+                                        <option selected="selected" value="openapi/MainResources-local-openapi-v3.yml">
+                                            Main Resources
+                                        </option>
+                                        <option value="openapi/ClimateControl-local-openapi-v3.yml">
+                                            Climate Control
+                                        </option>
+                                        <option value="openapi/DoorWindowContact-local-openapi-v3.yml">
+                                            Door/Window Contact
+                                        </option>
+                                        <option value="openapi/IntrusionDetectionSystem-local-openapi-v3.yml">
+                                            Intrusion Detection System
+                                        </option>
+                                        <option value="openapi/IntrusionDetectionSystem-local-openapi-v3-deprecated.yml">
+                                            Intrusion Detection System (deprecated)
+                                        </option>
+                                        <option value="openapi/LightControl-local-openapi-v3.yml">
+                                            Light Control
+                                        </option>
+                                        <option value="openapi/MotionDetector-local-openapi-v3.yml">
+                                            Motion Detector
+                                        </option>
+                                        <option value="openapi/PresenceSimulationSystem-local-openapi-v3.yml">
+                                            Presence Simulation
+                                        </option>
+                                        <option value="openapi/SecurityCamera360-local-openapi-v3.yml">
+                                            Security Camera 360
+                                        </option>
+                                        <option value="openapi/SecurityCameraEyes-local-openapi-v3.yml">
+                                            Security Camera Eyes
+                                        </option>
+                                        <option value="openapi/Shutter-local-openapi-v3.yml">
+                                            Shutter Control
+                                        </option>
+                                        <option value="openapi/SmartPlug-local-openapi-v3.yml">
+                                            Smart Plug
+                                        </option>
+                                        <option value="openapi/SmokeDetector-local-openapi-v3.yml">
+                                            Smoke Detector
+                                        </option>
+                                        <option value="openapi/Thermostat-local-openapi-v3.yml">
+                                            Thermostat
+                                        </option>
+                                        <option value="openapi/Twinguard-local-openapi-v3.yml">
+                                            Twinguard
+                                        </option>
+                                        <option value="openapi/UniversalSwitch-local-openapi-v3.yml">
+                                            Universal Switch
+                                        </option>
+                                        <option value="openapi/WallThermostat-local-openapi-v3.yml">
+                                            Wall Thermostat
+                                        </option>
+                                        <option value="openapi/WaterDetectionSystem-local-openapi-v3.yml">
+                                            Water Detection System
+                                        </option>
+                                    </select>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div id="swagger-ui"></div>
+        </div>
+
+        <script src="https://unpkg.com/swagger-ui-dist@4/swagger-ui-bundle.js" crossorigin></script>
+        <script src="https://unpkg.com/swagger-ui-dist@4/swagger-ui-standalone-preset.js" crossorigin></script>
+        <script defer>
+
+            function chooseApi() {
+              let path = document.getElementById('select').value;
+              const ui = SwaggerUIBundle({
+                url: path,
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                  SwaggerUIBundle.presets.apis,
+                  SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                  SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "BaseLayout"
+              })
+              // End Swagger UI call region
+              window.ui = ui
+            };
+
+        </script>
+    </body>
+
+</html>

@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0] - 2023-02-09
+### Changed
+- Added OpenAPI documentation
+
 ## [3.2.0] - 2022-12-09
 ### Changed
 - Updated HTTP request header to use "api-version : 3.2" instead of "api-version : 2.1"
