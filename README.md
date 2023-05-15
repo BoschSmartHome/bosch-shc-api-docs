@@ -25,7 +25,7 @@ With this documentation you can make your Bosch Smart Home System interoperable.
 
 Once you are familiar with the principles of the communication, use the [OpenAPI Documentation](https://local.apidocs.bosch-smarthome.com/) to understand how all the devices, rooms, messages, services and states are getting requested. You will also find the structure and content of all JSON responses, errors and HTTP status codes there. 
 
-Finally, you should take a look at the [Best Practice](best-practice/) section in order to establish an optimal communication with the Bosch Smart Home Controller.
+Finally, you should take a look at the [Best Practice](best_practice/) section in order to establish an optimal communication with the Bosch Smart Home Controller.
 
 ## Terms and Conditions
 Robert Bosch Smart Home GmbH, Schockenriedstr. 17, 70565 Stuttgart, Germany ("Bosch Smart Home") provides a description of the local Bosch Smart Home Controller REST API, that allows **private, non-profit** Developers ("Developer") to locally control their Bosch Smart Home Devices.
