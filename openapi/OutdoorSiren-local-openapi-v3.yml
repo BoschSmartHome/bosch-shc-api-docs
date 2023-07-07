@@ -1,0 +1,498 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Outdoor Siren
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Outdoor Siren.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your OutdoorSiren
+  - name: States
+    description: States of your OutdoorSiren
+
+paths:
+  '/devices/{deviceId}/services':
+    get:
+      summary: Get device services
+      description: Retrieves all available services of the Outdoor Siren device with the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The OutdoorSiren services were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceServiceData'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/OutdoorSiren/state':
+    get:
+      summary: Get Outdoor Siren state
+      description: Returns the current state of the Outdoor Siren service for the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The Outdoor Siren service state were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutdoorSirenState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/OutdoorSirenPowerSupply/state':
+    get:
+      summary: Get Outdoor Siren Power Supply state
+      description: Retrieves the battery state and solar state of the Outdoor Siren device with the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The Outdoor Siren service state were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutdoorSirenPowerSupplyState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update Outdoor Siren state
+      description: Updates the state of the Outdoor Siren service for the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '@type':
+                  type: enum
+                  example: [ outdoorSirenState ]
+                outdoorSirenConfiguration:
+                  type: object
+                  properties:
+                    alarmDuration:
+                      type: integer
+                      description: Duration of the alarm in minutes
+                    flashDuration:
+                      type: integer
+                      description: Duration of the flash in minutes
+                    soundLevel:
+                      type: string
+                      enum:
+                        - LOW
+                        - MEDIUM
+                        - HIGH
+                      description: Sound level of the siren
+                    alarmDelay:
+                      type: integer
+                      minimum: 0
+                      maximum: 180
+                      description: Delay before the alarm is triggered in seconds
+                    flashDelay:
+                      type: integer
+                      minimum: 0
+                      maximum: 180
+                      description: Delay before the flash is triggered in seconds
+              required:
+                - '@type'
+                - outdoorSirenConfiguration
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{outdoorsiren-device}/services/OutdoorSiren/operation/triggerTestAlarm':
+    post:
+      summary: Trigger Test Alarm
+      description: Triggers a test alarm for the Outdoor Siren device with the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                soundLevel:
+                  type: string
+                  enum:
+                    - LOW
+                    - MEDIUM
+                    - HIGH
+                  description: Sound level for the test alarm
+              required:
+                - soundLevel
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    DeviceServiceData:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'DeviceServiceData'
+        id:
+          type: string
+          description: The ID of the device service.
+          example: [
+            'OutdoorSirens',
+            'CommunicationQuality',
+            'OutdoorSirenPowerSupply',
+            'BatteryLevel',
+            'LegacyAlarmConfiguration'
+          ]
+        deviceId:
+          type: string
+          description: The ID of the device to which the service belongs.
+          example: '{outdoorsiren-device}'
+        state:
+          oneOf:
+            - $ref: '#/components/schemas/OutdoorSirenState'
+            - $ref: '#/components/schemas/CommunicationQualityState'
+            - $ref: '#/components/schemas/PowerSupplyState'
+            - $ref: '#/components/schemas/LegacyAlarmConfigurationState'
+          description: The current state of the device service.
+        operations:
+          type: array
+          items:
+            type: string
+          description: List of operations supported by the service
+          example: [
+            'triggerTestAlarm',
+            'muteWarning'
+          ]
+        path:
+          type: string
+          description: The path to the device service resource.
+          example: [
+            '/devices/{outdoorsiren-device}/services/OutdoorSiren',
+            '/devices/{outdoorsiren-device}/services/CommunicationQuality',
+            '/devices/{outdoorsiren-device}/services/OutdoorSirenPowerSupply',
+            '/devices/{outdoorsiren-device}/services/BatteryLevel',
+            '/devices/{outdoorsiren-device}/services/LegacyAlarmConfiguration'
+          ]
+      required:
+        - '@type'
+        - id
+        - deviceId
+        - path
+
+    OutdoorSirenState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: Type of the outdoor siren state
+          example: 'outdoorSirenState'
+        tamperActivated:
+          type: boolean
+          description: Specifies if the tamper is activated
+          example: false
+        acousticAlarmOn:
+          type: boolean
+          description: Specifies if the acoustic alarm is on
+          example: false
+        visualAlarmOn:
+          type: boolean
+          description: Specifies if the visual alarm is on
+          example: false
+        legacyAlarm:
+          type: boolean
+          description: Specifies if the legacy alarm is active
+          example: false
+        smartAlarm:
+          type: boolean
+          description: Specifies if the smart alarm is active
+          example: false
+        outdoorSirenConfiguration:
+          type: object
+          properties:
+            alarmDuration:
+              type: number
+              description: Duration of the alarm in seconds
+              example: 3
+            flashDuration:
+              type: number
+              description: Duration of the flash in seconds
+              example: 15
+            soundLevel:
+              type: string
+              description: Sound level of the siren
+              example: 'HIGH'
+            alarmDelay:
+              type: number
+              description: Delay before the alarm starts in seconds
+              example: 0
+            flashDelay:
+              type: number
+              description: Delay before the flash starts in seconds
+              example: 0
+      required:
+        - '@type'
+        - tamperActivated
+        - acousticAlarmOn
+        - visualAlarmOn
+        - legacyAlarm
+        - smartAlarm
+        - outdoorSirenConfiguration
+
+    CommunicationQualityState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'communicationQualityState'
+        quality:
+          type: string
+          description: Quality of the communication
+          example: 'GOOD'
+      required:
+        - '@type'
+        - quality
+
+    PowerSupplyState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'powerSupplyState'
+        acDcError:
+          type: boolean
+          description: Specifies if there is an AC/DC error
+          example: true
+        batteryDefect:
+          type: boolean
+          description: Specifies if there is a battery defect
+          example: false
+        batteryTemperatureAbnormal:
+          type: boolean
+          description: Specifies if the battery temperature is abnormal
+          example: false
+        batteryPercentageRemaining:
+          type: integer
+          description: Remaining battery percentage
+          example: 100
+        mainPowerSupply:
+          type: string
+          description: Main power supply type
+          example: 'BATTERY'
+        configuredPowerSupply:
+          type: string
+          description: Configured power supply type
+          example: 'NONE'
+        primaryPowerSupplyOutage:
+          type: boolean
+          description: Specifies if there is a primary power supply outage
+          example: false
+        solarChargingCurrent:
+          type: number
+          description: Solar charging current
+          example: 0
+        solarChargingScore:
+          type: string
+          description: Solar charging score
+          example: 'BAD'
+      required:
+        - '@type'
+        - acDcError
+        - batteryDefect
+        - batteryTemperatureAbnormal
+        - batteryPercentageRemaining
+        - mainPowerSupply
+        - configuredPowerSupply
+        - primaryPowerSupplyOutage
+        - solarChargingCurrent
+        - solarChargingScore
+
+    LegacyAlarmConfigurationState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'legacyAlarmConfiguration'
+        profileToActivate:
+          type: string
+          description: Profile to activate for the legacy alarm
+          example: 0
+        triggerSmartAlarmSystemEnabled:
+          type: boolean
+          description: Specifies if triggering the smart alarm system is enabled
+          example: false
+        overrideDisarmedSmartAlarmSystemEnabled:
+          type: boolean
+          description: Specifies if overriding the disarmed smart alarm system is enabled
+          example: false
+      required:
+        - '@type'
+        - profileToActivate
+        - triggerSmartAlarmSystemEnabled
+        - overrideDisarmedSmartAlarmSystemEnabled
+
+    OutdoorSirenPowerSupplyState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: Type of the power supply state
+          example: 'powerSupplyState'
+        acDcError:
+          type: boolean
+          description: Flag indicating if there is an AC/DC error
+          example: true
+        batteryDefect:
+          type: boolean
+          description: Flag indicating if there is a battery defect
+          example: false
+        batteryTemperatureAbnormal:
+          type: boolean
+          description: Flag indicating if the battery temperature is abnormal
+          example: false
+        batteryPercentageRemaining:
+          type: integer
+          description: Percentage of battery remaining
+          example: 100
+        mainPowerSupply:
+          type: string
+          description: Type of the main power supply
+          example: 'BATTERY'
+        configuredPowerSupply:
+          type: string
+          description: Type of the configured power supply
+          example: 'NONE'
+        primaryPowerSupplyOutage:
+          type: boolean
+          description: Flag indicating if there is a primary power supply outage
+          example: false
+        solarChargingCurrent:
+          type: integer
+          description: Current solar charging value
+          example: 0
+        solarChargingScore:
+          type: string
+          description: Score indicating the solar charging quality
+          example: 'BAD'
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

@@ -1,0 +1,400 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Light Control II
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Light Control II.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your LightControl II
+  - name: States
+    description: States of your LightControl II
+
+paths:
+  '/devices/{deviceId}/':
+    get:
+      summary: Retrieve information about a specific light device.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: A successful response containing the device information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LightDevice'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services':
+    get:
+      summary: Get device services
+      description: Returns a list of services available for the specified device.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The LightControl services were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceServiceData'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/PowerSwitch/state':
+    get:
+      summary: Get Power Switch state
+      description: Returns the current state of the Power Switch service for the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The PowerSwitch service state were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerSwitchState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update Power Switch state
+      description: Updates the state of the Power Switch service for the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '@type':
+                  type: enum
+                  example: [ powerSwitchState ]
+                switchState:
+                  type: string
+                  description: The state of the power switch.
+                  example: 'ON'
+              required:
+                - '@type'
+                - switchState
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    LightDevice:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of device.
+          example: 'device'
+        rootDeviceId:
+          type: string
+          description: The ID of the root device.
+          example: '64-da-a0-03-19-30'
+        id:
+          type: string
+          description: The ID of the device.
+          example: 'hdm:ZigBee:5c0272fffe462481'
+        deviceServiceIds:
+          type: array
+          description: An array of device service IDs.
+          items:
+            type: string
+          example: [
+            'CommunicationQuality',
+            'PowerMeter',
+            'ElectricalFaults',
+            'SwitchConfiguration'
+          ]
+        manufacturer:
+          type: string
+          description: The manufacturer of the device.
+          example: 'BOSCH'
+        deviceModel:
+          type: string
+          description: The model of the device.
+          example: 'MICROMODULE_LIGHT_CONTROL'
+        serial:
+          type: string
+          description: The serial number of the device.
+          example: '5C0272FFFE462481'
+        profile:
+          type: string
+          description: The profile of the device.
+          example: 'GENERIC'
+        name:
+          type: string
+          description: The name of the device.
+          example: 'LightMM_5c0272fffe462481'
+        status:
+          type: string
+          description: The status of the device.
+          example: 'AVAILABLE'
+        childDeviceIds:
+          type: array
+          description: An array of child device IDs.
+          items:
+            type: string
+          example: [
+            '{{light-device#3}}',
+            '{{light-device#2}}'
+          ]
+
+    DeviceServiceData:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'DeviceServiceData'
+        id:
+          type: string
+          description: The ID of the device service.
+          example: [
+            'CommunicationQuality',
+            'ElectricalFaults',
+            'PowerMeter',
+            'SwitchConfiguration',
+            'PowerSwitch',
+            'ChildProtection',
+            'PowerSwitchProgram'
+          ]
+        deviceId:
+          type: string
+          description: The ID of the device to which the service belongs.
+          example: [
+            '{light-device}',
+            '{light-device#2}'
+          ]
+        state:
+          oneOf:
+            - $ref: '#/components/schemas/CommunicationQualityState'
+            - $ref: '#/components/schemas/PowerMeterState'
+            - $ref: '#/components/schemas/SwitchConfigurationState'
+            - $ref: '#/components/schemas/PowerSwitchState'
+            - $ref: '#/components/schemas/ChildProtectionState'
+            - $ref: '#/components/schemas/PowerSwitchProgramState'
+          description: The current state of the device service.
+        path:
+          type: string
+          description: The path to the device service resource.
+          example: [
+            '/devices/{light-device}/services/CommunicationQuality',
+            '/devices/{light-device}/services/ElectricalFaults',
+            '/devices/{light-device}/services/PowerMeter',
+            '/devices/{light-device}/services/SwitchConfiguration',
+            '/devices/{light-device#2}/services/PowerSwitch',
+            '/devices/{light-device#2}/services/ChildProtection',
+            '/devices/{light-device#2}/services/PowerSwitchProgram'
+          ]
+      required:
+        - '@type'
+        - id
+        - deviceId
+        - path
+
+    CommunicationQualityState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'communicationQualityState'
+        quality:
+          type: string
+          description: The quality of the device's communication.
+          example: 'GOOD'
+      required:
+        - '@type'
+        - quality
+
+    PowerMeterState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'powerMeterState'
+        powerConsumption:
+          type: number
+          format: float
+          description: The current power consumption of the device.
+          example: 0.0
+        energyConsumption:
+          type: number
+          format: float
+          description: The total energy consumption of the device.
+          example: 0.0
+      required:
+        - '@type'
+
+    SwitchConfigurationState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'SwitchConfigurationState'
+        switchType:
+          type: string
+          description: The type of switch used by the device.
+          example: 'PUSHBUTTON'
+        swapInputs:
+          type: boolean
+          description: Whether the inputs of the device's switch have been swapped.
+          example: false
+      required:
+        - '@type'
+        - switchType
+
+    PowerSwitchState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'powerSwitchState'
+        switchState:
+          type: string
+          description: The state of the power switch.
+          example: 'OFF'
+        automaticPowerOffTime:
+          type: integer
+          description: The automatic power off time for the device in seconds.
+          example: 0
+      required:
+        - '@type'
+        - switchState
+
+    ChildProtectionState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'ChildProtectionState'
+        childLockActive:
+          type: boolean
+          description: Indicates whether the child lock is active.
+          example: false
+      required:
+        - '@type'
+        - childLockActive
+
+    PowerSwitchProgramState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'powerSwitchProgramState'
+        operationMode:
+          type: string
+          description: The operation mode of the power switch program.
+          example: 'MANUAL'
+        schedule:
+          type: object
+          properties:
+            profiles:
+              type: array
+              description: The schedule profiles for the power switch program.
+              items:
+                type: object
+          example:
+            profiles: [ ]
+      required:
+        - '@type'
+        - operationMode
+        - schedule
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Room Thermostat II
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Room Thermostat II.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your RoomThermostat II
+  - name: States
+    description: States of your RoomThermostat II
+
+paths:
+  '/devices/{deviceId}/services/TerminalConfigurationState':
+    get:
+      summary: Get terminal configuration state
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The Terminal Configuration State was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceServiceData'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/DisplayedTemperatureConfiguration/state':
+    put:
+      summary: Update displayed temperature configuration state
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TerminalConfigurationState'
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    DeviceServiceData:
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum: [DeviceServiceData]
+        id:
+          type: string
+          example: TerminalConfiguration
+        deviceId:
+          type: string
+          example: hdm:<rth_gen2>
+        state:
+          $ref: '#/components/schemas/TerminalConfigurationState'
+        deleted:
+          type: null
+        path:
+          type: string
+          example: /devices/hdm:<rth_gen2>/services/TerminalConfiguration
+
+    TerminalConfigurationState:
+        type: object
+        properties:
+          "@type":
+            type: string
+            enum: [terminalConfigurationState]
+          type:
+            type: string
+            description: The current terminal configuration type
+            example: NOT_CONNECTED
+          supportedTypes:
+            type: array
+            items:
+              type: string
+              enum: [
+                "NOT_CONNECTED",
+                "FLOOR_SENSOR_CONNECTED",
+                "VOLT_FREE_SENSOR_CONNECTED",
+                "VOLT_FREE_SENSOR_CONNECTED_AND_USED_FOR_OPERATION",
+                "OUTDOOR_SENSOR_CONNECTED",
+                "FLOOR_SENSOR_DISPLAYED",
+                "FLOOR_SENSOR_CONNECTED_IN_DISPLAY_USED_FOR_REGULATION",
+                "FLOOR_SENSOR_DISPLAYED_AND_USED_FOR_REGULATION" ]
+            example: [ "NOT_CONNECTED", "FLOOR_SENSOR_CONNECTED" ]
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

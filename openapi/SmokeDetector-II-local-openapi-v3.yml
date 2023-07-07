@@ -1,0 +1,230 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Smoke Detector II
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Smoke Detector II.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your SmokeDetector II
+  - name: States
+    description: States of your SmokeDetector II
+
+paths:
+  '/devices/{deviceId}/services':
+    get:
+      summary: Get all available services of Smoke Detector II
+      description: Retrieves the list of available services for the Smoke Detector II device with the specified device ID.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The SmokeDetector's services were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceServiceData'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/Alarm/state':
+    get:
+      summary: Get Alarm state
+      description: Retrieves the current Alarm state of the device with the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The Alarm state was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmState'
+    put:
+      summary: Update Alarm state
+      description: Updates the Alarm state of the device with the specified device ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '@type':
+                  type: enum
+                  example: [ alarmState ]
+                value:
+                  type: string
+                  description: New value of the alarm state
+                  example: [
+                    'INTRUSION_ALARM_ON_REQUESTED',
+                    'INTRUSION_ALARM_OFF_REQUESTED'
+                  ]
+              required:
+                - '@type'
+                - value
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    DeviceServiceData:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: 'DeviceServiceData'
+        id:
+          type: string
+          example: [
+            'SmokeDetectorCheck',
+            'CommunicationQuality',
+            'BatteryLevel',
+            'Alarm'
+          ]
+        deviceId:
+          type: string
+          example: '{smoke-device}'
+        state:
+          oneOf:
+            - $ref: "#/components/schemas/SmokeDetectorCheckState"
+            - $ref: "#/components/schemas/CommunicationQualityState"
+            - $ref: "#/components/schemas/AlarmState"
+        operations:
+          type: array
+          items:
+            type: string
+        path:
+          type: string
+          example: [
+            '/devices/{smoke-device}/services/SmokeDetectorCheck',
+            '/devices/{smoke-device}/services/CommunicationQuality',
+            '/devices/{smoke-device}/services/BatteryLevel',
+            '/devices/{smoke-device}/services/Alarm'
+          ]
+
+    SmokeDetectorCheckState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'smokeDetectorCheckState'
+        value:
+          type: string
+          enum: [ SMOKE_TEST_REQUESTED, NONE ]
+          example: 'NONE'
+      required:
+        - '@type'
+        - value
+
+    CommunicationQualityState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'communicationQualityState'
+        quality:
+          type: string
+          description: The quality of the device's communication.
+          example: 'NORMAL'
+      required:
+        - '@type'
+        - quality
+
+    AlarmState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'alarmState'
+        value:
+          type: string
+          description: Current value of the Alarm state
+          example: 'IDLE_OFF'
+      required:
+        - '@type'
+        - value
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string
