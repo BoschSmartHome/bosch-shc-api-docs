@@ -1,0 +1,419 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Thermostat
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Thermostat.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your Thermostat
+  - name: States
+    description: States of your Thermostat
+
+paths:
+  '/devices/{deviceId}/services/DisplayConfiguration/state':
+    get:
+      summary: Get Display Configuration state
+      description: Retrieves the current configuration state of the display for the TRV II or RTH II device with the specified ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of Display Configuration was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisplayConfigurationState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update Display Configuration state
+      description: Updates the configuration state of the display for the TRV II or RTH II device with the specified ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                "@type":
+                  type: string
+                  enum: [ displayConfigurationState ]
+                  description: The type of the state object
+                displayBrightness:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  description: The brightness level of the display (percentage value)
+                  example: 50
+                displayOnTime:
+                  type: integer
+                  minimum: 0
+                  description: The time duration for which the display remains on (in seconds)
+                  example: 15
+              required:
+                - "@type"
+                - displayBrightness
+                - displayOnTime
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/DisplayDirection/state':
+    get:
+      summary: Get Display Direction state
+      description: Retrieves the current Display Direction state for the TRV II device with the specified ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of Display Direction was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisplayDirectionState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update Display Direction configuration of TRV II device.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisplayDirectionState'
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/DisplayedTemperatureConfiguration/state':
+    get:
+      summary: Get the Displayed Temperature Configuration of TRV II device with the specified ID.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description:  The state of Displayed Temperature Configuration was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisplayedTemperatureConfigurationState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update the Displayed Temperature Configuration of TRV II device with the specified ID.
+      tags:
+        - States
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisplayedTemperatureConfigurationState'
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/ValveTappet':
+    get:
+      summary: Get Valve Tappet information
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "@type":
+                    type: string
+                    enum: [ DeviceServiceData ]
+                  id:
+                    type: string
+                    example: ValveTappet
+                  deviceId:
+                    type: string
+                    example: hdm:<trv_2>
+                  state:
+                    $ref: '#/components/schemas/ValveTappetState'
+                  operations:
+                    type: null
+                  faults:
+                    $ref: '#/components/schemas/ValveTappetFaults'
+                  deleted:
+                    type: null
+                  path:
+                    type: string
+                    example: /devices/hdm:<trv_2>/services/ValveTappet
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    DisplayConfigurationState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum: [ displayConfigurationState ]
+          description: The type of the state object
+        displayBrightness:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The brightness level of the display (percentage value)
+          example: 70
+        displayBrightnessMax:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The maximum brightness level supported by the display
+          example: 100
+        displayBrightnessMin:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The minimum brightness level supported by the display
+          example: 10
+        displayBrightnessStepSize:
+          type: integer
+          minimum: 1
+          description: The step size for adjusting the display brightness
+          example: 10
+        displayOnTime:
+          type: integer
+          minimum: 0
+          description: The time duration for which the display remains on (in seconds)
+          example: 10
+        displayOnTimeMax:
+          type: integer
+          minimum: 0
+          description: The maximum display on time supported (in seconds)
+          example: 30
+        displayOnTimeMin:
+          type: integer
+          minimum: 0
+          description: The minimum display on time supported (in seconds)
+          example: 5
+        displayOnTimeStepSize:
+          type: integer
+          minimum: 1
+          description: The step size for adjusting the display on time
+          example: 5
+      required:
+        - "@type"
+
+    DisplayDirectionState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum: [ displayDirectionState ]
+          description: The type of the state object
+        direction:
+          type: string
+          enum:
+            - NORMAL
+            - REVERSED
+          description: The display direction configuration (NORMAL or REVERSED)
+          example: NORMAL
+      required:
+        - "@type"
+        - direction
+
+    DisplayedTemperatureConfigurationState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum: [ displayedTemperatureConfigurationState ]
+          description: The type of the state object
+        displayedTemperature:
+          type: string
+          enum:
+            - MEASURED
+            - SETPOINT
+          example: MEASURED
+      required:
+        - "@type"
+        - displayedTemperature
+
+    ValveTappetState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: valveTappetState
+        value:
+          type: string
+          enum: [ "NO_MOTOR_ERROR", "NO_VALVE_BODY_ERROR" ]
+          example: NO_MOTOR_ERROR
+        position:
+          type: number
+          example: 80
+    ValveTappetFaults:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveTappetFaultEntry'
+    ValveTappetFaultEntry:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [ "VALVE_NO_MOTOR_ERROR", "VALVE_NO_BODY_ERROR" ]
+          example: VALVE_NO_MOTOR_ERROR
+        category:
+          type: string
+          example: ERROR
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

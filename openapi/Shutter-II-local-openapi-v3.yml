@@ -1,0 +1,483 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Shutter II
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Shutter II.
+    
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+    
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+    
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+
+tags:
+  - name: Services
+    description: Services of your Shutter II
+  - name: States
+    description: States of your Shutter II
+
+paths:
+  '/devices/{deviceId}/services/':
+    get:
+      summary: Retrieve the services of the ShutterControl.
+      description: |-
+        Retrieve a list of all available services for the ShutterControl. 
+        In case the module is configured as blinds, there are some special services available to control the slats.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The ShutterControl's services were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceServiceData'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/PowerMeter/state/':
+    get:
+      summary: Retrieve the state of the PowerMeter service.
+      description: |-
+        Retrieve the state of the PowerMeter service identified by the `deviceId` path parameter.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of PowerMeter was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerMeterState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/CommunicationQuality/state/':
+    get:
+      summary: Check signal strength (GOOD, NORMAL, BAD).
+      description: |-
+        Retrieve the state of the CommunicationQuality service identified by the
+        `deviceId` path parameter.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of CommunicationQuality was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunicationQualityState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/ShutterControl/state/':
+    get:
+      summary: Get current level of the shutter control
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of the ShutterControl was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShutterControlState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Set a new level position of the shutter control
+      description: Sets a new level position (between 0.0 and 1.0) for the specified shutter device.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        description: New level position of the shutter control
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                "@type":
+                  type: enum
+                  example: [ shutterControlState ]
+                level:
+                  type: number
+                  example: 0.5
+              required:
+                - "@type"
+                - level
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/ChildProtection/state':
+    get:
+      summary: Get the child lock state of the shutter
+      description: Retrieves the child lock state for the specified shutter device.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of the ChildProtection was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChildProtectionState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+  '/devices/{deviceId}/services/BlindsControl/state':
+    get:
+      summary: Get the state of a BlindsControl service for a given device.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The state of BlindsControl was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlindsControlState"
+        '404':
+          description: |-
+            The entity could not be found. One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Updates the state of a BlindsControl service
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        description: The new state for the BlindsControl service
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                "@type":
+                  type: string
+                  enum: [ BlindsControlState ]
+                targetAngle:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  example: 1.0
+              required:
+                - "@type"
+                - targetAngle
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+
+    DeviceServiceData:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: 'DeviceServiceData'
+        id:
+          type: string
+          example: [
+            'SwitchConfiguration',
+            'ChildProtection',
+            'CommunicationQuality',
+            'ShutterControl',
+            'PowerMeter',
+            'BlindsControl',
+            'BlindsSceneControl'
+          ]
+        deviceId:
+          type: string
+          example: '{shutter-device}'
+        state:
+          oneOf:
+            - $ref: "#/components/schemas/SwitchConfigurationState"
+            - $ref: "#/components/schemas/ChildProtectionState"
+            - $ref: "#/components/schemas/CommunicationQualityState"
+            - $ref: "#/components/schemas/ShutterControlState"
+            - $ref: "#/components/schemas/PowerMeterState"
+            - $ref: '#/components/schemas/BlindsControlState'
+            - $ref: '#/components/schemas/BlindsSceneControlState'
+        operations:
+          type: array
+          items:
+            type: string
+        path:
+          type: string
+          example: [
+            '/devices/{shutter-device}/services/SwitchConfiguration',
+            '/devices/{shutter-device}/services/ChildProtection',
+            '/devices/{shutter-device}/services/CommunicationQuality',
+            '/devices/{shutter-device}/services/ShutterControl',
+            '/devices/{shutter-device}/services/PowerMeter',
+            '/devices/{shutter-device}/services/BlindsControl',
+            '/devices/{shutter-device}/services/BlindsSceneControl'
+          ]
+
+    SwitchConfigurationState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: "SwitchConfigurationState"
+        switchType:
+          type: string
+          example: "SWITCH"
+        swapInputs:
+          type: boolean
+          example: false
+
+    ChildProtectionState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: "ChildProtectionState"
+        childLockActive:
+          type: boolean
+          example: false
+
+    CommunicationQualityState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          example: 'communicationQualityState'
+        quality:
+          type: string
+          description: The quality of the device's communication.
+          example: 'NORMAL'
+      required:
+        - '@type'
+        - quality
+
+    ShutterControlState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: "shutterControlState"
+        calibrated:
+          type: boolean
+          example: true
+        referenceMovingTimes:
+          type: object
+          properties:
+            movingTimeTopToBottomInMillis:
+              type: integer
+              example: 9300
+            movingTimeBottomToTopInMillis:
+              type: integer
+              example: 9300
+        level:
+          type: number
+          example: 0.59
+        operationState:
+          type: string
+          example: "STOPPED"
+        endPositionAutoDetect:
+          type: boolean
+          example: true
+        endPositionSupported:
+          type: boolean
+          example: true
+        delayCompensationTime:
+          type: number
+          example: 0.1
+        delayCompensationSupported:
+          type: boolean
+          example: true
+        automaticDelayCompensation:
+          type: boolean
+          example: false
+
+    PowerMeterState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          example: "powerMeterState"
+        powerConsumption:
+          type: number
+          example: 0.0
+        energyConsumption:
+          type: number
+          example: 0.0
+
+    BlindsControlState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          description: The type of blinds control state
+        targetAngle:
+          type: number
+          format: double
+          description: The target angle of the blinds in degrees
+        currentAngle:
+          type: number
+          format: double
+          description: The current angle of the blinds in degrees
+        blindsType:
+          type: string
+          enum: [ DEGREE_180, DEGREE_360 ]
+          description: The type of blinds
+        bladeAdjustmentTimeInMillis:
+          type: integer
+          description: The time in milliseconds it takes to adjust the blades
+      required:
+        - "@type"
+
+    BlindsSceneControlState:
+      type: object
+      properties:
+        "@type":
+          type: string
+          description: The type of blinds scene control state
+        level:
+          type: number
+          format: double
+          description: The level of the blinds scene
+        angle:
+          type: number
+          format: double
+          description: The angle of the blinds in degrees
+      required:
+        - "@type"
+        - level
+        - angle
+
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string
