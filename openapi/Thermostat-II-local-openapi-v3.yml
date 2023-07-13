@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Bosch Smart Home Local API for Thermostat
+  title: Bosch Smart Home Local API for Thermostat II
   description: |-
-    This description focuses on the JSON-based, REST-like API for a Thermostat.
+    This description focuses on the JSON-based, REST-like API for a Thermostat II.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
     
@@ -20,9 +20,9 @@ servers:
 
 tags:
   - name: Services
-    description: Services of your Thermostat
+    description: Services of your Thermostat II
   - name: States
-    description: States of your Thermostat
+    description: States of your Thermostat II
 
 paths:
   '/devices/{deviceId}/services/DisplayConfiguration/state':
