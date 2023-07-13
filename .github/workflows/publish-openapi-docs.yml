@@ -1,12 +1,11 @@
 name: Publish OpenAPI documentation
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - master
     paths:
       - 'openapi/**.yml'
+  workflow_dispatch:
 jobs:
   # Single deploy job no building
   deploy:
