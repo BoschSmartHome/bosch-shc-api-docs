@@ -98,8 +98,8 @@ If the password is wrong, the Bosch Smart Home Controller will respond with `401
 ![Postman Environment Pass](images/postman_environment_pass.png "Postman Environment Pass")
 
 ### Add the client
-1. Press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing
-2. Click the "Send" button
+1. Press the front-side button of the Bosch Smart Home Controller (short for Controller II, long until the LEDs begin flashing for the old SHC).
+2. Click the "Send" button.
 
 After a couple of seconds the LEDs should stop flashing. Your client is now added.
 
