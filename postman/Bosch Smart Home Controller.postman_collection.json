@@ -596,6 +596,69 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UserDefinedStates as array",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDefinedState by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDefinedState",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "true",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
