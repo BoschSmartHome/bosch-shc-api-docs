@@ -633,6 +633,25 @@
 					"response": []
 				},
 				{
+					"name": "State of UserDefinedState by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "UserDefinedState",
 					"request": {
 						"method": "PUT",

@@ -280,6 +280,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
   '/userdefinedstates/{userDefinedStateId}/state':
+    get:
+      summary: Retrieve the state of a specific UserDefinedState
+      description: |-
+        Retrieves the state of a UserDefinedState on the controller identified by the `userDefinedStateId` path parameter.
+      tags:
+        - UserDefinedStates
+      parameters:
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      - $ref: '#/components/parameters/userDefinedStateIdPathParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: true
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
     put:
       summary: Executes the state on the controller
       description: |-
