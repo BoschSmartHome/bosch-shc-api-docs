@@ -23,6 +23,7 @@ tags:
   - name: Scenarios
   - name: Messages
   - name: Doors/Windows
+  - name: UserDefinedStates
     
 paths:
   ###
@@ -233,6 +234,101 @@ paths:
         '404':
           description: The entity could not be found.
 
+  ###
+  ### UserDefinedStates
+  ###
+  '/userdefinedstates':
+    get:
+      summary: List all available UserDefinedStates
+      description: Returns all UserDefinedStates
+      tags:
+      - UserDefinedStates
+      parameters: 
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDefinedState'
+  '/userdefinedstates/{userDefinedStateId}':
+    get:
+      summary: Retrieve a specific UserDefinedState.
+      description: |-
+          Returns the UserDefinedState identified by the `userDefinedStateId` path parameter. The
+          response includes details about the UserDefinedState.
+      tags:
+      - UserDefinedStates
+      parameters:
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      - $ref: '#/components/parameters/userDefinedStateIdPathParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDefinedState'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/userdefinedstates/{userDefinedStateId}/state':
+    get:
+      summary: Retrieve the state of a specific UserDefinedState
+      description: |-
+        Retrieves the state of a UserDefinedState on the controller identified by the `userDefinedStateId` path parameter.
+      tags:
+        - UserDefinedStates
+      parameters:
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      - $ref: '#/components/parameters/userDefinedStateIdPathParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: true
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Executes the state on the controller
+      description: |-
+        Executes the state on the controller identified by the `userDefinedStateId` path parameter.
+      tags:
+        - UserDefinedStates
+      parameters:
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      - $ref: '#/components/parameters/userDefinedStateIdPathParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: true
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+                
 components:
   schemas:
     AdvancedError:
@@ -401,6 +497,23 @@ components:
           type: array
           items:
             type: object
+    UserDefinedState:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: userDefinedState
+        id:
+          type: string
+          description: "A single fully qualified identifier of the UserDefinedState."
+        name:
+          type: string
+          description: The name of the UserDefinedState.
+        state: 
+          type: boolean
+          description: The state of the UserDefinedState.
+          example: true
 
   parameters:
     apiVersionHeaderParam:
@@ -438,3 +551,10 @@ components:
       required: true
       schema:
         type: string
+    userDefinedStateIdPathParam:
+      name: userDefinedStateId
+      in: path
+      description: "A single fully qualified identifier."
+      required: true
+      schema:
+        type: string  
