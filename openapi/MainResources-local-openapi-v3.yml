@@ -387,7 +387,7 @@ components:
         status:
           type: string
           description: Indicates if the Device is available.
-          enum: [AVAILABLE,UNAVAILABLE]
+          enum: [AVAILABLE,UNAVAILABLE,COMMUNICATION_ERROR,UNDEFINED]
     Room:
       type: object
       properties:
