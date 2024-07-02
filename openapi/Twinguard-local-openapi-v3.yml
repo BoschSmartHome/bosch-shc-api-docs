@@ -182,6 +182,24 @@ components:
       example:
         - AirQualityLevel
         - SmokeDetectorCheck
+    ComfortZone:
+      type: object
+      description: ComfortZone of Twinguard
+      properties:
+        name:
+          type: string
+        custom:
+          type: boolean
+        minTemperature:
+          type: number
+        maxTemperature:
+          type: number
+        minHumidity:
+          type: number
+        maxHumidity:
+          type: number
+        maxPurity:
+          type: number
     AirQualityLevelServiceStates:
       type: object
       description: AirQualityLevelService states of Twinguard
@@ -201,7 +219,9 @@ components:
         purity:
           type: number
         purityRating:
-          type: string
+          $ref: '#/components/schemas/RatingState'
+        comfortZone:
+          $ref: '#/components/schemas/ComfortZone'
     AirQualityLevelService:
       type: object
       properties:
@@ -211,7 +231,7 @@ components:
           description: The type of the Object.
         id: 
           type: string
-          enum: [deviceServiceId]
+          enum: [AirQualityLevel]
           description: "A single fully qualified identifier of the Service of a Device."
         deviceId:
           type: string
@@ -240,7 +260,7 @@ components:
           description: The type of the Object.
         id: 
           type: string
-          enum: [deviceServiceId]
+          enum: [SmokeDetectorCheck]
           description: "A single fully qualified identifier of the Service of a Device."
         deviceId:
           type: string
