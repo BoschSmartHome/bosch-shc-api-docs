@@ -464,31 +464,31 @@ components:
         allDoors:
           type: array
           items:
-            type: object
+            $ref: '#/components/schemas/Window'
         openDoors:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'  
         unknownDoors:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'
         allWindows:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'
         openWindows:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'
         unknownWindows:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'
         allOthers:
           type: array
           items:
-            type: object        
+            $ref: '#/components/schemas/Window'
         openOthers:
           type: array
           items:
@@ -497,6 +497,15 @@ components:
           type: array
           items:
             type: object
+    Window:
+      type: object
+      properties:
+        identifier:
+          type: string
+        name:
+          type: string     
+        roomName:
+          type: string
     UserDefinedState:
       type: object
       properties:
