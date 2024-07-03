@@ -26,7 +26,7 @@ paths:
   ###
   '/public/information':
     get:
-      summary: List all available Devices.
+      summary: Retrieve public information from the Smart Home Controller.
       description: Returns all Devices paired with the Smart Home Controller.
       tags:
       - SystemInformation
