@@ -27,7 +27,7 @@ paths:
   '/public/information':
     get:
       summary: Retrieve public information from the Smart Home Controller.
-      description: Returns all Devices paired with the Smart Home Controller.
+      description: Returns public information from the Smart Home Controller such as API versions or software updates.
       tags:
       - SystemInformation
       responses:
