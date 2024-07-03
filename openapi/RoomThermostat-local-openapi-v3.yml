@@ -163,7 +163,7 @@ components:
           description: The type of the Object.
         id: 
           type: string
-          enum: [deviceServiceId]
+          enum: [HumidityLevel]
           description: "A single fully qualified identifier of the Service of a Device."
         deviceId:
           type: string
@@ -188,7 +188,7 @@ components:
           description: The type of the Object.
         id: 
           type: string
-          enum: [deviceServiceId]
+          enum: [TemperatureLevel]
           description: "A single fully qualified identifier of the Service of a Device."
         deviceId:
           type: string
