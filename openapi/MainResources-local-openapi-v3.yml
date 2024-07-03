@@ -228,9 +228,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Windows'
+                $ref: '#/components/schemas/Windows'
         '404':
           description: The entity could not be found.
 
