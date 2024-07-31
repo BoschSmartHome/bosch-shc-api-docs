@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e9ef2cd5-d80f-45f5-a2bd-47cb327fff19",
+		"_postman_id": "f537c0b8-ad5d-463b-b399-37a5d1b1f4ee",
 		"name": "Bosch Smart Home Controller",
 		"description": "This API enables you to locally access the state of and control your Bosch Smart Home system. Configuring the system is not supported.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -503,6 +503,222 @@
 					"response": []
 				},
 				{
+					"name": "Automations as array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/automation/rules",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"automation",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Automation by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/automation/rules/{{automation_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"automation",
+								"rules",
+								"{{automation_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Automation trigger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{shc_api}}/automation/rules/{{automation_id}}/trigger",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"automation",
+								"rules",
+								"{{automation_id}}",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDefinedStates as array",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDefinedState by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "State of UserDefinedState by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDefinedState",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "true",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"userdefinedstates",
+								"{{user_defined_state_id}}",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Messages as array",
 					"event": [
 						{
@@ -592,88 +808,6 @@
 							"path": [
 								"doors-windows",
 								"openwindows"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UserDefinedStates as array",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{shc_api}}/userdefinedstates",
-							"host": [
-								"{{shc_api}}"
-							],
-							"path": [
-								"userdefinedstates"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UserDefinedState by Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}",
-							"host": [
-								"{{shc_api}}"
-							],
-							"path": [
-								"userdefinedstates",
-								"{{user_defined_state_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "State of UserDefinedState by Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
-							"host": [
-								"{{shc_api}}"
-							],
-							"path": [
-								"userdefinedstates",
-								"{{user_defined_state_id}}",
-								"state"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UserDefinedState",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "true",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{shc_api}}/userdefinedstates/{{user_defined_state_id}}/state",
-							"host": [
-								"{{shc_api}}"
-							],
-							"path": [
-								"userdefinedstates",
-								"{{user_defined_state_id}}",
-								"state"
 							]
 						}
 					},
