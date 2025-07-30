@@ -131,6 +131,7 @@ paths:
                 $ref: '#/components/schemas/AdvancedError'
     put:
       summary: Update Display Direction configuration of TRV II device.
+      description: Updates the display direction configuration for the TRV II device.
       tags:
         - States
       parameters:
@@ -169,6 +170,8 @@ paths:
   '/devices/{deviceId}/services/DisplayedTemperatureConfiguration/state':
     get:
       summary: Get the Displayed Temperature Configuration of TRV II device with the specified ID.
+      description: |-
+        Retrieves the configuration for which temperature (measured or setpoint) is shown on TRV II.
       tags:
         - States
       parameters:
@@ -190,8 +193,13 @@ paths:
                 $ref: '#/components/schemas/AdvancedError'
     put:
       summary: Update the Displayed Temperature Configuration of TRV II device with the specified ID.
+      description: |-
+        Updates the configuration for which temperature (measured or setpoint) is shown on TRV II.
       tags:
         - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       requestBody:
         required: true
         content:
@@ -378,7 +386,8 @@ components:
           example: valveTappetState
         value:
           type: string
-          enum: [ "NO_MOTOR_ERROR", "NO_VALVE_BODY_ERROR" ]
+          enum: [ "NO_MOTOR_ERROR", "NO_VALVE_BODY_ERROR" ] # Updated enum based on external JSON
+          description: Indicates motor or valve body errors.
           example: NO_MOTOR_ERROR
         position:
           type: number
@@ -395,7 +404,7 @@ components:
       properties:
         type:
           type: string
-          enum: [ "VALVE_NO_MOTOR_ERROR", "VALVE_NO_BODY_ERROR" ]
+          enum: [ "VALVE_NO_MOTOR_ERROR", "VALVE_NO_BODY_ERROR" ] # Updated enum based on external JSON
           example: VALVE_NO_MOTOR_ERROR
         category:
           type: string
