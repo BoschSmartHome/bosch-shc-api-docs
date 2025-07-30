@@ -83,15 +83,12 @@ paths:
               type: object
               properties:
                 '@type':
-                  type: enum
-                  example: [ alarmState ]
+                  type: string
+                  enum: [ alarmState ]
                 value:
                   type: string
                   description: New value of the alarm state
-                  example: [
-                    'INTRUSION_ALARM_ON_REQUESTED',
-                    'INTRUSION_ALARM_OFF_REQUESTED'
-                  ]
+                  enum: [ INTRUSION_ALARM_ON_REQUESTED, INTRUSION_ALARM_OFF_REQUESTED ] # Updated enum
               required:
                 - '@type'
                 - value
@@ -163,12 +160,12 @@ components:
             type: string
         path:
           type: string
-          example: [
-            '/devices/{smoke-device}/services/SmokeDetectorCheck',
-            '/devices/{smoke-device}/services/CommunicationQuality',
-            '/devices/{smoke-device}/services/BatteryLevel',
-            '/devices/{smoke-device}/services/Alarm'
-          ]
+        example: [
+          '/devices/{smoke-device}/services/SmokeDetectorCheck',
+          '/devices/{smoke-device}/services/CommunicationQuality',
+          '/devices/{smoke-device}/services/BatteryLevel',
+          '/devices/{smoke-device}/services/Alarm'
+        ]
 
     SmokeDetectorCheckState:
       type: object
@@ -207,6 +204,7 @@ components:
         value:
           type: string
           description: Current value of the Alarm state
+          enum: [ IDLE_OFF, INTRUSION_ALARM_ON_REQUESTED, INTRUSION_ALARM_OFF_REQUESTED ] # Updated enum
           example: 'IDLE_OFF'
       required:
         - '@type'

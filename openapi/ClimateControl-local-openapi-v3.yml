@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Climate Control
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for a Climate Control.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -29,10 +29,10 @@ paths:
       description: |-
         Control of up to six Bosch Smart Home radiator thermostats per room with this virtual device.
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The RoomClimateControl was successfully retrieved.
@@ -56,8 +56,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of RoomClimateControl was successfully retrieved.
@@ -72,7 +72,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
     put:
       summary: Executes the climateControlState on the device.
       description: |-
@@ -80,8 +79,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '204':
           description: Accepted request.
@@ -113,10 +112,10 @@ paths:
       description: |-
         Measures the temperature at a central point in the room.
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The TemperatureLevel was successfully retrieved.
@@ -140,8 +139,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of TemperatureLevel was successfully retrieved.
@@ -156,7 +155,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
+
 components:
   schemas:
     AdvancedError:
@@ -199,7 +198,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."
@@ -224,7 +223,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."
