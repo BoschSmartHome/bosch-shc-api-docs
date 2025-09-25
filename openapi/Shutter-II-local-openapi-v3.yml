@@ -25,7 +25,7 @@ tags:
     description: States of your Shutter II
 
 paths:
-  '/devices/{deviceId}/services/':
+  '/devices/{deviceId}/services':
     get:
       summary: Retrieve the services of the ShutterControl.
       description: |-
@@ -53,7 +53,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
 
-  '/devices/{deviceId}/services/PowerMeter/state/':
+  '/devices/{deviceId}/services/PowerMeter/state':
     get:
       summary: Retrieve the state of the PowerMeter service.
       description: |-
@@ -78,7 +78,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
 
-  '/devices/{deviceId}/services/CommunicationQuality/state/':
+  '/devices/{deviceId}/services/CommunicationQuality/state':
     get:
       summary: Check signal strength (GOOD, NORMAL, BAD).
       description: |-
@@ -104,7 +104,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
 
-  '/devices/{deviceId}/services/ShutterControl/state/':
+  '/devices/{deviceId}/services/ShutterControl/state':
     get:
       summary: Get current level of the shutter control
       tags:
@@ -143,10 +143,11 @@ paths:
               type: object
               properties:
                 "@type":
-                  type: enum
-                  example: [ shutterControlState ]
+                  type: string
+                  enum: [ shutterControlState ]
                 level:
                   type: number
+                  format: float
                   example: 0.5
               required:
                 - "@type"
@@ -223,6 +224,9 @@ paths:
                 $ref: '#/components/schemas/AdvancedError'
     put:
       summary: Updates the state of a BlindsControl service
+      description: |-
+        Updates the state of a BlindsControl service. `targetAngle` is a float between 0.0 and 1.0, 
+        where 1.0 means fully open slats (e.g. 90 or 180 degrees depending on blinds type).
       tags:
         - States
       parameters:
@@ -344,6 +348,19 @@ components:
         swapInputs:
           type: boolean
           example: false
+        outputMode:
+          type: string
+          enum: [ATTACHED, DETACHED_LONG_PRESS]
+          description: The output mode of the switch.
+        supportedOutputModes:
+          type: array
+          items:
+            type: string
+            enum: [ATTACHED, DETACHED_LONG_PRESS]
+          description: List of supported output modes.
+      required:
+        - "@type"
+        - switchType
 
     ChildProtectionState:
       type: object
@@ -392,6 +409,7 @@ components:
           example: 0.59
         operationState:
           type: string
+          enum: [STOPPED, OPENING, CLOSING]
           example: "STOPPED"
         endPositionAutoDetect:
           type: boolean
@@ -431,7 +449,7 @@ components:
         targetAngle:
           type: number
           format: double
-          description: The target angle of the blinds in degrees
+          description: The target angle of the blinds in degrees (0.0 to 1.0, where 1.0 means fully open slats, e.g. 90 or 180 degrees depending on type)
         currentAngle:
           type: number
           format: double

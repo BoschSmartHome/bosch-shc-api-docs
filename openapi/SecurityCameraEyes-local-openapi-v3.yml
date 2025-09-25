@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Security Camera Eyes
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for a Security Camera Eyes.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -29,10 +29,10 @@ paths:
       description: |-
         With this service the device can be easily set in privacy mode and enhances your Bosch Smart Home System as an additional security component. 
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The PrivacyMode was successfully retrieved.
@@ -56,8 +56,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of PrivacyMode was successfully retrieved.
@@ -72,7 +72,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
+
     put:
       summary: Executes the privacyModeState on the device.
       description: |-
@@ -80,8 +80,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '204':
           description: Accepted request.
@@ -148,7 +148,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."

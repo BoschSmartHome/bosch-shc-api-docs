@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Door Window Contact
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for a Door Window Contact.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -29,10 +29,10 @@ paths:
       description: |-
         Detects open windows and doors. In combination with the Radiator Thermostat the temperature in the room is lowered during airing so no energy is wasted.
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The ShutterContact was successfully retrieved.
@@ -56,8 +56,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of ShutterContact was successfully retrieved.
@@ -72,7 +72,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
+
 components:
   schemas:
     AdvancedError:
@@ -110,7 +110,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."

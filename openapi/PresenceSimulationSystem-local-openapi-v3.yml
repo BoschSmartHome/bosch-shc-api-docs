@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Presence Simulation System
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for a Presence Simulation System.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -29,10 +29,10 @@ paths:
       description: |-
         Presence is simulated by automatically controlling lights and electrical devices connected to Smart Plugs like the radio or television. A random algorithm changes the switching times just as if you were at home to give you peace of mind even when you are not there.
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The PresenceSimulationConfiguration was successfully retrieved.
@@ -56,8 +56,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of PresenceSimulationConfiguration was successfully retrieved.
@@ -72,7 +72,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
+
     put:
       summary: Executes the presenceSimulationConfigurationState on the device.
       description: |-
@@ -80,8 +80,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '204':
           description: Accepted request.
@@ -148,7 +148,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."
@@ -160,7 +160,7 @@ components:
         path:
           type: string
           description: The path to the Property.
-  
+
   requestBodies:
     PresenceSimulationServicePresenceSimulationConfigurationStatePayload:
       content:

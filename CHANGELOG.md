@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.19.0] - 2025-07-31
+### Changed
+- New: SHC Info
+- New: Relay
+- New: Multiroom Boiler Control
+- Improvements: API extensions
 
 ## [3.12.0] - 2024-07-31
 ### Changed

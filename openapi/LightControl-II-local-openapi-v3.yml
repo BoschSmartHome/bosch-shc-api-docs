@@ -113,12 +113,12 @@ paths:
               type: object
               properties:
                 '@type':
-                  type: enum
-                  example: [ powerSwitchState ]
+                  type: string
+                  enum: [ powerSwitchState ]
                 switchState:
                   type: string
                   description: The state of the power switch.
-                  example: 'ON'
+                  enum: [ON, OFF]
               required:
                 - '@type'
                 - switchState
@@ -321,6 +321,16 @@ components:
           type: boolean
           description: Whether the inputs of the device's switch have been swapped.
           example: false
+        outputMode:
+          type: string
+          enum: [ATTACHED, DETACHED, DETACHED_LONG_PRESS, DETACHED_SHORT_PRESS]
+          description: The output mode of the switch.
+        supportedOutputModes:
+          type: array
+          items:
+            type: string
+            enum: [ATTACHED, DETACHED, DETACHED_LONG_PRESS, DETACHED_SHORT_PRESS]
+          description: List of supported output modes.
       required:
         - '@type'
         - switchType

@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Intrusion Detection Alarm System
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for the Intrusion Detection Alarm System.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -29,9 +29,9 @@ paths:
       description: |-
         Returns the combined system sate of the intrusion detection alarm system.
       tags:
-      - States
+        - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
       responses:
         '200':
           description: The IntrusionDetectionControl was successfully retrieved.
@@ -55,7 +55,7 @@ paths:
       tags:
         - Actions
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
       responses:
         '202':
           description: Accepted request.
@@ -89,7 +89,7 @@ paths:
       description: |-
         Sets the intrusion detection alarm system's state to disarmed.
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
       responses:
         '202':
           description: Accepted
@@ -107,7 +107,7 @@ paths:
       description: |-
         Sets the intrusion detection alarm system's state to muted.
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
       responses:
         '202':
           description: Accepted
@@ -241,7 +241,7 @@ components:
     ArmRequest:
       type: string
       enum: ["0", "1", "2"]
-  
+
   requestBodies:
     IntrusionDetectionControlServiceArmRequestPayload:
       content:

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bosch Smart Home Local API for Smoke Detector
-  description: |- 
+  description: |-
     This description focuses on the JSON-based, REST-like API for a Smoke Detector.
     
     By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
@@ -28,10 +28,10 @@ paths:
       description: |-
         This service checks the smoke detector functionality.
       tags:
-      - Services
+        - Services
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The SmokeDetectorCheck was successfully retrieved.
@@ -55,8 +55,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '200':
           description: The state of SmokeDetectorCheck was successfully retrieved.
@@ -71,7 +71,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-                
+
     put:
       summary: Executes the smokeDetectorCheckState on the device.
       description: |-
@@ -79,8 +79,8 @@ paths:
       tags:
         - States
       parameters:
-      - $ref: '#/components/parameters/apiVersionHeaderParam'
-      - $ref: '#/components/parameters/deviceIdPathParam'
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
       responses:
         '204':
           description: Accepted request.
@@ -147,7 +147,7 @@ components:
           type: string
           enum: [DeviceServiceData]
           description: The type of the Object.
-        id: 
+        id:
           type: string
           enum: [deviceServiceId]
           description: "A single fully qualified identifier of the Service of a Device."
@@ -162,7 +162,7 @@ components:
     SmokeDetectorCheckState:
       type: string
       enum: [SMOKE_TEST_REQUESTED,NONE]
-  
+
   requestBodies:
     SmokeDetectorCheckServiceSmokeDetectorCheckStatePayload:
       content:

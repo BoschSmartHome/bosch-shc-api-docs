@@ -23,6 +23,8 @@ tags:
     description: Services of your OutdoorSiren
   - name: States
     description: States of your OutdoorSiren
+  - name: Actions
+    description: Actions of your OutdoorSiren
 
 paths:
   '/devices/{deviceId}/services':
@@ -30,7 +32,7 @@ paths:
       summary: Get device services
       description: Retrieves all available services of the Outdoor Siren device with the specified device ID.
       tags:
-        - States
+        - Services
       parameters:
         - $ref: '#/components/parameters/apiVersionHeaderParam'
         - $ref: '#/components/parameters/deviceIdPathParam'
@@ -75,6 +77,85 @@ paths:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
 
+    put:
+      summary: Update Outdoor Siren configuration state.
+      description: |-
+        Updates the configuration state of the Outdoor Siren.
+        `alarmDuration` and `flashDuration` units are in minutes.
+        `alarmDelay` and `flashDelay` units are in seconds, range 0-180.
+      tags:
+        - States
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '@type':
+                  type: string
+                  enum: [outdoorSirenState]
+                outdoorSirenConfiguration:
+                  type: object
+                  properties:
+                    alarmDuration:
+                      type: integer
+                      description: Duration of the acoustic alarm in minutes.
+                      minimum: 0
+                    flashDuration:
+                      type: integer
+                      description: Duration of the visual flash in minutes.
+                      minimum: 0
+                    soundLevel:
+                      type: string
+                      enum: [LOW, MEDIUM, HIGH]
+                      description: Sound level of the siren.
+                    alarmDelay:
+                      type: integer
+                      description: Delay before the acoustic alarm in seconds.
+                      minimum: 0
+                      maximum: 180
+                    flashDelay:
+                      type: integer
+                      description: Delay before the visual flash in seconds.
+                      minimum: 0
+                      maximum: 180
+                  required:
+                    - alarmDuration
+                    - flashDuration
+                    - soundLevel
+                    - alarmDelay
+                    - flashDelay
+              required:
+                - '@type'
+                - outdoorSirenConfiguration
+      responses:
+        '204':
+          description: Accepted request.
+        '400':
+          description: One of the defined query parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+        '422':
+          description: Mapping of defined query parameter failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+
   '/devices/{deviceId}/services/OutdoorSirenPowerSupply/state':
     get:
       summary: Get Outdoor Siren Power Supply state
@@ -98,82 +179,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
-    put:
-      summary: Update Outdoor Siren state
-      description: Updates the state of the Outdoor Siren service for the specified device ID.
-      tags:
-        - States
-      parameters:
-        - $ref: '#/components/parameters/apiVersionHeaderParam'
-        - $ref: '#/components/parameters/deviceIdPathParam'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                '@type':
-                  type: enum
-                  example: [ outdoorSirenState ]
-                outdoorSirenConfiguration:
-                  type: object
-                  properties:
-                    alarmDuration:
-                      type: integer
-                      description: Duration of the alarm in minutes
-                    flashDuration:
-                      type: integer
-                      description: Duration of the flash in minutes
-                    soundLevel:
-                      type: string
-                      enum:
-                        - LOW
-                        - MEDIUM
-                        - HIGH
-                      description: Sound level of the siren
-                    alarmDelay:
-                      type: integer
-                      minimum: 0
-                      maximum: 180
-                      description: Delay before the alarm is triggered in seconds
-                    flashDelay:
-                      type: integer
-                      minimum: 0
-                      maximum: 180
-                      description: Delay before the flash is triggered in seconds
-              required:
-                - '@type'
-                - outdoorSirenConfiguration
-      responses:
-        '204':
-          description: Accepted request.
-        '400':
-          description: One of the defined query parameters was invalid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AdvancedError'
-        '404':
-          description: The entity could not be found. One of the defined path parameters was invalid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AdvancedError'
-        '405':
-          description: The method was not allowed.
-        '422':
-          description: Mapping of defined query parameter failed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AdvancedError'
 
-  '/devices/{outdoorsiren-device}/services/OutdoorSiren/operation/triggerTestAlarm':
+  '/devices/{deviceId}/services/OutdoorSiren/operation/triggerTestAlarm': # Changed path param for consistency
     post:
       summary: Trigger Test Alarm
       description: Triggers a test alarm for the Outdoor Siren device with the specified device ID.
       tags:
-        - States
+        - Actions
       parameters:
         - $ref: '#/components/parameters/apiVersionHeaderParam'
         - $ref: '#/components/parameters/deviceIdPathParam'
@@ -243,7 +255,7 @@ components:
           type: string
           description: The ID of the device service.
           example: [
-            'OutdoorSirens',
+            'OutdoorSiren',
             'CommunicationQuality',
             'OutdoorSirenPowerSupply',
             'BatteryLevel',
@@ -420,8 +432,9 @@ components:
           example: 'legacyAlarmConfiguration'
         profileToActivate:
           type: string
-          description: Profile to activate for the legacy alarm
-          example: 0
+          description: Profile to activate for the legacy alarm (0, 1, 2)
+          enum: ["0", "1", "2"] # Updated from string to enum
+          example: "0"
         triggerSmartAlarmSystemEnabled:
           type: boolean
           description: Specifies if triggering the smart alarm system is enabled
