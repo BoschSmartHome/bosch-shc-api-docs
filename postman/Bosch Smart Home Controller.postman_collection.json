@@ -1010,6 +1010,141 @@
 					"response": []
 				},
 				{
+					"name": "ChildProtection state (Light Switch / Micromodule Relay, Shutter, Blind, Dimmer)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ChildProtection/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ChildProtection",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChildProtection ON (Light Switch / Micromodule Relay, Shutter, Blind, Dimmer)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"childProtectionState\",\r\n    \"childLockActive\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ChildProtection/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ChildProtection",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChildProtection OFF (Light Switch / Micromodule Relay, Shutter, Blind, Dimmer)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"childProtectionState\",\r\n    \"childLockActive\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ChildProtection/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ChildProtection",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Climate Control state",
 					"event": [
 						{
@@ -1099,6 +1234,49 @@
 								"{{device_id}}",
 								"services",
 								"RoomClimateControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommunicationQuality state (read-only)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/CommunicationQuality/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"CommunicationQuality",
 								"state"
 							]
 						}
@@ -1228,6 +1406,95 @@
 								"{{device_id}}",
 								"services",
 								"VibrationSensor",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImpulseSwitch state (Micromodule Relay)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ImpulseSwitch/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ImpulseSwitch",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImpulseSwitch trigger impulse (Micromodule Relay)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"ImpulseSwitchState\",\r\n    \"impulseState\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/ImpulseSwitch/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"ImpulseSwitch",
 								"state"
 							]
 						}
@@ -2014,6 +2281,141 @@
 								"{{device_id}}",
 								"services",
 								"BlindsSceneControl",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thermostat childLock state (TRV)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/Thermostat/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"Thermostat",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thermostat childLock ON (TRV)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"childLockState\",\r\n    \"childLock\": \"ON\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/Thermostat/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"Thermostat",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thermostat childLock OFF (TRV)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"childLockState\",\r\n    \"childLock\": \"OFF\"\r\n}"
+						},
+						"url": {
+							"raw": "{{shc_api}}/devices/{{device_id}}/services/Thermostat/state",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}",
+								"services",
+								"Thermostat",
 								"state"
 							]
 						}
