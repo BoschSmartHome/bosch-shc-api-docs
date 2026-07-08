@@ -38,3 +38,6 @@ Instead verify the IP and the CA:
     }
 ```
 The Smart Home Controller Productive Root CA and the Smart Home Controller Issuing CA are attached to this repository.
+
+## Device Capabilities and Ports
+See [device-capabilities.md](device-capabilities.md) for which port to use for which operation, and which devices actually expose a given service (e.g. `ChildProtection`) versus which ones only look like they do from the app.
