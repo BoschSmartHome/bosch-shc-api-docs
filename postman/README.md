@@ -59,7 +59,7 @@ Now, you have all the prerequisites to communicate with your SHC via Postman. St
 ## Register a New Client to the Bosch Smart Home Controller
 A client is a piece of software that has the permission to communicate with the Bosch Smart Home Controller. For example, the Bosch Smart Home App becomes a client of the Bosch Smart Home Controller upon successfully registration. All registered clients can be listed in the Bosch Smart Home App. To locate this in your app, go to `Management -> Mobile devices`. The communication between a client and the Bosch Smart Home Controller is always encrypted with TLSv1.2.
 ![Schematic view](images/shc-client-schematic-view.png "Schematic view")
-**Hint:** Before submitting the **New Client** request, always **press the Bosch Smart Home Controller's front-side button, until the LEDs begin flashing**.
+**Hint:** Before submitting the **New Client** request, press the Bosch Smart Home Controller's front-side button to enter pairing mode: a **short press** on Controller II, or a **long press until the LEDs begin flashing** on the original Controller.
 
 To register a **New Client** to the Bosch Smart Home Controller, you need the following:
 
