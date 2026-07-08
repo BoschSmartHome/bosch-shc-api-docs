@@ -15,6 +15,7 @@
   * [Use Long Polling instead of Short Polling](best_practice#use-long-polling-instead-of-short-polling)
   * [Limit the number of requests in a given time period](best_practice#limit-the-number-of-requests-in-a-given-time-period)
   * [Host Verification](best_practice#host-verification)
+  * [Device Capabilities and Ports](best_practice/device-capabilities.md)
 - [Terms and Conditions](#terms-and-conditions)
 
 ## Overview
