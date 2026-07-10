@@ -277,6 +277,47 @@
 					"response": []
 				},
 				{
+					"name": "Zigbee Routing Info for Device (undocumented)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/zigbee/routinginfo/{{device_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"zigbee",
+								"routinginfo",
+								"{{device_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Rooms as array",
 					"event": [
 						{

@@ -38,3 +38,6 @@ Instead verify the IP and the CA:
     }
 ```
 The Smart Home Controller Productive Root CA and the Smart Home Controller Issuing CA are attached to this repository.
+
+## Zigbee Routing Information
+See [zigbee-routing-info.md](zigbee-routing-info.md) for an undocumented endpoint that exposes the Zigbee mesh route (and per-hop link quality) between a battery-powered device and the controller.
