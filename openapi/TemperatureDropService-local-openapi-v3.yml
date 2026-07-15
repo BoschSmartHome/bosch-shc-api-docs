@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for the Temperature Drop Service
+  description: |-
+    This description focuses on the JSON-based, REST-like API for a Room's
+    temperature-drop service, an anti-frost/window-open compensation feature
+    that temporarily lowers a Room's heating setpoint.
+
+    This is not part of the generated device/service model and is not
+    covered by the official OpenAPI generator output; it was traced from the
+    official Bosch Android app and confirmed live across 12 real Rooms
+    against a real Bosch Smart Home Controller.
+
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+tags:
+  - name: Configuration
+    description: Configuration of a Room's temperature-drop service.
+paths:
+  '/climate/temperaturedropservice':
+    get:
+      summary: List all Rooms with a temperature-drop service.
+      description: |-
+        Returns the temperature-drop service configuration of every Room that
+        has this capability.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoomTemperatureDropService'
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/climate/temperaturedropservice/{roomId}':
+    get:
+      summary: Get a specific Room's temperature-drop service.
+      description: |-
+        Returns the temperature-drop service configuration of the Room
+        identified by the `roomId` path parameter. Rooms without this
+        capability respond with `404`.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/roomIdPathParam'
+      responses:
+        '200':
+          description: The temperature-drop service was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomTemperatureDropService'
+        '404':
+          description: |-
+            The entity could not be found. Either the `roomId` path parameter
+            was invalid, or the Room has no temperature-drop capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update a specific Room's temperature-drop service.
+      description: |-
+        Updates the temperature-drop service configuration of the Room
+        identified by the `roomId` path parameter with a full-body PUT. The
+        SHC expects the complete body back (read-modify-write); only the
+        nested `configuration` object (`enabled`/`dropTemperature`) is meant
+        to be edited, the sibling `supports*`/`requires*` fields are
+        server-derived capability flags. Confirmed live across 12 real Rooms.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/roomIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomTemperatureDropService'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomTemperatureDropService'
+        '404':
+          description: |-
+            The entity could not be found. Either the `roomId` path parameter
+            was invalid, or the Room has no temperature-drop capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+    RoomTemperatureDropServiceConfiguration:
+      type: object
+      description: The only sub-object of this resource meant to be edited by a client.
+      properties:
+        enabled:
+          type: boolean
+          description: Whether the temperature-drop service is active for this Room.
+        dropTemperature:
+          type: number
+          format: float
+          description: The number of degrees to drop the heating setpoint by.
+    RoomTemperatureDropService:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: roomTemperatureDropService
+        id:
+          type: string
+          description: "A single fully qualified identifier of the Room."
+        configuration:
+          $ref: '#/components/schemas/RoomTemperatureDropServiceConfiguration'
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+    roomIdPathParam:
+      name: roomId
+      in: path
+      description: "A single fully qualified identifier of the Room."
+      required: true
+      schema:
+        type: string

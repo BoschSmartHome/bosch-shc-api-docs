@@ -22,6 +22,12 @@ tags:
     description: States of your Intrusion Detection Alarm System
   - name: Actions
     description: Actions of your Intrusion Detection Alarm System
+  - name: Configuration
+    description: |-
+      Read-only discovery of the Intrusion Detection Alarm System's
+      configuration profiles and endpoints. Not part of the official OpenAPI
+      generator output; traced from the official Bosch Android app and
+      confirmed against a real Bosch Smart Home Controller.
 paths:
   '/intrusion/states/system':
     get:
@@ -117,8 +123,210 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/profiles':
+    get:
+      summary: List all configuration profiles.
+      description: |-
+        Returns all configuration profiles of the Intrusion Detection Alarm
+        System (e.g. "Full Protection", "Partial Protection", "Individual").
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller. The exact shape of a profile object beyond `id` is
+        not independently verified against real hardware and is therefore
+        kept generic here.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: The configuration profiles were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntrusionProfile'
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/profiles/{profileId}':
+    get:
+      summary: Retrieve a specific configuration profile.
+      description: |-
+        Returns the configuration profile identified by the `profileId` path
+        parameter.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - name: profileId
+          in: path
+          description: "A single fully qualified identifier of the configuration profile."
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The configuration profile was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntrusionProfile'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/states/profiles':
+    get:
+      summary: Get the per-profile arming states.
+      description: |-
+        Returns the arming state of every configuration profile of the
+        Intrusion Detection Alarm System.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller. The exact shape beyond an array of state objects is
+        not independently verified against real hardware and is therefore
+        kept generic here.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: The per-profile arming states were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/endpoints/alarm/actuators':
+    get:
+      summary: List all alarm-actuator endpoints.
+      description: |-
+        Returns all alarm-actuator endpoints known to the Intrusion Detection
+        Alarm System (e.g. sirens).
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller. The exact shape beyond an array of endpoint objects
+        is not independently verified against real hardware and is
+        therefore kept generic here.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: The alarm-actuator endpoints were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/endpoints/alarm/triggers':
+    get:
+      summary: List all alarm-trigger endpoints.
+      description: |-
+        Returns all alarm-trigger endpoints known to the Intrusion Detection
+        Alarm System (e.g. door/window contacts, motion detectors).
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller. The exact shape beyond an array of endpoint objects
+        is not independently verified against real hardware and is
+        therefore kept generic here.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: The alarm-trigger endpoints were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/intrusion/endpoints/reminder/actuators':
+    get:
+      summary: List all reminder-actuator endpoints.
+      description: |-
+        Returns all reminder-actuator endpoints known to the Intrusion
+        Detection Alarm System (e.g. entrance-delay reminder chimes).
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller. The exact shape beyond an array of endpoint objects
+        is not independently verified against real hardware and is
+        therefore kept generic here.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: The reminder-actuator endpoints were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
 components:
   schemas:
+    IntrusionProfile:
+      type: object
+      description: |-
+        A configuration profile of the Intrusion Detection Alarm System. Only
+        `id` is confirmed; further fields are not independently verified
+        against real hardware.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
     AdvancedError:
       type: object
       properties:

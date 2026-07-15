@@ -237,6 +237,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update a specific Automation.
+      description: |-
+        Updates the Automation identified by the `automationId` path parameter
+        with a full-body PUT (e.g. to toggle its `enabled` field). The SHC
+        expects the complete `Automation` body back (read-modify-write), the
+        same pattern used for other full-body PUT resources in this API.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller.
+      tags:
+        - Automations
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/automationIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Automation'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Automation'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    delete:
+      summary: Delete a specific Automation.
+      description: |-
+        Permanently deletes the Automation identified by the `automationId`
+        path parameter. No request body, no response body.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app and confirmed against a real Bosch Smart
+        Home Controller.
+      tags:
+        - Automations
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/automationIdPathParam'
+      responses:
+        '204':
+          description: The Automation was successfully deleted.
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
 
   '/automation/rules/{automationId}/trigger':
     put:
@@ -577,6 +636,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Window'
+        bypassedDoors:
+          type: array
+          description: |-
+            Doors currently bypassed (e.g. via the Intrusion Detection System).
+            Not returned by every Controller firmware version - confirmed live
+            against a real Bosch Smart Home Controller.
+          items:
+            $ref: '#/components/schemas/Window'
         allWindows:
           type: array
           items:
@@ -589,6 +656,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Window'
+        bypassedWindows:
+          type: array
+          description: |-
+            Windows currently bypassed (e.g. via the Intrusion Detection System).
+            Not returned by every Controller firmware version - confirmed live
+            against a real Bosch Smart Home Controller.
+          items:
+            $ref: '#/components/schemas/Window'
         allOthers:
           type: array
           items:
@@ -599,6 +674,14 @@ components:
             type: object
         unknownOthers:
           type: array
+          items:
+            type: object
+        bypassedOthers:
+          type: array
+          description: |-
+            Other bypassed openings not classified as a door or window. Not
+            returned by every Controller firmware version - confirmed live
+            against a real Bosch Smart Home Controller.
           items:
             type: object
     Window:
