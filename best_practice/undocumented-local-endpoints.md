@@ -181,3 +181,38 @@ entries currently bypassed, most commonly via the Intrusion Detection Alarm
 System. These three fields were added to the existing `Windows` schema in
 `openapi/MainResources-local-openapi-v3.yml`; no new file was needed since
 the schema was otherwise already correct.
+
+## 9. RoomClimateControl write ordering: `summerMode` must be cleared before `operationMode`
+
+**Confidence: live-confirmed.**
+
+`RoomClimateControlService` (see `openapi/ClimateControl-local-openapi-v3.yml`)
+exposes `summerMode`, `coolingMode`, and `operationMode` as independently
+writable fields, each set via its own `PUT` call - there is no combined,
+atomic write for "change HVAC mode". This is already documented as three
+separate fields, but the Controller enforces an undocumented **write-order
+dependency** between them that isn't visible from the schema alone:
+
+- Writing `PUT operationMode` while `summerMode` is still `true` is
+  **rejected outright** with HTTP 400:
+  ```json
+  {"@type":"JsonRestExceptionResponseEntity","errorCode":"WRONG_THERMOSTAT_GROUP_MODE","statusCode":400}
+  ```
+- `summerMode` must be cleared (`PUT summerMode: false`) **first**, and
+  only then does a subsequent `PUT operationMode` succeed.
+
+Practical consequence for any client trying to switch a Room from "off"
+(`summerMode=true`) directly to a specific heating mode (`operationMode`):
+the two writes cannot be reordered or combined to avoid a momentary
+intermediate state where `summerMode=false` but `operationMode` still holds
+its old value - the Controller requires exactly that sequence, and a client
+that tries to write `operationMode` first (e.g. to avoid a UI flicker) will
+have the write rejected rather than merely see the fields settle in a
+different order. Confirmed by a real Home Assistant integration's own
+regression: reordering the writes to avoid a cosmetic activity-log
+side-effect broke real HVAC-mode changes in production against a live
+Controller.
+
+`coolingMode` was not separately confirmed to share this exact dependency,
+but the safe, tested-working order for any full mode transition is:
+`summerMode=false` first, then `coolingMode`/`operationMode` as needed.
