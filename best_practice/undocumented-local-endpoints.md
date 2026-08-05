@@ -216,3 +216,108 @@ Controller.
 `coolingMode` was not separately confirmed to share this exact dependency,
 but the safe, tested-working order for any full mode transition is:
 `summerMode=false` first, then `coolingMode`/`operationMode` as needed.
+
+## 10. Creating Automations and UserDefinedStates
+
+**Confidence: live-confirmed.**
+
+The official spec documents listing/reading Automations and UserDefinedStates
+and updating/deleting Automations (see section 2 above), but not *creating*
+either resource. Both support a genuine `POST`:
+
+- `POST /automation/rules` - creates a new Automation. Body is a full
+  `Automation` object with `id` left blank (empty string); the Controller
+  assigns the id server-side and echoes the created object, including the
+  new id, in the response.
+- `POST /userdefinedstates` - creates a new UserDefinedState (a virtual
+  on/off flag other Automations can read or set). Same pattern: blank `id`
+  in the request, server-assigned id in the response.
+
+Traced from the official Bosch Android app
+(`RestRequests.getAutomationCreateRequest` /
+`RestRequests.createUserDefinedState`, both building on the same
+`buildPostRequest`/`ConnectorLibraryRequest` machinery as every other local
+write in this API - not a separate cloud-only code path) and confirmed with
+a live create-then-delete round trip against a real Controller for both
+resources. Added as `post:` operations under the existing path entries in
+`openapi/MainResources-local-openapi-v3.yml`.
+
+### Automation trigger/condition/action type registry (partial, live-observed)
+
+The `Automation` schema's `automationTriggers`/`automationConditions`/
+`automationActions` fields are documented only as raw, untyped `object`
+arrays - there is no published schema for what goes inside one. Each entry
+is actually a `{"type": "<TypeName>", "configuration": "<JSON-string>", ...}`
+envelope, where `configuration` is itself a **JSON-encoded string** (not a
+nested object) holding a type-specific payload. `automationActions` entries
+additionally carry a `delayInSeconds` integer (0 for "immediately"; used
+e.g. to auto-reset a UserDefinedState back to `INACTIVE` some seconds after
+setting it `ACTIVE`).
+
+The type registry is large (dozens of trigger/condition/action types) and
+not documented anywhere; below are only the entries actually observed live
+(via a real Controller's existing Automations, created through the Bosch
+app) or decompiled with a concrete field-level example. Treat this as a
+seed, not a complete list.
+
+**Triggers:**
+
+- `KeypadButtonPressTrigger` - fires on a physical button press (a
+  Universal Switch, Light/Shutter Control II detached button, etc.):
+  ```json
+  {"type": "KeypadButtonPressTrigger",
+   "configuration": "{\"deviceId\":\"<device id>\",\"keyName\":\"UPPER_BUTTON\",\"keyCode\":1,\"buttonEvent\":\"PRESS_SHORT\"}"}
+  ```
+  `buttonEvent` observed as `PRESS_SHORT` and `PRESS_LONG`; `keyName` values
+  observed include `UPPER_BUTTON`/`LOWER_BUTTON` and `BUTTON_1`/`BUTTON_2`
+  (device-dependent labeling), paired with `keyCode` `1`/`2` respectively.
+- `UserDefinedStateTrigger` - fires when a UserDefinedState changes:
+  ```json
+  {"type": "UserDefinedStateTrigger",
+   "configuration": "{\"stateChange\":\"TO_ACTIVE\",\"stateId\":\"<userDefinedState id>\"}"}
+  ```
+  `stateChange` observed as `TO_ACTIVE` and `TO_INACTIVE`.
+- `ShutterContactTrigger` / `ShutterContactReminderTrigger` - fire on a
+  door/window contact's open/close state (the latter after a
+  `remindAfterSeconds` delay in the still-open/closed state):
+  ```json
+  {"type": "ShutterContactTrigger",
+   "configuration": "{\"shutterContactId\":\"<device id>\",\"triggerState\":\"ON_OPEN\"}"}
+  {"type": "ShutterContactReminderTrigger",
+   "configuration": "{\"shutterContactId\":\"<device id>\",\"triggerState\":\"CLOSED\",\"remindAfterSeconds\":900}"}
+  ```
+- `DailyTimerTrigger` - fires at a fixed time of day:
+  `{"type": "DailyTimerTrigger", "configuration": "{\"time\":\"23:00\"}"}`.
+- `AstroTimeEventTrigger` - fires relative to sunrise/sunset:
+  `{"type": "AstroTimeEventTrigger", "configuration": "{\"eventType\":\"SUNSET\",\"offsetInMinutes\":60}"}`.
+
+**Conditions:** `IntrusionDetectionSystemArmedDisarmedCondition`
+(`conditionState`: `SYSTEM_DISARMED`), `AstroTimeCondition`
+(`astroTimeConditionType`: `NIGHTTIME`/`DAYTIME`, `startOffsetInMinutes`),
+`SmartPlugOnOffCondition` (`smartPlugId`, `conditionState`: `ON`/`OFF`),
+`ShutterContactCondition` (`shutterContactId`, `conditionState`:
+`OPEN`/`CLOSED`).
+
+**Actions:**
+
+- `UserDefinedStateAction` - sets a UserDefinedState to an absolute value
+  (no relative "toggle" - compute the inverse client-side if needed):
+  ```json
+  {"type": "UserDefinedStateAction", "delayInSeconds": 0,
+   "configuration": "{\"stateId\":\"<userDefinedState id>\",\"state\":\"ACTIVE\"}"}
+  ```
+  `state` is `ACTIVE`/`INACTIVE`.
+- `SmartPlugOnOffAction` - `{"smartPlugId": "<device id>", "action": "TURN_ON"/"TURN_OFF"}`.
+- `RoomClimateAction` - sets a room's heating/cooling target; observed
+  fields: `rccId`, `roomControlMode`, `operationMode`,
+  `operationModeToggleActive`, `temperature`, `temperatureToggleActive`,
+  `scheduleId`, `scheduleName`, `scheduleToggleActive`, `enableBoostMode`,
+  `boostModeToggleActive` (the `*ToggleActive` flags gate whether that
+  paired field is actually applied by this action, letting one action only
+  touch a subset of a room's climate settings).
+- `OutdoorCameraAction` - controls a camera's recording/notification/light
+  state; observed fields: `cameraId`, `actionEnableCamera` (`TURN_ON`/
+  `TURN_OFF`), `actionEnableCameraNotification`
+  (`TURN_NOTIFICATION_ON`/...), `lightOptionActive`,
+  `actionEnableCameraLight` (`TURN_LIGHT_ON`/`TURN_LIGHT_OFF`),
+  `enableCameraAndNotificationOptionActive`.

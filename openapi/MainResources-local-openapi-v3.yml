@@ -212,6 +212,35 @@ paths:
                   $ref: '#/components/schemas/Automation'
         '404':
           description: The entity could not be found.
+    post:
+      summary: Create a new Automation.
+      description: |-
+        Creates a new Automation. The request body is a full `Automation`
+        object with `id` left blank (empty string) — the SHC assigns the id
+        server-side and echoes the created Automation, including the new
+        id, in the response body.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app (`RestRequests.getAutomationCreateRequest`
+        -> `buildPostRequest(["automation","rules"], AutomationRuleData)`)
+        and confirmed against a real Bosch Smart Home Controller (create +
+        delete round-trip).
+      tags:
+        - Automations
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Automation'
+      responses:
+        '200':
+          description: Accepted request. Returns the created Automation, with its server-assigned id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Automation'
   '/automation/rules/{automationId}':
     get:
       summary: Retrieve a specific Automation.
@@ -381,6 +410,36 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserDefinedState'
+    post:
+      summary: Create a new UserDefinedState.
+      description: |-
+        Creates a new UserDefinedState (a virtual, user-created on/off
+        state that other Automations can read or set). The request body
+        has `id` left blank (empty string) — the SHC assigns the id
+        server-side and echoes the created UserDefinedState, including the
+        new id, in the response body.
+
+        Not part of the official OpenAPI generator output; traced from the
+        official Bosch Android app (`RestRequests.createUserDefinedState`
+        -> `buildPostRequest(["userdefinedstates"], UserDefinedStateData)`)
+        and confirmed against a real Bosch Smart Home Controller (create +
+        delete round-trip).
+      tags:
+      - UserDefinedStates
+      parameters:
+      - $ref: '#/components/parameters/apiVersionHeaderParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDefinedState'
+      responses:
+        '200':
+          description: Accepted request. Returns the created UserDefinedState, with its server-assigned id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDefinedState'
   '/userdefinedstates/{userDefinedStateId}':
     get:
       summary: Retrieve a specific UserDefinedState.
