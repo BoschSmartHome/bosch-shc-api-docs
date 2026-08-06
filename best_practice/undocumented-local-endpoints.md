@@ -286,6 +286,22 @@ seed, not a complete list.
   {"type": "ShutterContactReminderTrigger",
    "configuration": "{\"shutterContactId\":\"<device id>\",\"triggerState\":\"CLOSED\",\"remindAfterSeconds\":900}"}
   ```
+- `ShutterContactButtonPressTrigger` - fires on the physical pushbutton of a
+  Door/Window Contact II (SWD2/SWD2_PLUS/SWD2_DUAL), which has no Keypad
+  service and is otherwise invisible to the local API:
+  ```json
+  {"type": "ShutterContactButtonPressTrigger",
+   "configuration": "{\"shutterContactId\":\"<device id>\",\"buttonPressState\":\"ON_SHORT_PRESS\"}"}
+  ```
+  `buttonPressState` observed as `ON_SHORT_PRESS` and `ON_LONG_PRESS`. Live-
+  confirmed 2026-08-06: created via the official Bosch app (mapping a real
+  SWD2_DUAL button to a Scenario), read back via `GET /automation/rules`,
+  then deleted again via `DELETE /automation/rules/{id}` (see §10 above).
+  Resolves the blocker tracked in hass#245/#342/#376 — the `GET/PUT
+  /keypads/{deviceId}/configuration` endpoint speculated about in an earlier
+  investigation does NOT carry this (all 3 of Thomas's SWD2 devices return
+  `{"assignments":[],...}` there regardless); the real mechanism is this
+  ordinary Automation-rule trigger, same shape as `KeypadButtonPressTrigger`.
 - `DailyTimerTrigger` - fires at a fixed time of day:
   `{"type": "DailyTimerTrigger", "configuration": "{\"time\":\"23:00\"}"}`.
 - `AstroTimeEventTrigger` - fires relative to sunrise/sunset:
