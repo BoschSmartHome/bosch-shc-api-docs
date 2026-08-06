@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Hydraulic Balancing
+  description: |-
+    This description focuses on the JSON-based, REST-like API for hydraulic
+    balancing configurations of heating-circuit capable Devices.
+
+    This is not part of the generated device/service model and is not
+    covered by the official OpenAPI generator output; it was traced from a
+    decompile of the official Bosch Android app's Kotlin data classes only.
+
+    **Confidence level: not independently verified against real hardware.**
+    No hydraulic-balancing-capable Device was available for live testing at
+    the time of writing (the test installation used to trace this API
+    responds `503` for these endpoints, i.e. no such Device is present).
+    Implementers should treat the schemas below as a best-effort transcription
+    of the decompiled data model, not a live-confirmed contract, and are
+    encouraged to report any discrepancy found on real hardware.
+
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+tags:
+  - name: Configuration
+    description: |-
+      Hydraulic balancing configurations. Not independently verified against
+      real hardware - see the top-level description.
+paths:
+  '/climate/hydraulicbalancing':
+    get:
+      summary: List all hydraulic balancing configurations.
+      description: |-
+        Returns all hydraulic balancing configurations known to the Smart
+        Home Controller.
+
+        Not independently verified against real hardware - traced from a
+        decompile of the official Bosch Android app's Kotlin data classes
+        only.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HydraulicBalancingConfiguration'
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/climate/hydraulicbalancing/{configId}':
+    get:
+      summary: Get a specific hydraulic balancing configuration.
+      description: |-
+        Returns the hydraulic balancing configuration identified by the
+        `configId` path parameter.
+
+        Not independently verified against real hardware - traced from a
+        decompile of the official Bosch Android app's Kotlin data classes
+        only.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/configIdPathParam'
+      responses:
+        '200':
+          description: The hydraulic balancing configuration was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HydraulicBalancingConfiguration'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+    put:
+      summary: Update a specific hydraulic balancing configuration.
+      description: |-
+        Updates the hydraulic balancing configuration identified by the
+        `configId` path parameter with a full-body PUT.
+
+        Not independently verified against real hardware - traced from a
+        decompile of the official Bosch Android app's Kotlin data classes
+        only. The exact set of writable fields could not be confirmed; treat
+        `HydraulicBalancingConfiguration` as a best-effort schema.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/configIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HydraulicBalancingConfiguration'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HydraulicBalancingConfiguration'
+        '404':
+          description: |-
+            The entity could not be found. One of the defined path parameters was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+    HydraulicBalancingConfiguration:
+      type: object
+      description: |-
+        Not independently verified against real hardware. Traced from a
+        decompile of the official Bosch Android app's Kotlin data classes
+        only; kept intentionally generic beyond `id` since the exact field
+        set could not be confirmed.
+      properties:
+        id:
+          type: string
+          description: "A single fully qualified identifier of the hydraulic balancing configuration."
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+    configIdPathParam:
+      name: configId
+      in: path
+      description: "A single fully qualified identifier of the hydraulic balancing configuration."
+      required: true
+      schema:
+        type: string

@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Device Management
+  description: |-
+    This description focuses on the JSON-based, REST-like API for device-agnostic
+    firmware management on the Bosch Smart Home Controller, as well as the
+    Controller's own firmware update.
+
+    These endpoints are not part of the generated device/service model and are not
+    covered by the official OpenAPI generator output; they were traced from the
+    official Bosch Android app and confirmed against a real Bosch Smart Home
+    Controller.
+
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+tags:
+  - name: Device Firmware
+    description: Firmware lifecycle state and update activation of a single Device.
+  - name: Controller Firmware
+    description: Firmware update of the Smart Home Controller itself.
+paths:
+  '/devicemanagement/firmware/{deviceId}':
+    get:
+      summary: Get a Device's firmware lifecycle state.
+      description: |-
+        Returns the firmware lifecycle state of the Device identified by the
+        `deviceId` path parameter as a bare JSON string.
+
+        Devices without a firmware capability (e.g. virtual devices or the
+        Smart Home Controller's own root Device) respond with `404`;
+        confirmed live against a real Bosch Smart Home Controller.
+      tags:
+        - Device Firmware
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '200':
+          description: The firmware lifecycle state was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareUpdateState'
+        '404':
+          description: |-
+            The entity could not be found. Either the `deviceId` path parameter
+            was invalid, or the Device has no firmware capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/devicemanagement/firmware/{deviceId}/activate':
+    put:
+      summary: Activate a pending firmware update for a Device.
+      description: |-
+        Triggers the installation of a pending firmware update for the Device
+        identified by the `deviceId` path parameter. No request body.
+
+        Confirmed live end-to-end against a real TRV_GEN2 (Thermostat II)
+        device: the firmware lifecycle state moved through
+        `AwaitingActivation` -> `UpdatePending` -> `UpToDateAwaitingUserInteraction`
+        over roughly 90 seconds after calling this endpoint.
+      tags:
+        - Device Firmware
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/deviceIdPathParam'
+      responses:
+        '202':
+          description: Accepted request.
+        '404':
+          description: |-
+            The entity could not be found. Either the `deviceId` path parameter
+            was invalid, or the Device has no firmware capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+  '/rootdevices/startSoftwareUpdate':
+    post:
+      summary: Start a firmware update of the Smart Home Controller itself.
+      description: |-
+        Triggers the Smart Home Controller's own firmware update process. No
+        request body.
+      tags:
+        - Controller Firmware
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+      responses:
+        '202':
+          description: Accepted request.
+        '404':
+          description: The entity could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+        '405':
+          description: The method was not allowed.
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+    FirmwareUpdateState:
+      type: string
+      description: |-
+        The Device's firmware lifecycle state, returned as a bare JSON string
+        (not wrapped in an object).
+      enum:
+        - Fetching
+        - UpToDate
+        - UpdateRunning
+        - TransferringUpdate
+        - AwaitingUserInteraction
+        - AwaitingActivation
+        - AwaitingActivationTimeout
+        - UpdatePending
+        - UpdateAvailable
+        - UpToDateAwaitingUserInteraction
+        - Failed
+        - Unknown
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+    deviceIdPathParam:
+      name: deviceId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

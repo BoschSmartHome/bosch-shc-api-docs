@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Bosch Smart Home Local API for Comfort Zone Templates
+  description: |-
+    This description focuses on the JSON-based, REST-like API for comfort
+    zone templates of air-quality sensors (e.g. Twinguard).
+
+    This is not part of the generated device/service model and is not
+    covered by the official OpenAPI generator output; it was traced from a
+    decompile of the official Bosch Android app only.
+
+    **Confidence level: not independently verified against real hardware.**
+    No Twinguard (or other air-quality) Device was available for live
+    testing at the time of writing. Implementers should treat the schema
+    below as a best-effort transcription of the decompiled app, not a
+    live-confirmed contract, and are encouraged to report any discrepancy
+    found on real hardware.
+
+    By using this documentation, the developer accepts and agrees to be bound by our [Terms and Conditions](https://github.com/BoschSmartHome/bosch-shc-api-docs#terms-and-conditions).
+
+    This documentation is subject to the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+    Please report any issues you encounter with this documentation in our [GitHub tracker](https://github.com/BoschSmartHome/bosch-shc-api-docs/issues).
+  version: "1.0"
+servers:
+  - url: https://{shcIp}:8444/smarthome
+    description: "Bosch Smart Home Controller URL"
+    variables:
+      shcIp:
+        default: 192.168.0.10
+tags:
+  - name: Configuration
+    description: |-
+      Comfort zone templates. Not independently verified against real
+      hardware - see the top-level description.
+paths:
+  '/airquality/comfortzone/templates/{sensorId}':
+    get:
+      summary: Get comfort zone templates for an air-quality sensor.
+      description: |-
+        Returns the comfort zone templates (built-in and custom) of the
+        air-quality sensor identified by the `sensorId` path parameter.
+
+        Not independently verified against real hardware - traced from a
+        decompile of the official Bosch Android app only.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/sensorIdPathParam'
+      responses:
+        '200':
+          description: The comfort zone templates were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComfortZoneTemplates'
+        '404':
+          description: |-
+            The entity could not be found. Either the `sensorId` path parameter
+            was invalid, or the Device has no comfort-zone capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+  '/airquality/comfortzone/templates/{sensorId}/custom':
+    put:
+      summary: Save a custom comfort zone template.
+      description: |-
+        Saves a custom comfort zone template for the air-quality sensor
+        identified by the `sensorId` path parameter.
+
+        Not independently verified against real hardware - traced from a
+        decompile of the official Bosch Android app only. The exact set of
+        writable fields could not be confirmed; treat `ComfortZoneTemplate`
+        as a best-effort schema.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/apiVersionHeaderParam'
+        - $ref: '#/components/parameters/sensorIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComfortZoneTemplate'
+      responses:
+        '200':
+          description: Accepted request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComfortZoneTemplate'
+        '404':
+          description: |-
+            The entity could not be found. Either the `sensorId` path parameter
+            was invalid, or the Device has no comfort-zone capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedError'
+components:
+  schemas:
+    AdvancedError:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: The type of the Object.
+          example: JsonRestExceptionResponseEntity
+        errorCode:
+          type: string
+          description: The error code of the occurred Exception.
+        statusCode:
+          type: integer
+          description: The HTTP status of the error.
+    ComfortZoneTemplate:
+      type: object
+      description: |-
+        Not independently verified against real hardware. Traced from a
+        decompile of the official Bosch Android app only; kept intentionally
+        generic beyond `id`/`name` since the exact field set could not be
+        confirmed.
+      properties:
+        id:
+          type: string
+          description: "A single fully qualified identifier of the comfort zone template."
+        name:
+          type: string
+          description: The name of the comfort zone template.
+    ComfortZoneTemplates:
+      type: object
+      description: |-
+        The set of comfort zone templates (built-in and custom) available for
+        an air-quality sensor. Not independently verified against real
+        hardware.
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComfortZoneTemplate'
+  parameters:
+    apiVersionHeaderParam:
+      in: header
+      name: api-version
+      description: The version of the API.
+      schema:
+        type: string
+        example: "1.0"
+    sensorIdPathParam:
+      name: sensorId
+      in: path
+      description: "A single fully qualified identifier of the Device."
+      required: true
+      schema:
+        type: string

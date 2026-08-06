@@ -637,6 +637,108 @@
 					"response": []
 				},
 				{
+					"name": "Automation update (enable/disable)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/automation/rules/{{automation_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"automation",
+								"rules",
+								"{{automation_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"automationRule\",\r\n    \"id\": \"{{automation_id}}\",\r\n    \"name\": \"TV aus\",\r\n    \"enabled\": false,\r\n    \"automationTriggers\": [],\r\n    \"automationConditions\": [],\r\n    \"automationActions\": [],\r\n    \"conditionLogicalOp\": \"AND\"\r\n}"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Automation delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/automation/rules/{{automation_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"automation",
+								"rules",
+								"{{automation_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "UserDefinedStates as array",
 					"request": {
 						"method": "GET",
@@ -809,6 +911,265 @@
 								"doors-windows",
 								"openwindows"
 							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Device Management",
+			"item": [
+				{
+					"name": "Device firmware state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devicemanagement/firmware/{{device_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devicemanagement",
+								"firmware",
+								"{{device_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Device firmware activate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/devicemanagement/firmware/{{device_id}}/activate",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"devicemanagement",
+								"firmware",
+								"{{device_id}}",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Controller start software update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/rootdevices/startSoftwareUpdate",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"rootdevices",
+								"startSoftwareUpdate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Climate",
+			"item": [
+				{
+					"name": "Temperature drop service by Room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/climate/temperaturedropservice/{{room_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"climate",
+								"temperaturedropservice",
+								"{{room_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperature drop service update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "{{api_version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{shc_api}}/climate/temperaturedropservice/{{room_id}}",
+							"host": [
+								"{{shc_api}}"
+							],
+							"path": [
+								"climate",
+								"temperaturedropservice",
+								"{{room_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@type\": \"roomTemperatureDropService\",\r\n    \"id\": \"{{room_id}}\",\r\n    \"configuration\": {\r\n        \"enabled\": true,\r\n        \"dropTemperature\": 2\r\n    }\r\n}"
 						}
 					},
 					"response": []
